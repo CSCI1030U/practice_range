@@ -5,7 +5,7 @@ import { makeApi } from "./api.js";
 const API_NAMES = [
   "left", "right",
   "jump_up", "jump_left", "jump_right",
-  "on_ground", "on_wall_left", "on_wall_right",
+  "on_ground", "wall_left", "wall_right",
   "flags_left", "position_x", "position_y",
   "say",
 ];

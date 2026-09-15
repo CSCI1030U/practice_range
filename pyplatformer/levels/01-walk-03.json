@@ -1,0 +1,30 @@
+{
+  "id": "01-walk-03",
+  "title": "Over the Hump",
+  "topic": "walking",
+  "kind": "activity",
+  "brief": "<p>A small hill sits between you and the flag: one tile up, along the top, then back down the other side.</p> <p>Remember: climbing takes <code>jump_right()</code>, but coming back down is just <code>right()</code> \u2014 gravity does that part for you.</p>",
+  "width": 8,
+  "height": 6,
+  "tiles": [
+    "........",
+    "........",
+    "........",
+    "...GG.F.",
+    "GGGDDGGG",
+    "DDDDDDDD"
+  ],
+  "start": {
+    "x": 1,
+    "y": 3
+  },
+  "background": "forest",
+  "api": [
+    "right",
+    "left",
+    "jump_right",
+    "jump_left"
+  ],
+  "starterCode": "",
+  "solution": "right()\njump_right()\nright()\nright()\nright()\n"
+}

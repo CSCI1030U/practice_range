@@ -1,0 +1,32 @@
+{
+  "id": "04-cond-02",
+  "title": "Rolling Hills",
+  "topic": "conditional",
+  "kind": "activity",
+  "brief": "<p>Ground that rises <i>and</i> falls. Counting this one out by hand would be tedious and easy to get wrong.</p> <p>Put the <code>if</code>/<code>else</code> from the last level inside a <code>while</code> loop instead of a <code>for</code> loop, and you no longer need to know how many moves the trip takes \u2014 only when to stop.</p>",
+  "width": 10,
+  "height": 8,
+  "tiles": [
+    "..........",
+    "..........",
+    "..........",
+    "..........",
+    ".......GGF",
+    "..GG..GDDG",
+    "GGDDGGDDDD",
+    "DDDDDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 5
+  },
+  "background": "forest",
+  "api": [
+    "right",
+    "jump_right",
+    "wall_right",
+    "flags_left"
+  ],
+  "starterCode": "",
+  "solution": "while flags_left() > 0:\n    if wall_right():\n        jump_right()\n    else:\n        right()\n"
+}

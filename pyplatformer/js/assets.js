@@ -6,7 +6,7 @@
 // cells (row-major) in this order:
 //   0 walking_up_1, 1 walking_up_2, 2 crouching, 3 stand_1, 4 falling,
 //   5 stand_2,      6 jumping,      7 walking_1, 8 walking_2
-// Backgrounds: 3 × 64×72 scenes (forest/desert/jungle) in
+// Backgrounds: 4 × 48×72 scenes (two forest, desert, jungle) in
 // tilemap-backgrounds_packed.png.
 
 const ASSET_DIR = "assets";
@@ -125,12 +125,14 @@ export const ATLAS = {
     displayH: 1.6,
   },
   backgrounds: {
-    // 3 backgrounds at 64×72 each, side-by-side.
-    cellW: 64,
+    // Four 48×72 scenes side by side in a 192×72 sheet: two forest variants,
+    // then desert, then jungle. (They are 48 wide, not 64 — slicing at 64
+    // gives you half of one scene and half of the next.)
+    cellW: 48,
     cellH: 72,
-    forest: 0,
-    desert: 1,
-    jungle: 2,
+    forest: 1,
+    desert: 2,
+    jungle: 3,
   },
 };
 

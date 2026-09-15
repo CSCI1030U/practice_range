@@ -1,0 +1,28 @@
+{
+  "id": "03-for-01",
+  "title": "Count the Steps",
+  "topic": "for",
+  "kind": "demo",
+  "brief": "<p>A <code>while</code> loop repeats until something changes. When you already know <i>how many</i> times to repeat, a <code>for</code> loop says so directly:</p> <pre><code>for step in range(10):\n    right()</code></pre> <p><code>range(10)</code> produces the numbers 0 to 9 \u2014 ten of them \u2014 so the body runs ten times. The variable <code>step</code> holds the current number each time around; you do not have to use it.</p> <p>The flag is ten tiles to your right. Count them on the screen and check.</p>",
+  "width": 14,
+  "height": 6,
+  "tiles": [
+    "..............",
+    "..............",
+    "..............",
+    "...........F..",
+    "GGGGGGGGGGGGGG",
+    "DDDDDDDDDDDDDD"
+  ],
+  "start": {
+    "x": 1,
+    "y": 3
+  },
+  "background": "jungle",
+  "api": [
+    "right",
+    "left"
+  ],
+  "starterCode": "",
+  "solution": "for step in range(10):\n    right()\n"
+}

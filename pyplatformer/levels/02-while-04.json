@@ -1,0 +1,30 @@
+{
+  "id": "02-while-04",
+  "title": "There and Back",
+  "topic": "while",
+  "kind": "activity",
+  "brief": "<p>One flag to the right, one to the left. That is two journeys, so it is two loops \u2014 one after the other.</p> <p>The first loop needs a condition that stops at the right-hand flag (<code>position_x()</code> is useful), and the second can simply run until no flags are left.</p>",
+  "width": 12,
+  "height": 6,
+  "tiles": [
+    "............",
+    "............",
+    "............",
+    ".F........F.",
+    "GGGGGGGGGGGG",
+    "DDDDDDDDDDDD"
+  ],
+  "start": {
+    "x": 5,
+    "y": 3
+  },
+  "background": "desert",
+  "api": [
+    "right",
+    "left",
+    "flags_left",
+    "position_x"
+  ],
+  "starterCode": "",
+  "solution": "while position_x() < 10:\n    right()\n\nwhile flags_left() > 0:\n    left()\n"
+}

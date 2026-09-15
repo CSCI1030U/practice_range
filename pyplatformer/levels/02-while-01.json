@@ -1,0 +1,29 @@
+{
+  "id": "02-while-01",
+  "title": "Keep Walking",
+  "topic": "while",
+  "kind": "demo",
+  "brief": "<p>That is a long way to walk, and writing <code>right()</code> eleven times is nobody's idea of a good time. A <code>while</code> loop repeats a block of code for as long as its condition stays <code>True</code>:</p> <pre><code>while flags_left() &gt; 0:\n    right()</code></pre> <p><code>flags_left()</code> reports how many flags are still uncollected. The moment you collect the last one it becomes <code>0</code>, the condition turns <code>False</code>, and the loop stops.</p> <p>The indented lines under <code>while</code> are the body \u2014 the part that repeats.</p>",
+  "width": 14,
+  "height": 6,
+  "tiles": [
+    "..............",
+    "..............",
+    "..............",
+    "............F.",
+    "GGGGGGGGGGGGGG",
+    "DDDDDDDDDDDDDD"
+  ],
+  "start": {
+    "x": 1,
+    "y": 3
+  },
+  "background": "desert",
+  "api": [
+    "right",
+    "left",
+    "flags_left"
+  ],
+  "starterCode": "",
+  "solution": "while flags_left() > 0:\n    right()\n"
+}

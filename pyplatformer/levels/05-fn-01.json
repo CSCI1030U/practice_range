@@ -1,0 +1,30 @@
+{
+  "id": "05-fn-01",
+  "title": "Your First Function",
+  "topic": "function",
+  "kind": "demo",
+  "brief": "<p>A <b>function</b> gives a name to a group of statements so you can run them whenever you like:</p> <pre><code>def climb():\n    jump_right()\n    jump_right()\n    jump_right()</code></pre> <p>Writing <code>def</code> only <i>defines</i> the function \u2014 nothing moves until you <b>call</b> it by writing <code>climb()</code> on a line of its own.</p> <p>Climb the three steps with your function, then walk down the far side.</p>",
+  "width": 9,
+  "height": 8,
+  "tiles": [
+    ".........",
+    ".........",
+    ".........",
+    "...GG....",
+    "..GDDG...",
+    ".GDDDDG.F",
+    "GDDDDDDGG",
+    "DDDDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 5
+  },
+  "background": "desert",
+  "api": [
+    "right",
+    "jump_right"
+  ],
+  "starterCode": "",
+  "solution": "def climb():\n    jump_right()\n    jump_right()\n    jump_right()\n\nclimb()\n\nfor step in range(5):\n    right()\n"
+}

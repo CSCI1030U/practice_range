@@ -1,0 +1,29 @@
+{
+  "id": "05-fn-02",
+  "title": "With Parameters",
+  "topic": "function",
+  "kind": "demo",
+  "brief": "<p>A function that always walks the same distance is not much use. A <b>parameter</b> lets each call choose its own value:</p> <pre><code>def go_right(n):\n    for step in range(n):\n        right()</code></pre> <p><code>go_right(7)</code> walks seven tiles; <code>go_right(3)</code> walks three. Same function, different argument.</p> <p>Write it once, then use it on both sides of the step in the middle.</p>",
+  "width": 12,
+  "height": 7,
+  "tiles": [
+    "............",
+    "............",
+    "............",
+    "...........F",
+    "........GGGG",
+    "GGGGGGGGDDDD",
+    "DDDDDDDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 4
+  },
+  "background": "desert",
+  "api": [
+    "right",
+    "jump_right"
+  ],
+  "starterCode": "",
+  "solution": "def go_right(n):\n    for step in range(n):\n        right()\n\ngo_right(7)\njump_right()\ngo_right(3)\n"
+}

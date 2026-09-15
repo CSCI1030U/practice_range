@@ -1,0 +1,29 @@
+{
+  "id": "05-fn-04",
+  "title": "Return a Value",
+  "topic": "function",
+  "kind": "activity",
+  "brief": "<p>Functions can hand a value back to whoever called them, using <code>return</code>:</p> <pre><code>def steps_to(target):\n    return target - position_x()</code></pre> <p>That does not move anyone \u2014 it works out a number and gives it back, so <code>steps_to(12)</code> can be used anywhere a number can, including as the argument to another function.</p> <p>The flag is in column 12. Use <code>steps_to</code> to tell <code>go_right</code> how far to walk, without counting it yourself.</p>",
+  "width": 16,
+  "height": 6,
+  "tiles": [
+    "................",
+    "................",
+    "................",
+    "............F...",
+    "GGGGGGGGGGGGGGGG",
+    "DDDDDDDDDDDDDDDD"
+  ],
+  "start": {
+    "x": 2,
+    "y": 3
+  },
+  "background": "desert",
+  "api": [
+    "right",
+    "position_x",
+    "say"
+  ],
+  "starterCode": "",
+  "solution": "def steps_to(target):\n    return target - position_x()\n\ndef go_right(n):\n    for step in range(n):\n        right()\n\ngo_right(steps_to(12))\n"
+}

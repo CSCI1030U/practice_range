@@ -1,0 +1,32 @@
+{
+  "id": "05-fn-05",
+  "title": "The Smart Step",
+  "topic": "function",
+  "kind": "homework",
+  "brief": "<p>Wrap the decision you wrote back in <i>Rolling Hills</i> into a function of its own:</p> <pre><code>def advance():\n    if wall_right():\n        jump_right()\n    else:\n        right()</code></pre> <p>Now \"move one tile along, whatever the ground is doing\" is a single instruction you can call from a loop \u2014 and the loop itself becomes two lines that say exactly what they do.</p>",
+  "width": 13,
+  "height": 8,
+  "tiles": [
+    ".............",
+    ".............",
+    "............F",
+    "...........GG",
+    "......GG..GDD",
+    "..G..GDDGGDDD",
+    "GGDGGDDDDDDDD",
+    "DDDDDDDDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 5
+  },
+  "background": "desert",
+  "api": [
+    "right",
+    "jump_right",
+    "wall_right",
+    "flags_left"
+  ],
+  "starterCode": "",
+  "solution": "def advance():\n    if wall_right():\n        jump_right()\n    else:\n        right()\n\nwhile flags_left() > 0:\n    advance()\n"
+}

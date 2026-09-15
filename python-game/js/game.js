@@ -169,6 +169,7 @@ export class Game {
     this.ctx = canvas.getContext("2d");
     this.ctx.imageSmoothingEnabled = false;
     this.scale = DEFAULT_SCALE;
+    this.preferredScale = DEFAULT_SCALE;
     this.tile = SOURCE_TILE * this.scale;
     this.speed = 1;           // animation speed multiplier
     this.aborted = false;
@@ -185,10 +186,38 @@ export class Game {
   setAssets(assets) { this.assets = assets; }
 
   setScale(s) {
-    this.scale = s;
-    this.tile = SOURCE_TILE * s;
+    this.preferredScale = s;
+    this.refitScale();
+  }
+
+  /**
+   * Apply the largest whole-number scale that fits the pane without
+   * exceeding the scale the student picked. A canvas wider than its pane is
+   * scaled down by CSS at some fractional ratio, which turns evenly sized
+   * tiles into uneven ones — seams and wobbling tile widths right across
+   * the level.
+   */
+  refitScale() {
+    this.scale = this._fittedScale();
+    this.tile = SOURCE_TILE * this.scale;
     if (this.level) this._resizeCanvas();
   }
+
+  _fittedScale() {
+    const preferred = this.preferredScale ?? DEFAULT_SCALE;
+    const host = this.canvas.parentElement;
+    if (!this.level || !host || typeof getComputedStyle !== "function") return preferred;
+    const pad = getComputedStyle(host);
+    const availW = host.clientWidth  - parseFloat(pad.paddingLeft) - parseFloat(pad.paddingRight);
+    const availH = host.clientHeight - parseFloat(pad.paddingTop)  - parseFloat(pad.paddingBottom);
+    if (!(availW > 0) || !(availH > 0)) return preferred;
+    const fit = Math.min(
+      Math.floor(availW / (this.level.width  * SOURCE_TILE)),
+      Math.floor(availH / (this.level.height * SOURCE_TILE)),
+    );
+    return Math.max(1, Math.min(preferred, fit));
+  }
+
 
   setSpeed(mult) { this.speed = mult; }
   abort() { this.aborted = true; }
@@ -207,7 +236,7 @@ export class Game {
       message: null,
       messageAt: 0,
     };
-    this._resizeCanvas();
+    this.refitScale();
     this.aborted = false;
   }
 
@@ -216,6 +245,10 @@ export class Game {
     const h = this.level.height * this.tile;
     this.canvas.width = w;
     this.canvas.height = h;
+    // Resizing a canvas resets its 2D context to defaults, smoothing back
+    // ON — which samples across sprite-sheet cell edges and fringes every
+    // tile. It has to be turned off again after every resize.
+    this.ctx.imageSmoothingEnabled = false;
   }
 
   _startRenderLoop() {

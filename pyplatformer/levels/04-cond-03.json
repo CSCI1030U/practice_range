@@ -1,0 +1,30 @@
+{
+  "id": "04-cond-03",
+  "title": "Name Your Distance",
+  "topic": "conditional",
+  "kind": "activity",
+  "brief": "<p>A <b>variable</b> gives a name to a value so you can use it later:</p> <pre><code>target = 14\nwhile position_x() &lt; target:\n    right()</code></pre> <p>The name <code>target</code> makes the loop say what it means, and if the flag moves you only have one number to change.</p> <p>Try adding <code>say(target - position_x())</code> inside the loop \u2014 it prints to the Output panel, so you can watch the distance count down as you walk.</p>",
+  "width": 16,
+  "height": 6,
+  "tiles": [
+    "................",
+    "................",
+    "................",
+    "..............F.",
+    "GGGGGGGGGGGGGGGG",
+    "DDDDDDDDDDDDDDDD"
+  ],
+  "start": {
+    "x": 2,
+    "y": 3
+  },
+  "background": "forest",
+  "api": [
+    "right",
+    "left",
+    "position_x",
+    "say"
+  ],
+  "starterCode": "",
+  "solution": "target = 14\n\nwhile position_x() < target:\n    right()\n"
+}

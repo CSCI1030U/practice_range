@@ -1,0 +1,32 @@
+{
+  "id": "03-for-02",
+  "title": "Five Stairs",
+  "topic": "for",
+  "kind": "demo",
+  "brief": "<p>Same idea, different move. Five steps up to the flag, so five jumps.</p> <p>Count the steps in the picture before you write the number \u2014 that is the whole skill this level is practising.</p>",
+  "width": 6,
+  "height": 10,
+  "tiles": [
+    "......",
+    "......",
+    "......",
+    ".....F",
+    "....GG",
+    "...GDD",
+    "..GDDD",
+    ".GDDDD",
+    "GDDDDD",
+    "DDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 7
+  },
+  "background": "jungle",
+  "api": [
+    "right",
+    "jump_right"
+  ],
+  "starterCode": "",
+  "solution": "for step in range(5):\n    jump_right()\n"
+}

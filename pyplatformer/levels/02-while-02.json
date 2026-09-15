@@ -1,0 +1,34 @@
+{
+  "id": "02-while-02",
+  "title": "Climb Until You're High Enough",
+  "topic": "while",
+  "kind": "demo",
+  "brief": "<p>A loop can watch <i>where you are</i> instead of counting flags:</p> <ul> <li><code>position_x()</code> \u2014 which column you are standing in, counting from 0 at the left edge.</li> <li><code>position_y()</code> \u2014 which row you are standing in, counting from 0 at the <b>top</b>. Climbing makes this number go <i>down</i>.</li> </ul> <p>You start in row 6 and the top of the staircase is row 2. Keep jumping while your row number is still bigger than 2, then walk the last tile.</p> <p>Try <code>say(position_y())</code> inside the loop if you want to watch the number change as you climb.</p>",
+  "width": 6,
+  "height": 9,
+  "tiles": [
+    "......",
+    "......",
+    ".....F",
+    "....GG",
+    "...GDD",
+    "..GDDD",
+    ".GDDDD",
+    "GDDDDD",
+    "DDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 6
+  },
+  "background": "desert",
+  "api": [
+    "right",
+    "jump_right",
+    "position_x",
+    "position_y",
+    "flags_left"
+  ],
+  "starterCode": "",
+  "solution": "while position_y() > 2:\n    jump_right()\n\nright()\n"
+}

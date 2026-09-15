@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CSCI 1030U - Practice Ranges</title>
+<style>
+:root {
+  --bg: #1e1f29;
+  --bg-2: #282a36;
+  --bg-3: #313342;
+  --fg: #f8f8f2;
+  --fg-dim: #b9bbc7;
+  --accent: #50fa7b;
+  --accent-2: #8be9fd;
+  --warn: #ffb86c;
+  --border: #44475a;
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  min-height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- top bar (matches the apps) ---- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--border);
+  flex: 0 0 auto;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  font-size: 16px;
+}
+
+.course {
+  color: var(--fg-dim);
+  font-size: 13px;
+}
+
+.spacer { flex: 1; }
+
+/* ---- page body ---- */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 16px 56px;
+}
+
+.intro h1 {
+  margin: 0 0 12px;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.intro p {
+  margin: 0 0 8px;
+  color: var(--fg-dim);
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 68ch;
+}
+
+.intro code {
+  font-family: var(--mono);
+  font-size: 13px;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 18px;
+  margin-top: 32px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.12s, transform 0.12s;
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.card-icon {
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.card h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  color: var(--accent);
+}
+
+.card .tagline {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--accent-2);
+}
+
+.card p.blurb {
+  margin: 0 0 16px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--fg-dim);
+  flex: 1;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--bg-3);
+  color: var(--fg-dim);
+}
+
+.tag.count { color: var(--accent); }
+
+.open {
+  align-self: flex-start;
+  background: var(--accent);
+  color: #06240f;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.notes {
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  color: var(--fg-dim);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.notes h3 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--fg);
+}
+
+.notes ul { margin: 0; padding-left: 20px; }
+
+.notes a { color: var(--accent-2); }
+
+footer {
+  padding: 16px;
+  text-align: center;
+  color: var(--fg-dim);
+  font-size: 12px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-2);
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">Practice Ranges</div>
+  <div class="course">CSCI 1030U - Introduction to Computer Science</div>
+  <div class="spacer"></div>
+</header>
+
+<main>
+  <section class="intro">
+    <h1>Practice problem-solving and Python in your browser</h1>
+    <p>
+      Three self-contained practice environments. Each one runs real Python in the browser - there is nothing to install and your progress is saved locally in your browser.
+    </p>
+  </section>
+
+  <section class="cards">
+    <a class="card" href="python-game/">
+      <div class="card-icon">🗺️</div>
+      <h2>Python Quest</h2>
+      <p class="tagline">Guide a hero through maze levels</p>
+      <p class="blurb">
+        Write Python to move a character through top-down maze levels, collect keys,
+        and open treasure chests. Levels build up from statements to
+        loops, conditionals, and functions - the first weeks of the course.
+      </p>
+      <div class="tags">
+        <span class="tag count">30 levels</span>
+        <span class="tag">Sequential</span>
+        <span class="tag">Loops</span>
+        <span class="tag">Conditionals</span>
+        <span class="tag">Functions</span>
+      </div>
+      <span class="open">Open ▸</span>
+    </a>
+
+    <a class="card" href="pyplatformer/">
+      <div class="card-icon">🏃</div>
+      <h2>Python Platformer</h2>
+      <p class="tagline">Guide a hero through platforming levels</p>
+      <p class="blurb">
+        A side-scrolling take on Python Quest: your code walks and jumps the character
+        across uneven ground to collect flags.  More practice for your Python programming.
+      </p>
+      <div class="tags">
+        <span class="tag count">29 levels</span>
+        <span class="tag">Sequential</span>
+        <span class="tag">Loops</span>
+        <span class="tag">Conditionals</span>
+        <span class="tag">Functions</span>
+      </div>
+      <span class="open">Open ▸</span>
+    </a>
+
+    <a class="card" href="pysolve/">
+      <div class="card-icon">⚒️</div>
+      <h2>CodeForge</h2>
+      <p class="tagline">Classic coding problems and debugging</p>
+      <p class="blurb">
+        Read a problem, write a solution in a syntax-highlighted editor, run it on your
+        own input, then check it against the test cases. Includes a debugging category
+        where you fix broken programs.
+      </p>
+      <div class="tags">
+        <span class="tag count">74 problems</span>
+        <span class="tag">Strings</span>
+        <span class="tag">Lists</span>
+        <span class="tag">Recursion</span>
+        <span class="tag">Data structures</span>
+        <span class="tag">Algorithms</span>
+        <span class="tag">Debugging</span>
+      </div>
+      <span class="open">Open ▸</span>
+    </a>
+  </section>
+
+  <section class="notes">
+    <h3>Before you start</h3>
+    <ul>
+      <li>Use a recent Chrome, Edge, or Firefox. The first load of each app downloads
+        the Python runtime (~10 MB) and may take a few seconds; after that it's cached.</li>
+      <li>Your code and progress are kept in your browser's local storage - they stay on the
+        machine you used, and clearing site data will erase them.</li>
+      <li>None of this is graded. Experiment freely.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>CSCI 1030U · Introduction to Computer Science</footer>
+</body>
+</html>

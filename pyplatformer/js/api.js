@@ -5,14 +5,32 @@
 
 import { AbortError, GameError } from "./game.js";
 
-const MAX_ACTIONS = 2000;
+// No level needs anywhere near this many moves, so a run that reaches it is
+// a runaway loop — and at one animated move each, waiting out a larger cap
+// is its own small punishment.
+const MAX_ACTIONS = 500;
+// Sensors don't move anyone, so they don't count against MAX_ACTIONS — but a
+// loop that only reads sensors ("while wall_right(): say('hi')") would spin
+// forever, so they get a much larger budget of their own.
+const MAX_SENSOR_READS = 100000;
 
 export function makeApi(game, console) {
   let actions = 0;
   const tick = () => {
     if (game.aborted) throw new AbortError();
     if (++actions > MAX_ACTIONS) {
-      throw new GameError(`Too many actions (over ${MAX_ACTIONS}). Looks like an infinite loop.`);
+      throw new GameError(`Too many moves (over ${MAX_ACTIONS}). Looks like a loop that never stops — check its condition.`);
+    }
+  };
+
+  let reads = 0;
+  const sense = () => {
+    if (game.aborted) throw new AbortError();
+    if (++reads > MAX_SENSOR_READS) {
+      throw new GameError(
+        "Looks like an infinite loop — a loop is checking a sensor over and over " +
+        "without ever moving. Check your stopping condition."
+      );
     }
   };
 
@@ -25,12 +43,12 @@ export function makeApi(game, console) {
     async jump_right()  { tick(); return game.jump("right"); },
 
     // ---- sensors ----
-    async on_ground()     { return game.isOnGround(); },
-    async on_wall_left()  { return game.isOnWallLeft(); },
-    async on_wall_right() { return game.isOnWallRight(); },
-    async flags_left()    { return game.flagsLeft(); },
-    async position_x()    { return game.positionX(); },
-    async position_y()    { return game.positionY(); },
+    async on_ground()     { sense(); return game.isOnGround(); },
+    async wall_left()     { sense(); return game.isWallLeft(); },
+    async wall_right()    { sense(); return game.isWallRight(); },
+    async flags_left()    { sense(); return game.flagsLeft(); },
+    async position_x()    { sense(); return game.positionX(); },
+    async position_y()    { sense(); return game.positionY(); },
 
     // ---- output ----
     async say(msg) { console.log(String(msg)); },

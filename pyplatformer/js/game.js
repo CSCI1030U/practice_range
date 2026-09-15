@@ -13,16 +13,21 @@ export const DEFAULT_SCALE = 2;
 // Physics constants (in tile units / second² etc.).
 // Each action call covers exactly one tile of net displacement:
 //   right()/left()  → ±1 tile horizontal
-//   jump_up()       → +1 tile peak height, lands back at start
-//   jump_left()/_right() → ±1 horizontal with ~1-tile peak height
+//   jump_up()       → up and back down on the same tile
+//   jump_left()/_right() → ±1 horizontal, clearing a one-tile step
+//
+// A directional jump rises straight up first and only moves sideways once
+// it is clear of a one-tile step (JUMP_CLEAR_RISE). Launching sideways
+// immediately would scrape the step the hero is standing against — with the
+// hero flush to it, there is no room to gain height before the collision.
 const GRAVITY     = 60;
 const MAX_FALL    = 22;
 const WALK_SPEED  = 5.5;
 const WALK_TILES  = 1;       // distance one right()/left() call covers
-const JUMP_VY     = 11;      // sqrt(2*GRAVITY*1) → peak ≈ 1 tile up
-const JUMP_DIR_VY = 11;
-const JUMP_DIR_VX = 2.7;     // covers ~1 tile horizontal over the arc
-const WALL_JUMP_VX_BOOST = 0.5;
+const JUMP_VY     = 13.2;    // peak ≈ 1.45 tiles up
+const JUMP_DIR_VY = 13.2;
+const JUMP_DIR_VX = 5.5;     // sideways speed once the step is cleared
+const JUMP_CLEAR_RISE = 1.2; // rise this far before moving sideways
 
 // Hero hitbox (in tile units). Slightly narrower than a tile so corners
 // don't catch awkwardly.
@@ -33,6 +38,10 @@ const HERO_H = 1.2;
 // consider the hero at rest.
 const REST_EPS = 0.05;
 
+// Fixed physics sub-step. Frame time is divided into chunks no larger than
+// this before being integrated (see _tickSim).
+const MAX_SUB_STEP = 1 / 120;
+
 export class Game {
   constructor(canvas, assets = null) {
     this.canvas = canvas;
@@ -40,6 +49,7 @@ export class Game {
     this.ctx.imageSmoothingEnabled = false;
 
     this.scale = DEFAULT_SCALE;
+    this.preferredScale = DEFAULT_SCALE;
     this.tile = SOURCE_TILE * this.scale;
     this.speed = 1;
     this.aborted = false;
@@ -58,10 +68,38 @@ export class Game {
   setAssets(assets) { this.assets = assets; }
   setSpeed(mult)    { this.speed = mult; }
   setScale(s) {
-    this.scale = s;
-    this.tile = SOURCE_TILE * s;
+    this.preferredScale = s;
+    this.refitScale();
+  }
+
+  /**
+   * Apply the largest whole-number scale that fits the pane without
+   * exceeding the scale the student picked. A canvas wider than its pane is
+   * scaled down by CSS at some fractional ratio, which turns evenly sized
+   * tiles into uneven ones — seams and wobbling tile widths right across
+   * the level.
+   */
+  refitScale() {
+    this.scale = this._fittedScale();
+    this.tile = SOURCE_TILE * this.scale;
     if (this.level) this._resizeCanvas();
   }
+
+  _fittedScale() {
+    const preferred = this.preferredScale ?? DEFAULT_SCALE;
+    const host = this.canvas.parentElement;
+    if (!this.level || !host || typeof getComputedStyle !== "function") return preferred;
+    const pad = getComputedStyle(host);
+    const availW = host.clientWidth  - parseFloat(pad.paddingLeft) - parseFloat(pad.paddingRight);
+    const availH = host.clientHeight - parseFloat(pad.paddingTop)  - parseFloat(pad.paddingBottom);
+    if (!(availW > 0) || !(availH > 0)) return preferred;
+    const fit = Math.min(
+      Math.floor(availW / (this.level.width  * SOURCE_TILE)),
+      Math.floor(availH / (this.level.height * SOURCE_TILE)),
+    );
+    return Math.max(1, Math.min(preferred, fit));
+  }
+
   abort()           { this.aborted = true; if (this._sim) this._sim.reject?.(new AbortError()); this._sim = null; }
   clearAbort()      { this.aborted = false; }
 
@@ -78,7 +116,6 @@ export class Game {
         facing: "right",
         onGround: false,
         onWallLeft: false, onWallRight: false,
-        jumpsRemaining: 2,
         anim: "idle",
         walkPhase: 0,
       },
@@ -86,7 +123,7 @@ export class Game {
       won: false,
       message: null,
     };
-    this._resizeCanvas();
+    this.refitScale();
     this.aborted = false;
     this._sim = null;
     // Settle initial position: drop the hero straight down until on a surface.
@@ -118,6 +155,10 @@ export class Game {
   _resizeCanvas() {
     this.canvas.width  = this.level.width  * this.tile;
     this.canvas.height = this.level.height * this.tile;
+    // Resizing a canvas resets its 2D context to defaults, smoothing back
+    // ON — which samples across sprite-sheet cell edges and fringes every
+    // tile. It has to be turned off again after every resize.
+    this.ctx.imageSmoothingEnabled = false;
   }
 
   // ---- tile queries ----
@@ -162,7 +203,23 @@ export class Game {
     this._renderRaf = requestAnimationFrame(loop);
   }
 
+  /**
+   * Advance the simulation by dt, in fixed sub-steps. A frame's worth of
+   * time at 4× speed is far too coarse to integrate in one go — the hero
+   * would move most of a tile per step and tunnel through thin floors — so
+   * speed changes how much simulated time a frame covers, never how
+   * accurately it is simulated.
+   */
   _tickSim(dt) {
+    let remaining = Math.min(dt, 0.25);
+    while (remaining > 0 && this._sim) {
+      const step = Math.min(remaining, MAX_SUB_STEP);
+      remaining -= step;
+      this._tickSimStep(step);
+    }
+  }
+
+  _tickSimStep(dt) {
     if (this.aborted) {
       const s = this._sim; this._sim = null;
       s.reject?.(new AbortError());
@@ -170,11 +227,17 @@ export class Game {
     }
     this._physicsStep(dt);
     this._collectFlagsUnderHero();
-    if (this.state.won) {
+    const offMap = this._offMapMessage();
+    if (offMap) {
+      // Winning on the way off the map still counts — but the hero will
+      // never settle down there, so end the action now.
       const s = this._sim; this._sim = null;
-      s.resolve?.();
+      if (this.state.won) s.resolve?.();
+      else s.reject?.(new GameError(offMap));
       return;
     }
+    // A win does not cut the action short: the hero finishes the move and
+    // lands on the flag's tile, rather than freezing mid-stride.
     if (this._sim.settleCheck()) {
       const s = this._sim; this._sim = null;
       s.resolve?.();
@@ -243,26 +306,22 @@ export class Game {
     // next to a wall would count as wall-cling).
     h.onWallLeft  = !h.onGround && this._heroAABBCollides(h.x - probeBelow, h.y);
     h.onWallRight = !h.onGround && this._heroAABBCollides(h.x + probeBelow, h.y);
-    if (h.onGround || h.onWallLeft || h.onWallRight) {
-      h.jumpsRemaining = 2;
-    }
   }
 
   _collectFlagsUnderHero() {
     const h = this.state.hero;
-    // Check the tile(s) overlapping the hero body.
-    const left   = h.x - HERO_W / 2;
-    const right  = h.x + HERO_W / 2;
+    // Collect by the hero's own column, not their whole hitbox: brushing a
+    // neighbouring tile with the edge of the sprite shouldn't count as
+    // reaching the flag, or a flag appears to collect itself a tile early.
+    const tx = Math.floor(h.x);
     const top    = h.y - HERO_H;
     const bottom = h.y;
     let collected = false;
     for (let ty = Math.floor(top); ty <= Math.ceil(bottom) - 1; ty++) {
-      for (let tx = Math.floor(left); tx <= Math.ceil(right) - 1; tx++) {
-        if (this.tileAt(tx, ty) === TILE.FLAG) {
-          this.level.tiles[ty][tx] = TILE.EMPTY;
-          this.state.flagsRemaining--;
-          collected = true;
-        }
+      if (this.tileAt(tx, ty) === TILE.FLAG) {
+        this.level.tiles[ty][tx] = TILE.EMPTY;
+        this.state.flagsRemaining--;
+        collected = true;
       }
     }
     if (collected && this.state.flagsRemaining <= 0) {
@@ -281,47 +340,52 @@ export class Game {
     // Settle when (a) we've covered WALK_TILES and we're on ground at rest,
     // or (b) we hit a wall (vx forced to 0), or (c) we fall onto ground.
     return this._runSim((dt) => {
-      // After traveling WALK_TILES, cut horizontal motion so we settle.
-      if (Math.abs(h.x - startX) >= WALK_TILES) h.vx = 0;
-      // Settle if not moving and on a surface.
-      const rest = Math.abs(h.vx) < REST_EPS && Math.abs(h.vy) < REST_EPS;
-      return rest && (h.onGround || h.onWallLeft || h.onWallRight);
+      // Stop dead once a full tile has been covered, landing on the exact
+      // tile centre: a frame's worth of overshoot per call would otherwise
+      // accumulate over a long loop and drift the hero off the grid.
+      if (Math.abs(h.x - startX) >= WALK_TILES) {
+        h.x = startX + sign * WALK_TILES;
+        h.vx = 0;
+      }
+      return this._atRestOnGround(h);
     });
   }
 
   async jump(direction) {
     const h = this.state.hero;
-    const canJumpFromSurface = h.onGround || h.onWallLeft || h.onWallRight;
-    if (!canJumpFromSurface && h.jumpsRemaining <= 0) {
-      throw new GameError("Can't jump from here — not on the ground or a wall, and no double-jump left.");
+    if (!h.onGround) {
+      throw new GameError("Can't jump from here — you're not standing on anything.");
     }
-    h.jumpsRemaining--;
-    // Initial velocity based on direction.
-    if (direction === "up") {
-      h.vy = -JUMP_VY;
-      h.vx = 0;
-    } else {
-      const sign = direction === "right" ? 1 : -1;
-      h.facing = direction;
-      h.vy = -JUMP_DIR_VY;
-      // Wall-jump boost: if pushing off the opposite wall, extra horizontal kick.
-      let vx = sign * JUMP_DIR_VX;
-      if ((direction === "right" && h.onWallLeft) ||
-          (direction === "left"  && h.onWallRight)) {
-        vx += sign * WALL_JUMP_VX_BOOST;
-      }
-      h.vx = vx;
-    }
-    // Force airborne immediately so the wall/ground state clears for this frame.
+    h.vy = direction === "up" ? -JUMP_VY : -JUMP_DIR_VY;
+    h.vx = 0;
+    if (direction !== "up") h.facing = direction;
+    // Force airborne immediately so the ground state clears for this frame.
     h.onGround = h.onWallLeft = h.onWallRight = false;
     const startX = h.x;
+    const startY = h.y;
+    const sign = direction === "right" ? 1 : -1;
 
     return this._runSim((dt) => {
-      // Cap horizontal motion at one tile so the action ends predictably.
-      if (direction !== "up" && Math.abs(h.x - startX) >= WALK_TILES) h.vx = 0;
-      const rest = Math.abs(h.vx) < REST_EPS && Math.abs(h.vy) < REST_EPS;
-      return rest && (h.onGround || h.onWallLeft || h.onWallRight);
+      if (direction !== "up") {
+        // Move sideways only once high enough to clear a one-tile step,
+        // then stop after covering one tile so the landing is predictable.
+        if (startY - h.y >= JUMP_CLEAR_RISE && h.vx === 0) h.vx = sign * JUMP_DIR_VX;
+        if (Math.abs(h.x - startX) >= WALK_TILES) {
+          h.x = startX + sign * WALK_TILES;
+          h.vx = 0;
+        }
+      }
+      return this._atRestOnGround(h);
     });
+  }
+
+  /**
+   * An action ends when the hero is standing still on solid ground. Resting
+   * mid-air is deliberately not a settled state: every action starts and ends
+   * with both feet down, which is what makes one call = one predictable move.
+   */
+  _atRestOnGround(h) {
+    return h.onGround && Math.abs(h.vx) < REST_EPS && Math.abs(h.vy) < REST_EPS;
   }
 
   _runSim(settleCheck) {
@@ -330,14 +394,44 @@ export class Game {
     });
   }
 
+  /**
+   * The hero has left the level entirely (walked off a side edge, or fell
+   * past the bottom row). Without this the simulation would never settle.
+   * Returns a message to report, or null while the hero is still in play.
+   */
+  _offMapMessage() {
+    const h = this.state.hero;
+    if (h.x < -1 || h.x > this.level.width + 1) {
+      return "You walked off the side of the level. Check how far you're travelling.";
+    }
+    if (h.y > this.level.height + 2) {
+      return "You fell out of the level. Check where the ground runs out.";
+    }
+    return null;
+  }
+
   // ---- sensors ----
 
   isOnGround()    { return !!this.state.hero.onGround; }
   isOnWallLeft()  { return !!this.state.hero.onWallLeft; }
   isOnWallRight() { return !!this.state.hero.onWallRight; }
   flagsLeft()     { return this.state.flagsRemaining; }
-  positionX()     { return this.state.hero.x; }
-  positionY()     { return this.state.hero.y; }
+
+  /** Tile column the hero is standing in (an integer, counting from 0 at the left). */
+  positionX()     { return this.heroCol(); }
+  /** Tile row the hero is standing in (an integer, counting from 0 at the top). */
+  positionY()     { return this.heroRow(); }
+
+  heroCol()       { return Math.floor(this.state.hero.x); }
+  heroRow()       { return Math.floor(this.state.hero.y - 0.01); }
+
+  /**
+   * Is there a solid tile directly beside the hero, at the height they
+   * stand at? That is exactly what a walk in that direction would bump
+   * into — and what a directional jump would clear.
+   */
+  isWallRight()   { return this._isSolidAt(this.heroCol() + 1, this.heroRow()); }
+  isWallLeft()    { return this._isSolidAt(this.heroCol() - 1, this.heroRow()); }
 
   checkWin()      { return this.state.won; }
 
@@ -361,14 +455,23 @@ export class Game {
     if (imgs?.backgrounds) {
       const a = ATLAS.backgrounds;
       const which = a[this.level.background || "forest"] ?? 0;
-      // Tile horizontally to fill the canvas.
+      // Tile horizontally to fill the canvas, flipping every other copy.
+      // The scene's left and right edges don't match, so tiling it plainly
+      // leaves a hard vertical seam at every repeat; mirroring makes each
+      // pair meet edge-to-matching-edge instead.
       const sw = a.cellW, sh = a.cellH;
       const dh = this.canvas.height;
       const dw = (sw / sh) * dh;
-      let dx = 0;
-      while (dx < this.canvas.width) {
-        ctx.drawImage(imgs.backgrounds, which * sw, 0, sw, sh, dx, 0, dw, dh);
-        dx += dw;
+      for (let i = 0, dx = 0; dx < this.canvas.width; i++, dx += dw) {
+        ctx.save();
+        if (i % 2 === 1) {
+          ctx.translate(dx + dw, 0);
+          ctx.scale(-1, 1);
+          ctx.drawImage(imgs.backgrounds, which * sw, 0, sw, sh, 0, 0, dw, dh);
+        } else {
+          ctx.drawImage(imgs.backgrounds, which * sw, 0, sw, sh, dx, 0, dw, dh);
+        }
+        ctx.restore();
       }
     } else {
       ctx.fillStyle = "#a4d5f7";

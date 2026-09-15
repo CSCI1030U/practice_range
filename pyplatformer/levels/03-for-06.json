@@ -1,0 +1,28 @@
+{
+  "id": "03-for-06",
+  "title": "Loops Inside Loops",
+  "topic": "for",
+  "kind": "homework",
+  "brief": "<p>Four flags, evenly spaced four tiles apart. You could write one loop of sixteen steps \u2014 but the structure of the level is really \"four tiles, four times\".</p> <p>A loop body can contain another loop:</p> <pre><code>for flag in range(4):\n    for step in range(4):\n        right()</code></pre> <p>The inner loop runs all the way through on every single pass of the outer one. Trace it on paper before you run it: how many <code>right()</code> calls happen in total?</p>",
+  "width": 17,
+  "height": 6,
+  "tiles": [
+    ".................",
+    ".................",
+    ".................",
+    "....F...F...F...F",
+    "GGGGGGGGGGGGGGGGG",
+    "DDDDDDDDDDDDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 3
+  },
+  "background": "jungle",
+  "api": [
+    "right",
+    "flags_left"
+  ],
+  "starterCode": "",
+  "solution": "for flag in range(4):\n    for step in range(4):\n        right()\n"
+}

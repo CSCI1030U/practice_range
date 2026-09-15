@@ -1,0 +1,28 @@
+{
+  "id": "01-walk-05",
+  "title": "Back for the Flag",
+  "topic": "walking",
+  "kind": "homework",
+  "brief": "<p>Two flags this time, and one of them is <b>behind</b> you. The level is only finished when you have collected them both.</p> <p>Plan the whole trip before you write it: which flag will you fetch first, and how many tiles is each leg?</p>",
+  "width": 10,
+  "height": 6,
+  "tiles": [
+    "..........",
+    "..........",
+    "..........",
+    ".F......F.",
+    "GGGGGGGGGG",
+    "DDDDDDDDDD"
+  ],
+  "start": {
+    "x": 4,
+    "y": 3
+  },
+  "background": "forest",
+  "api": [
+    "right",
+    "left"
+  ],
+  "starterCode": "",
+  "solution": "left()\nleft()\nleft()\nright()\nright()\nright()\nright()\nright()\nright()\nright()\n"
+}

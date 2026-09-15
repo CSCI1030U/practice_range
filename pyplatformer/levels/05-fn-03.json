@@ -1,0 +1,31 @@
+{
+  "id": "05-fn-03",
+  "title": "Two Helpers",
+  "topic": "function",
+  "kind": "activity",
+  "brief": "<p>Build yourself a small toolkit: one function that walks a given number of tiles, and one that climbs a given number of steps.</p> <p>Then the solution to this level \u2014 and to most levels \u2014 is three short lines that read like a description of the route.</p>",
+  "width": 11,
+  "height": 9,
+  "tiles": [
+    "...........",
+    "...........",
+    "...........",
+    "..........F",
+    ".....GGGGGG",
+    "....GDDDDDD",
+    "...GDDDDDDD",
+    "GGGDDDDDDDD",
+    "DDDDDDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 6
+  },
+  "background": "desert",
+  "api": [
+    "right",
+    "jump_right"
+  ],
+  "starterCode": "",
+  "solution": "def go_right(n):\n    for step in range(n):\n        right()\n\ndef climb(n):\n    for step in range(n):\n        jump_right()\n\ngo_right(2)\nclimb(3)\ngo_right(5)\n"
+}

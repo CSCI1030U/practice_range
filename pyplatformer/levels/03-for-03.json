@@ -1,0 +1,30 @@
+{
+  "id": "03-for-03",
+  "title": "Run, Then Climb",
+  "topic": "for",
+  "kind": "activity",
+  "brief": "<p>A flat run, then a climb, then one last step. Two <code>for</code> loops, one after the other, each with its own count.</p> <p>Work out each number from the picture: how many tiles of flat ground, and how many steps in the staircase?</p>",
+  "width": 10,
+  "height": 8,
+  "tiles": [
+    "..........",
+    "..........",
+    ".........F",
+    "........GG",
+    ".......GDD",
+    "......GDDD",
+    "GGGGGGDDDD",
+    "DDDDDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 5
+  },
+  "background": "jungle",
+  "api": [
+    "right",
+    "jump_right"
+  ],
+  "starterCode": "",
+  "solution": "for step in range(5):\n    right()\n\nfor step in range(3):\n    jump_right()\n\nright()\n"
+}

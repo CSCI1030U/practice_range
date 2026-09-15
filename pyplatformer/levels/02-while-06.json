@@ -1,0 +1,32 @@
+{
+  "id": "02-while-06",
+  "title": "Climb and Collect",
+  "topic": "while",
+  "kind": "homework",
+  "brief": "<p>Three flags, spread up a staircase that flattens out at the top.</p> <p>Here is the useful trick: <code>jump_right()</code> also works on flat ground \u2014 it just hops you one tile along. So a single loop can handle both the steps and the flat stretch.</p>",
+  "width": 7,
+  "height": 9,
+  "tiles": [
+    ".......",
+    ".......",
+    "....F.F",
+    "....GGG",
+    "..FGDDD",
+    "..GDDDD",
+    ".GDDDDD",
+    "GDDDDDD",
+    "DDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 6
+  },
+  "background": "desert",
+  "api": [
+    "right",
+    "jump_right",
+    "flags_left"
+  ],
+  "starterCode": "",
+  "solution": "while flags_left() > 0:\n    jump_right()\n"
+}

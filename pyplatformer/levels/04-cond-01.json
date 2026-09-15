@@ -1,0 +1,31 @@
+{
+  "id": "04-cond-01",
+  "title": "Look Before You Leap",
+  "topic": "conditional",
+  "kind": "demo",
+  "brief": "<p>Until now you have read the terrain yourself and written the matching moves. Now let your code read it:</p> <ul> <li><code>wall_right()</code> \u2014 <code>True</code> when a step blocks the tile directly to your right, <code>False</code> when the way is clear.</li> <li><code>wall_left()</code> \u2014 the same, to your left.</li> </ul> <p>An <code>if</code> statement runs its block only when the condition is <code>True</code>; the <code>else</code> block runs when it is <code>False</code>:</p> <pre><code>for step in range(7):\n    if wall_right():\n        jump_right()\n    else:\n        right()</code></pre> <p>Seven moves, and the code decides for itself which move each one should be.</p>",
+  "width": 8,
+  "height": 7,
+  "tiles": [
+    "........",
+    "........",
+    ".......F",
+    ".....GGG",
+    "..GGGDDD",
+    "GGDDDDDD",
+    "DDDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 4
+  },
+  "background": "forest",
+  "api": [
+    "right",
+    "jump_right",
+    "wall_right",
+    "wall_left"
+  ],
+  "starterCode": "",
+  "solution": "for step in range(7):\n    if wall_right():\n        jump_right()\n    else:\n        right()\n"
+}

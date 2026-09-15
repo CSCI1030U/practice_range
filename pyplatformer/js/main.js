@@ -217,6 +217,14 @@ overlayRetry.addEventListener("click", () => {
   hideOverlay();
   game.loadLevel(currentLevel);
 });
+// Re-fit the canvas when the window changes size, so the level keeps being
+// drawn at a whole-number scale rather than being squeezed by CSS.
+let refitTimer = null;
+window.addEventListener("resize", () => {
+  clearTimeout(refitTimer);
+  refitTimer = setTimeout(() => game.refitScale(), 100);
+});
+
 runBtn.addEventListener("click", onRun);
 stopBtn.addEventListener("click", onStop);
 resetBtn.addEventListener("click", onReset);

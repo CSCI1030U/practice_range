@@ -218,8 +218,14 @@
   }
 
   // ---- problem loading ----
+  // Problem JSON is fetched with a cache buster, fixed for the life of the
+  // page, so that edits to problems/ reach returning students on a normal
+  // reload instead of waiting out a cached copy.
+  const CACHE_BUST = `_=${Date.now()}`;
+  const problemUrl = (path) => `problems/${path}?${CACHE_BUST}`;
+
   async function loadManifest() {
-    const res = await fetch("problems/manifest.json");
+    const res = await fetch(problemUrl("manifest.json"));
     if (!res.ok) throw new Error("Could not load problems/manifest.json");
     manifest = await res.json();
     // Accept either the categorized format ({ categories: [{ name, problems }] })
@@ -266,7 +272,7 @@
   }
 
   async function loadProblem(file) {
-    const res = await fetch("problems/" + file);
+    const res = await fetch(problemUrl(file));
     if (!res.ok) throw new Error("Could not load problem " + file);
     current = await res.json();
     renderProblem();
@@ -992,7 +998,7 @@
     await Promise.all(
       manifestEntries().map(async (e) => {
         try {
-          const res = await fetch("problems/" + e.file);
+          const res = await fetch(problemUrl(e.file));
           if (res.ok) {
             const p = await res.json();
             map[p.id] = p.points || 0;

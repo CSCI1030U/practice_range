@@ -1,0 +1,32 @@
+{
+  "id": "04-cond-05",
+  "title": "The Obstacle Course",
+  "topic": "conditional",
+  "kind": "homework",
+  "brief": "<p>Sixteen columns of uneven ground and three flags, with no two stretches alike.</p> <p>The same handful of lines you wrote for <i>Rolling Hills</i> should walk this whole course without a single change to the numbers \u2014 because there are no numbers in it. That is the point of writing code that reads its surroundings.</p>",
+  "width": 16,
+  "height": 8,
+  "tiles": [
+    "................",
+    "................",
+    ".............F..",
+    "............GG.F",
+    ".....GGF...GDDGG",
+    "..GGGDDG..GDDDDD",
+    "GGDDDDDDGGDDDDDD",
+    "DDDDDDDDDDDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 5
+  },
+  "background": "forest",
+  "api": [
+    "right",
+    "jump_right",
+    "wall_right",
+    "flags_left"
+  ],
+  "starterCode": "",
+  "solution": "while flags_left() > 0:\n    if wall_right():\n        jump_right()\n    else:\n        right()\n"
+}

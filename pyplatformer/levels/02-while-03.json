@@ -1,0 +1,34 @@
+{
+  "id": "02-while-03",
+  "title": "The Long Climb",
+  "topic": "while",
+  "kind": "activity",
+  "brief": "<p>Six steps, one flag at the top. Write a loop that climbs until the flag is collected.</p> <p>Either condition works here \u2014 <code>flags_left()</code> or <code>position_y()</code>. Pick one and make sure it eventually becomes <code>False</code>: a loop whose condition never changes runs forever.</p>",
+  "width": 7,
+  "height": 10,
+  "tiles": [
+    ".......",
+    ".......",
+    "......F",
+    ".....GG",
+    "....GDD",
+    "...GDDD",
+    "..GDDDD",
+    ".GDDDDD",
+    "GDDDDDD",
+    "DDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 7
+  },
+  "background": "desert",
+  "api": [
+    "right",
+    "jump_right",
+    "flags_left",
+    "position_y"
+  ],
+  "starterCode": "",
+  "solution": "while flags_left() > 0:\n    jump_right()\n"
+}

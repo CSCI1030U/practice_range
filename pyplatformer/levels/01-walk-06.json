@@ -1,0 +1,32 @@
+{
+  "id": "01-walk-06",
+  "title": "The Staircase",
+  "topic": "walking",
+  "kind": "homework",
+  "brief": "<p>A staircase of single steps. Walk to the bottom of it, climb each step, then walk to the flag.</p> <p>By the end of this one you will have typed <code>jump_right()</code> three times in a row. Keep that feeling in mind \u2014 the next topic is about getting the computer to do the repeating for you.</p>",
+  "width": 6,
+  "height": 8,
+  "tiles": [
+    "......",
+    "......",
+    ".....F",
+    "....GG",
+    "...GDD",
+    "..GDDD",
+    "GGDDDD",
+    "DDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 5
+  },
+  "background": "forest",
+  "api": [
+    "right",
+    "left",
+    "jump_right",
+    "jump_left"
+  ],
+  "starterCode": "",
+  "solution": "right()\njump_right()\njump_right()\njump_right()\nright()\n"
+}

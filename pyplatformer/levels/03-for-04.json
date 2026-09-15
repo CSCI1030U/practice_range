@@ -1,0 +1,30 @@
+{
+  "id": "03-for-04",
+  "title": "Steps with Landings",
+  "topic": "for",
+  "kind": "activity",
+  "brief": "<p>This staircase has a landing after every step: walk one tile, climb one step, and repeat.</p> <p>A loop body can hold more than one line. Every indented line under <code>for</code> runs on each pass, in order, so a two-line body repeats the whole pair.</p>",
+  "width": 8,
+  "height": 8,
+  "tiles": [
+    "........",
+    "........",
+    ".......F",
+    "......GG",
+    "....GGDD",
+    "..GGDDDD",
+    "GGDDDDDD",
+    "DDDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 5
+  },
+  "background": "jungle",
+  "api": [
+    "right",
+    "jump_right"
+  ],
+  "starterCode": "",
+  "solution": "for step in range(3):\n    right()\n    jump_right()\n\nright()\n"
+}

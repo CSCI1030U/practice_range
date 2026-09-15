@@ -1,0 +1,32 @@
+{
+  "id": "04-cond-04",
+  "title": "Which Way?",
+  "topic": "conditional",
+  "kind": "homework",
+  "brief": "<p>This time the flag is up a staircase to your <b>left</b>.</p> <p>Everything you wrote for <i>Rolling Hills</i> applies, mirrored: the sensor to ask is <code>wall_left()</code>, and the moves are the left-handed ones.</p>",
+  "width": 7,
+  "height": 8,
+  "tiles": [
+    ".......",
+    ".......",
+    "F......",
+    "G......",
+    "DG.....",
+    "DDG....",
+    "DDDGGGG",
+    "DDDDDDD"
+  ],
+  "start": {
+    "x": 6,
+    "y": 5
+  },
+  "background": "forest",
+  "api": [
+    "left",
+    "jump_left",
+    "wall_left",
+    "flags_left"
+  ],
+  "starterCode": "",
+  "solution": "while flags_left() > 0:\n    if wall_left():\n        jump_left()\n    else:\n        left()\n"
+}

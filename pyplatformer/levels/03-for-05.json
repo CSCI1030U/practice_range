@@ -1,0 +1,31 @@
+{
+  "id": "03-for-05",
+  "title": "Up and Over",
+  "topic": "for",
+  "kind": "homework",
+  "brief": "<p>Up one side of the hill, across the top, and down the far side to the flag.</p> <p>Three stages, but only two of them need loops of their own \u2014 remember that walking downhill takes no jumps, so the trip across the top and the way down can be a single run of <code>right()</code> calls.</p>",
+  "width": 10,
+  "height": 9,
+  "tiles": [
+    "..........",
+    "..........",
+    "..........",
+    "..........",
+    "...GGGG...",
+    "..GDDDDG..",
+    ".GDDDDDDGF",
+    "GDDDDDDDDG",
+    "DDDDDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 6
+  },
+  "background": "jungle",
+  "api": [
+    "right",
+    "jump_right"
+  ],
+  "starterCode": "",
+  "solution": "for step in range(3):\n    jump_right()\n\nfor step in range(6):\n    right()\n"
+}

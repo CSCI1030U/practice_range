@@ -1,0 +1,30 @@
+{
+  "id": "01-walk-04",
+  "title": "Down the Slope",
+  "topic": "walking",
+  "kind": "activity",
+  "brief": "<p>This one is all downhill. Count the tiles between you and the flag, then write that many calls.</p> <p>You will not need a single jump \u2014 walking off the edge of a step drops you onto the one below.</p>",
+  "width": 8,
+  "height": 8,
+  "tiles": [
+    "........",
+    "........",
+    "........",
+    "GG......",
+    "DDGG....",
+    "DDDDGG.F",
+    "DDDDDDGG",
+    "DDDDDDDD"
+  ],
+  "start": {
+    "x": 0,
+    "y": 2
+  },
+  "background": "forest",
+  "api": [
+    "right",
+    "left"
+  ],
+  "starterCode": "",
+  "solution": "right()\nright()\nright()\nright()\nright()\nright()\nright()\n"
+}

@@ -3,7 +3,7 @@
 // if any prior level (by manifest order) in the same topic or any prior
 // topic has been completed.
 
-const KEY = "python-game.progress.v1";
+const KEY = "pyplatformer.progress.v1";
 
 export class Progress {
   constructor() {
