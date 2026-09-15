@@ -1,0 +1,23 @@
+{
+  "id": "02-while-02",
+  "title": "Right Then Down",
+  "topic": "while",
+  "kind": "demo",
+  "brief": "<p>A <code>while</code> loop can also stop when you hit a <b>wall</b>. The sensor <code>is_wall_right()</code> returns <code>True</code> when there's a wall directly to your right.</p><p>Two loops in a row let you turn the corner: the first walks east until something stops you, the second walks south until you're next to the chest.</p>",
+  "width": 10,
+  "height": 6,
+  "tiles": [
+    "##########",
+    "#@.......#",
+    "########.#",
+    "########.#",
+    "########T#",
+    "##########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 8, "y": 4, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest", "is_at_chest", "is_wall_right", "is_wall_down", "is_wall_left", "is_wall_up"],
+  "starterCode": "",
+  "solution": "while not is_wall_right():\n    move_right()\n\nwhile not is_at_chest():\n    move_down()\n\nopen_chest()\n"
+}

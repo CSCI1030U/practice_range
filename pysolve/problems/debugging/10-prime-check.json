@@ -1,0 +1,36 @@
+{
+  "id": "fix-10-prime-check",
+  "title": "Prime Check",
+  "errorType": "logic",
+  "difficulty": "Hard",
+  "points": 50,
+  "description": "# Prime Check\n\nThis program should read an integer `n` and print `prime` if it is a prime number, or `not prime` otherwise.\n\nRecall that a prime is a whole number **greater than 1** whose only divisors are 1 and itself. So `0`, `1`, and negative numbers are **not** prime.\n\nThe program works for many inputs but is wrong for some. Find and fix the bug so the tests pass.\n\n## Input\n\nA single integer `n`.\n\n## Output\n\n`prime` or `not prime`.\n\n```\nInput:\n17\n\nOutput:\nprime\n```\n",
+  "starterCode": "n = int(input())\nis_prime = True\nfor i in range(2, n):\n    if n % i == 0:\n        is_prime = False\nprint(\"prime\" if is_prime else \"not prime\")\n",
+  "tests": [
+    {
+      "name": "17 is prime",
+      "input": "17\n",
+      "expectedOutput": "prime\n"
+    },
+    {
+      "name": "2 is prime",
+      "input": "2\n",
+      "expectedOutput": "prime\n"
+    },
+    {
+      "name": "15 is not prime",
+      "input": "15\n",
+      "expectedOutput": "not prime\n"
+    },
+    {
+      "name": "1 is not prime",
+      "input": "1\n",
+      "expectedOutput": "not prime\n"
+    },
+    {
+      "name": "0 is not prime",
+      "input": "0\n",
+      "expectedOutput": "not prime\n"
+    }
+  ]
+}

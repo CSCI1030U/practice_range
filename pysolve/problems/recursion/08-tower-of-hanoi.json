@@ -1,0 +1,18 @@
+{
+  "id": "rec-tower-of-hanoi",
+  "title": "Tower of Hanoi",
+  "difficulty": "Medium",
+  "points": 250,
+  "description": "# Tower of Hanoi\n\nMove a stack of `n` disks from peg `A` to peg `C`, using peg `B` as a helper. The rules: move one disk at a time, and never place a larger disk on a smaller one. Print the sequence of moves.\n\nThis is the classic problem that recursion was made for.\n\n## Input\n\nA single integer `n` (`1 ≤ n ≤ 10`) - the number of disks.\n\n## Output\n\nEach move on its own line in the form `A->C` (the source peg, `->`, the destination peg), in the order they are performed.\n\n```\nInput:\n2\n\nOutput:\nA->B\nA->C\nB->C\n```\n\n## Think about\n\n- To move `n` disks from `src` to `dst`: move the top `n-1` to the helper peg, move the largest disk `src->dst`, then move the `n-1` disks from the helper to `dst`.\n- Base case: moving a single disk is just one `src->dst` move.\n",
+  "starterCode": "n = int(input())\n\n# TODO: print the moves to transfer n disks from peg A to peg C using B,\n#       one move per line in the form 'A->C'\n",
+  "hints": [
+    "Move n-1 disks out of the way, move the big one, then move the n-1 back.",
+    "To move n from src to dst using aux: hanoi(n-1, src, aux, dst); print `src->dst`; hanoi(n-1, aux, dst, src). Base case: one disk is a single move.",
+    "```\nHANOI(n, src, dst, aux)\n    if n = 1\n        print src \"->\" dst\n        return\n    HANOI(n-1, src, aux, dst)\n    print src \"->\" dst\n    HANOI(n-1, aux, dst, src)\nHANOI(n, 'A', 'C', 'B')\n```"
+  ],
+  "tests": [
+    { "name": "1 disk",  "input": "1\n", "expectedOutput": "A->C\n" },
+    { "name": "2 disks", "input": "2\n", "expectedOutput": "A->B\nA->C\nB->C\n" },
+    { "name": "3 disks", "input": "3\n", "expectedOutput": "A->C\nA->B\nC->B\nA->C\nB->A\nB->C\nA->C\n" }
+  ]
+}

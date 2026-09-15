@@ -1,0 +1,20 @@
+{
+  "id": "alg-bubble-comparisons",
+  "title": "Counting Comparisons: Bubble Sort",
+  "difficulty": "Medium",
+  "points": 250,
+  "description": "# Counting Comparisons: Bubble Sort\n\nInstrument **bubble sort** to count how many element comparisons it makes on a given list. Use this exact version, which stops early once the list is sorted:\n\n```\nfor i in range(n - 1):\n    swapped = False\n    for j in range(n - 1 - i):\n        # compare adjacent elements a[j] and a[j+1]\n        if a[j] > a[j+1]:\n            swap them\n            swapped = True\n    if not swapped:\n        break\n```\n\nCount **every** time the `a[j] > a[j+1]` comparison is evaluated. Because of the early exit, the total depends on the data: an already-sorted list needs just one pass.\n\n## Input\n\nOne line of space-separated integers.\n\n## Output\n\nThe total number of comparisons this bubble sort performs.\n\n```\nInput:\n5 1 4 2 8\n\nOutput:\n9\n```\n\n## Think about\n\n- Best case (already sorted): one pass of `n-1` comparisons. Worst case (reverse sorted): `n(n-1)/2`. Try both and watch the count change.\n",
+  "starterCode": "a = list(map(int, input().split()))\n\n# TODO: run the bubble sort described above, counting every adjacent\n#       comparison, and print the total number of comparisons\n",
+  "hints": [
+    "Count every time the inner loop compares two adjacent elements.",
+    "Run the described bubble sort (with the early exit) and add 1 to a counter at each `a[j] > a[j+1]` comparison - including comparisons that don't swap.",
+    "```\ncomp = 0\nfor i = 0 to n-2\n    swapped = false\n    for j = 0 to n-2-i\n        comp = comp + 1\n        if a[j] > a[j+1]\n            swap a[j] and a[j+1]\n            swapped = true\n    if not swapped\n        stop\nprint comp\n```"
+  ],
+  "tests": [
+    { "name": "already sorted", "input": "1 2 3 4\n",   "expectedOutput": "3\n" },
+    { "name": "reverse sorted", "input": "4 3 2 1\n",   "expectedOutput": "6\n" },
+    { "name": "early exit",     "input": "2 1 3 4\n",   "expectedOutput": "5\n" },
+    { "name": "single",         "input": "1\n",         "expectedOutput": "0\n" },
+    { "name": "mixed",          "input": "5 1 4 2 8\n", "expectedOutput": "9\n" }
+  ]
+}

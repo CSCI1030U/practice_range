@@ -1,0 +1,22 @@
+{
+  "id": "01-seq-06",
+  "title": "Zigzag",
+  "topic": "sequential",
+  "kind": "homework",
+  "brief": "<p>The chest is back in the room where you started — but the path goes around. Three corridors, two turns. Plan each leg before you write it.</p>",
+  "width": 8,
+  "height": 5,
+  "tiles": [
+    "########",
+    "#@.....#",
+    "######.#",
+    "#T.....#",
+    "########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 1, "y": 3, "facing": "E" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "move_right()\nmove_right()\nmove_right()\nmove_right()\nmove_right()\nmove_down()\nmove_down()\nmove_left()\nmove_left()\nmove_left()\nmove_left()\nopen_chest()\n"
+}

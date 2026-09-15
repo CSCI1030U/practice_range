@@ -1,0 +1,23 @@
+{
+  "id": "05-fn-01",
+  "title": "Build Your Own Tools",
+  "topic": "function",
+  "kind": "demo",
+  "brief": "<p>The path is a single pattern — <b>two steps right, one step down</b> — repeated three times in a row. Instead of writing those nine moves out, give the pattern a name and call it three times.</p><p>Defining a function with <code>def name():</code> lets you reuse a block of code. The real benefit appears when you call the same function more than once.</p>",
+  "width": 10,
+  "height": 6,
+  "tiles": [
+    "##########",
+    "#@..######",
+    "###...####",
+    "#####...##",
+    "#######.T#",
+    "##########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 8, "y": 4, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "def step():\n    move_right()\n    move_right()\n    move_down()\n\nstep()\nstep()\nstep()\nopen_chest()\n"
+}

@@ -1,0 +1,550 @@
+:root {
+  /* Default theme = Carbon (dark). Other themes override these via [data-theme]. */
+  --bg: #1e1f26;
+  --panel: #262832;
+  --panel-2: #2d3039;
+  --border: #3a3d49;
+  --text: #e6e6ec;
+  --muted: #9aa0ad;
+  --accent: #4f9cff;
+  --on-accent: #ffffff;   /* text on accent/primary buttons */
+  --green: #3fbf6f;
+  --red: #ec5f6a;
+  --gold: #e6aa3c;        /* achievements / certificate button / hints */
+  --gold-ink: #3a2b06;    /* text on gold */
+  --scrim: rgba(0, 0, 0, 0.55);   /* modal backdrop */
+  --toast-ink: #06240f;   /* text on the (green) toast */
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ---- top bar ---- */
+#topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+.brand { font-weight: 700; letter-spacing: 0.3px; color: var(--accent); }
+.spacer { flex: 1; }
+.status { color: var(--muted); font-size: 13px; }
+.status.ready { color: var(--green); }
+.status.error { color: var(--red); }
+
+#problem-select,
+#category-select,
+#theme-select {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 13px;
+}
+#category-select { font-weight: 600; }
+#theme-select { width: 100%; }
+
+.btn {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.btn:hover:not(:disabled) { border-color: var(--accent); }
+.btn:disabled { opacity: 0.5; cursor: default; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 600; }
+.btn.ghost { background: transparent; }
+.btn.danger { background: var(--red); border-color: var(--red); color: var(--on-accent); font-weight: 600; }
+.btn.danger:hover:not(:disabled) { border-color: var(--on-accent); }
+.btn.certificate { background: var(--gold); border-color: var(--gold); color: var(--gold-ink); font-weight: 700; }
+.btn.certificate:hover:not(:disabled) { border-color: var(--gold-ink); }
+.btn.certificate[hidden] { display: none; }
+
+.score-badge {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* difficulty / points header in problem pane */
+.problem-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px 0;
+}
+.pill {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+.pill.easy   { background: color-mix(in srgb, var(--green) 18%, transparent); color: var(--green); }
+.pill.medium { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); }
+.pill.hard   { background: color-mix(in srgb, var(--red) 18%, transparent); color: var(--red); }
+.pill.points { background: var(--panel-2); color: var(--muted); }
+.pill.solved { background: color-mix(in srgb, var(--green) 18%, transparent); color: var(--green); }
+.pill.errtype { background: color-mix(in srgb, var(--red) 18%, transparent); color: var(--red); text-transform: capitalize; }
+
+/* "edited" marker on the editor pane title (shown when code differs from starter) */
+.edited-pill {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  background: color-mix(in srgb, var(--gold) 20%, transparent);
+  color: var(--gold);
+}
+.edited-pill[hidden] { display: none; }
+
+/* revealed error-type hint after a failed attempt (debugging problems) */
+.problem-meta { flex-wrap: wrap; }
+.problem-meta .hint {
+  flex-basis: 100%;
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+/* ---- 3-pane layout ---- */
+#layout {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr 0.8fr;
+  gap: 1px;
+  height: calc(100vh - 49px);
+  background: var(--border);
+}
+.pane {
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+.pane-title {
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#editor-theme-select {
+  margin-left: auto;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 11px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ---- problem pane ---- */
+.problem-body {
+  padding: 14px 16px;
+  overflow: auto;
+  line-height: 1.55;
+}
+.problem-body h1 { font-size: 20px; margin-top: 0; }
+.problem-body h2 { font-size: 16px; }
+.problem-body code {
+  background: var(--panel-2);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.problem-body pre {
+  background: var(--panel-2);
+  padding: 10px 12px;
+  border-radius: 6px;
+  overflow: auto;
+}
+.problem-body pre code { background: none; padding: 0; }
+
+/* ---- editor pane ---- */
+#pane-editor .CodeMirror {
+  flex: 1;
+  height: auto;
+  font-family: var(--mono);
+  font-size: 14px;
+}
+
+/* ---- io pane ---- */
+.io-tabs { display: flex; border-bottom: 1px solid var(--border); }
+.tab {
+  background: none;
+  border: none;
+  color: var(--muted);
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  border-bottom: 2px solid transparent;
+}
+.tab.active { color: var(--text); border-bottom-color: var(--accent); }
+
+.tab-panel { display: none; flex: 1; flex-direction: column; min-height: 0; padding: 10px 12px; gap: 6px; overflow: auto; }
+.tab-panel.active { display: flex; }
+
+.io-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
+#stdin {
+  height: 90px;
+  resize: vertical;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.output {
+  flex: 1;
+  margin: 0;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px;
+  font-family: var(--mono);
+  font-size: 13px;
+  white-space: pre-wrap;
+  overflow: auto;
+  min-height: 80px;
+}
+.output.err { color: var(--red); }
+
+/* ---- test results ---- */
+.test-summary { font-weight: 600; margin-bottom: 4px; }
+.test-summary.pass { color: var(--green); }
+.test-summary.fail { color: var(--red); }
+.test-results { display: flex; flex-direction: column; gap: 8px; }
+
+.test-case {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.test-case .tc-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  background: var(--panel-2);
+  font-size: 13px;
+}
+.test-case .tc-badge { font-weight: 700; }
+.test-case.pass .tc-badge { color: var(--green); }
+.test-case.fail .tc-badge { color: var(--red); }
+.test-case .tc-body { display: none; padding: 8px 10px; gap: 10px; }
+.test-case.open .tc-body { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+.test-case .tc-col h4 { margin: 0 0 4px; font-size: 11px; color: var(--muted); text-transform: uppercase; }
+.test-case .tc-col pre {
+  margin: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px;
+  font-family: var(--mono);
+  font-size: 12px;
+  white-space: pre-wrap;
+  max-height: 180px;
+  overflow: auto;
+}
+.tc-col.mismatch pre { border-color: var(--red); }
+
+/* ---- leaderboard ---- */
+.board { width: 100%; border-collapse: collapse; font-size: 13px; }
+.board th, .board td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+.board th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+.board td:last-child, .board th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.board tr.me { background: color-mix(in srgb, var(--accent) 14%, transparent); }
+.board tr.me td:nth-child(2) { font-weight: 700; color: var(--accent); }
+.board-empty { color: var(--muted); font-size: 13px; }
+
+/* ---- nickname modal ---- */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: var(--scrim);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 100;
+}
+.modal-overlay[hidden] { display: none; }
+.modal {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 22px;
+  width: 360px;
+  max-width: 90vw;
+}
+.modal h3 { margin: 0 0 6px; }
+.modal-help { margin: 0 0 12px; font-size: 13px; color: var(--muted); }
+.modal-help code { background: var(--panel-2); padding: 1px 4px; border-radius: 3px; }
+.modal-label { display: block; font-size: 13px; font-weight: 600; margin: 10px 0 4px; }
+.modal-label:first-of-type { margin-top: 4px; }
+.modal-hint { font-weight: 400; color: var(--muted); }
+.modal-hint code { background: var(--panel-2); padding: 1px 4px; border-radius: 3px; }
+#nick-input,
+#name-input {
+  width: 100%;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 10px;
+  font-size: 14px;
+}
+#nick-input:focus,
+#name-input:focus { outline: none; border-color: var(--accent); }
+.nick-error { color: var(--red); font-size: 13px; min-height: 18px; margin: 6px 0 4px; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+/* ---- toast ---- */
+.toast {
+  position: fixed;
+  bottom: 22px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--green);
+  color: var(--toast-ink);
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  z-index: 100;
+  transition: opacity 0.3s;
+}
+.toast[hidden] { display: none; }
+.toast.fade { opacity: 0; }
+
+/* ---- completion certificate (design surface; rendered off-screen to PDF) ---- */
+#certificate {
+  position: fixed;
+  left: -10000px;
+  top: 0;
+  width: 1056px;   /* US Letter landscape @ ~96dpi (11in x 8.5in) */
+  height: 816px;
+  background: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #003c71;
+  box-sizing: border-box;
+}
+#certificate .cert-outer {
+  position: absolute;
+  inset: 26px;
+  border: 4px solid #0077ca;          /* Ontario Tech light blue */
+}
+#certificate .cert-inner {
+  position: absolute;
+  inset: 14px;
+  border: 1.5px solid #003c71;         /* Ontario Tech dark blue */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 70px;
+}
+#certificate .cert-logo { width: 300px; height: auto; margin-bottom: 18px; }
+#certificate .cert-brand {
+  font-size: 18px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #0077ca;
+  font-weight: bold;
+}
+#certificate .cert-title {
+  font-size: 44px;
+  color: #003c71;
+  margin: 10px 0 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+#certificate .cert-rule {
+  width: 180px;
+  height: 2px;
+  background: #0077ca;
+  margin: 18px 0 26px;
+}
+#certificate .cert-intro { font-size: 18px; color: #4a6076; margin: 0 0 10px; font-style: italic; }
+#certificate .cert-name {
+  font-size: 52px;
+  color: #003c71;
+  margin: 0 0 14px;
+  font-weight: bold;
+}
+#certificate .cert-line { font-size: 19px; color: #1f4763; margin: 0 0 40px; max-width: 720px; line-height: 1.5; }
+#certificate .cert-date { font-size: 16px; color: #6b7f93; margin: 0; }
+
+/* ---- profile menu + achievements ---- */
+#cert-indicator[hidden] { display: none; }
+.modal.profile { width: 540px; max-width: 92vw; max-height: 82vh; overflow-y: auto; }
+.profile-head { display: flex; align-items: center; justify-content: space-between; }
+.profile-head h3 { margin: 0; }
+.profile-rows { display: flex; flex-direction: column; gap: 8px; margin: 12px 0 4px; }
+.profile-row { display: flex; align-items: center; gap: 10px; }
+.profile-key { width: 90px; color: var(--muted); font-size: 13px; }
+.profile-val { flex: 1; font-size: 14px; }
+.profile-note { color: var(--muted); font-size: 12px; }
+.profile-ach-title { margin: 16px 0 0; font-size: 14px; }
+.ach-count { color: var(--muted); font-weight: 400; font-size: 13px; }
+.achievement-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+.achievement {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel-2);
+}
+.achievement.locked { opacity: 0.4; }
+.ach-medal { font-size: 20px; flex: 0 0 24px; text-align: center; line-height: 1.3; }
+.ach-info h5 { margin: 0 0 2px; font-size: 13px; color: var(--text); }
+.ach-info p { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.35; }
+
+/* ---- tiered hints (in the problem pane) ---- */
+.hints { margin-top: 20px; border-top: 1px solid var(--border); padding-top: 12px; }
+.hints h3 {
+  font-size: 12px;
+  margin: 0 0 8px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.hint-box {
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
+  border-left: 3px solid var(--gold);
+  border-radius: 4px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+}
+.hint-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.hint-box p { margin: 0; }
+.hint-box pre { margin: 4px 0 0; }
+.hint-btn { margin-top: 2px; }
+.hint-allshown { font-size: 12px; color: var(--muted); font-style: italic; }
+
+/* ============================================================================
+   THEMES - each overrides the variables defined in :root (the default, Carbon).
+   The certificate (#certificate ...) is intentionally NOT themed: it stays the
+   fixed Ontario Tech artifact. The editor (CodeMirror) theme is switched in JS.
+   ========================================================================== */
+
+/* Ontario Tech - Dark (logo blues + orange) */
+:root[data-theme="ontario-dark"] {
+  --bg: #0b1a2e;  --panel: #11263d;  --panel-2: #173049;  --border: #294a6b;
+  --text: #eaf2fa;  --muted: #9fb6cf;
+  --accent: #2f93d8;  --on-accent: #ffffff;
+  --green: #41c08a;  --red: #ef5a5a;
+  --gold: #ff7a45;  --gold-ink: #2a1402;
+  --scrim: rgba(3, 10, 20, 0.62);  --toast-ink: #04231a;
+}
+
+/* Forest - Dark (slate green + teal) */
+:root[data-theme="forest-dark"] {
+  --bg: #11201a;  --panel: #16291f;  --panel-2: #1e3528;  --border: #2c4a38;
+  --text: #e7f0ea;  --muted: #97b3a3;
+  --accent: #28b3a0;  --on-accent: #042722;
+  --green: #74c948;  --red: #e5675f;
+  --gold: #e0a93a;  --gold-ink: #2a2102;
+  --scrim: rgba(4, 15, 11, 0.6);  --toast-ink: #06281a;
+}
+
+/* Ontario Tech - Light (logo blues + orange) */
+:root[data-theme="ontario-light"] {
+  --bg: #f3f7fb;  --panel: #ffffff;  --panel-2: #e9f1f8;  --border: #ccdcea;
+  --text: #0d2740;  --muted: #5c728c;
+  --accent: #0077ca;  --on-accent: #ffffff;
+  --green: #1f9d6b;  --red: #d23b3b;
+  --gold: #e1670f;  --gold-ink: #ffffff;
+  --scrim: rgba(13, 39, 64, 0.42);  --toast-ink: #06240f;
+}
+
+/* Paper - warm light */
+:root[data-theme="paper"] {
+  --bg: #f4eee2;  --panel: #fffdf8;  --panel-2: #ece3d2;  --border: #dbcdb6;
+  --text: #3a2f22;  --muted: #897a64;
+  --accent: #bf5a25;  --on-accent: #ffffff;
+  --green: #4f8a3d;  --red: #b3402e;
+  --gold: #c98a12;  --gold-ink: #2a1d02;
+  --scrim: rgba(40, 30, 15, 0.42);  --toast-ink: #14230c;
+}
+
+/* Sky - cool light */
+:root[data-theme="sky"] {
+  --bg: #eef4fa;  --panel: #ffffff;  --panel-2: #e1ebf5;  --border: #c6d6e6;
+  --text: #173049;  --muted: #5a728c;
+  --accent: #2563c9;  --on-accent: #ffffff;
+  --green: #1f9d6b;  --red: #d23b3b;
+  --gold: #d98a16;  --gold-ink: #2a1d02;
+  --scrim: rgba(15, 30, 55, 0.42);  --toast-ink: #06240f;
+}
+
+/* High Contrast - black / white / yellow (low-vision friendly) */
+:root[data-theme="high-contrast"] {
+  --bg: #000000;  --panel: #000000;  --panel-2: #141414;  --border: #ffffff;
+  --text: #ffffff;  --muted: #d6d6d6;
+  --accent: #ffec3d;  --on-accent: #000000;
+  --green: #00e676;  --red: #ff6b6b;
+  --gold: #ffd400;  --gold-ink: #000000;
+  --scrim: rgba(0, 0, 0, 0.8);  --toast-ink: #002a12;
+}
+
+/* Colour-Blind Friendly - Okabe–Ito palette (success/danger stay distinct) */
+:root[data-theme="colorblind"] {
+  --bg: #f6f7f9;  --panel: #ffffff;  --panel-2: #eceff3;  --border: #c7ced7;
+  --text: #1a1a1a;  --muted: #5f6b78;
+  --accent: #0072b2;  --on-accent: #ffffff;
+  --green: #009e73;  --red: #d55e00;
+  --gold: #e69f00;  --gold-ink: #1a1a1a;
+  --scrim: rgba(20, 25, 30, 0.42);  --toast-ink: #04241a;
+}

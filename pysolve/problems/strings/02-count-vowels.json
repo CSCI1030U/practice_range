@@ -1,0 +1,20 @@
+{
+  "id": "str-count-vowels",
+  "title": "Count Vowels",
+  "difficulty": "Easy",
+  "points": 100,
+  "description": "# Count Vowels\n\nRead a line of text and print how many **vowels** it contains. The vowels are `a`, `e`, `i`, `o`, and `u`, in either upper or lower case.\n\n## Input\n\nA single line of text.\n\n## Output\n\nThe number of vowels.\n\n```\nInput:\nProgramming\n\nOutput:\n3\n```\n\n## Think about\n\n- You can check membership with `in`: `c in \"aeiou\"`.\n- How do you make the check case-insensitive?\n",
+  "starterCode": "s = input()\n\n# TODO: print the number of vowels (a, e, i, o, u; any case) in s\n",
+  "hints": [
+    "Check each character: is it one of a, e, i, o, u?",
+    "Lowercase the line, then count characters that are `in 'aeiou'`.",
+    "```\ncount = 0\nfor each character c in lowercase(s)\n    if c is one of a, e, i, o, u\n        count = count + 1\nprint count\n```"
+  ],
+  "tests": [
+    { "name": "hello",      "input": "hello\n",              "expectedOutput": "2\n" },
+    { "name": "all vowels", "input": "AEIOU\n",              "expectedOutput": "5\n" },
+    { "name": "none",       "input": "xyz\n",                "expectedOutput": "0\n" },
+    { "name": "mixed case", "input": "Programming\n",        "expectedOutput": "3\n" },
+    { "name": "sentence",   "input": "The quick brown fox\n", "expectedOutput": "5\n" }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "01-seq-03",
+  "title": "Around the Corner",
+  "topic": "sequential",
+  "kind": "demo",
+  "brief": "<p>The chest is in a separate room. You'll need to combine multiple directions in sequence — the hero performs the lines in the order you wrote them.</p><p><b>Tip:</b> trace the path with your finger first. Count how many tiles in each direction before writing anything.</p>",
+  "width": 8,
+  "height": 6,
+  "tiles": [
+    "########",
+    "#......#",
+    "######.#",
+    "#......#",
+    "#......#",
+    "########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 2, "y": 4, "facing": "E" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "move_right()\nmove_right()\nmove_right()\nmove_right()\nmove_right()\nmove_down()\nmove_down()\nmove_down()\nmove_left()\nmove_left()\nmove_left()\nopen_chest()\n"
+}

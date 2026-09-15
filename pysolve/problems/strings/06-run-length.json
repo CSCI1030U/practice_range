@@ -1,0 +1,20 @@
+{
+  "id": "str-run-length",
+  "title": "Run-Length Encoding",
+  "difficulty": "Medium",
+  "points": 220,
+  "description": "# Run-Length Encoding\n\nRun-length encoding compresses a string by replacing each *run* of one or more identical consecutive characters with that character followed by the length of the run.\n\nFor example, `aaabbc` becomes `a3b2c1`.\n\n## Input\n\nA single line of text (no spaces).\n\n## Output\n\nThe run-length encoding of the string.\n\n```\nInput:\naaabbc\n\nOutput:\na3b2c1\n```\n\n## Think about\n\n- Walk through the string and group consecutive equal characters.\n- Every run, even of length 1, is written with its count (`abc → a1b1c1`).\n",
+  "starterCode": "s = input()\n\n# TODO: print the run-length encoding of s (e.g. aaabbc -> a3b2c1)\n",
+  "hints": [
+    "Walk through the string grouping consecutive equal characters.",
+    "Track the current run's character and length; when the next char differs, emit `char + count` and start a new run. Don't forget the final run.",
+    "```\ni = 0;  result = \"\"\nwhile i < length(s)\n    j = i\n    while j < length(s) and s[j] = s[i]\n        j = j + 1\n    result = result + s[i] + (j - i)\n    i = j\nprint result\n```"
+  ],
+  "tests": [
+    { "name": "example",     "input": "aaabbc\n",         "expectedOutput": "a3b2c1\n" },
+    { "name": "all singles", "input": "abc\n",            "expectedOutput": "a1b1c1\n" },
+    { "name": "one run",     "input": "aaaa\n",           "expectedOutput": "a4\n" },
+    { "name": "mixed runs",  "input": "wwwwaaadexxxxxx\n","expectedOutput": "w4a3d1e1x6\n" },
+    { "name": "single char", "input": "z\n",              "expectedOutput": "z1\n" }
+  ]
+}

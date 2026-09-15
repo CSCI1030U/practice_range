@@ -1,0 +1,20 @@
+{
+  "id": "rec-fibonacci",
+  "title": "Fibonacci Number",
+  "difficulty": "Medium",
+  "points": 200,
+  "description": "# Fibonacci Number\n\nThe Fibonacci sequence is defined by `F(0) = 0`, `F(1) = 1`, and `F(n) = F(n-1) + F(n-2)` for `n ≥ 2`. Compute `F(n)` using **recursion**.\n\n## Input\n\nA single integer `n` (`0 ≤ n ≤ 30`).\n\n## Output\n\nThe value of `F(n)`.\n\n```\nInput:\n10\n\nOutput:\n55\n```\n\n## Think about\n\n- The definition is already recursive: two base cases (`F(0)` and `F(1)`) and one recursive case.\n- The naive version recomputes the same values many times. If it feels slow for larger `n`, look up **memoization** to remember results you've already computed.\n",
+  "starterCode": "n = int(input())\n\n# TODO: print the nth Fibonacci number (F(0)=0, F(1)=1), computed recursively\n",
+  "hints": [
+    "The definition is already recursive: two base cases, one recursive case.",
+    "`F(0)=0`, `F(1)=1`, else `F(n)=F(n-1)+F(n-2)`. The naive version is slow for large n - add memoization (cache results).",
+    "```\nFIB(n)\n    if n < 2\n        return n\n    return FIB(n - 1) + FIB(n - 2)\nprint FIB(n)\n// cache results (memoize) so repeated calls are not recomputed\n```"
+  ],
+  "tests": [
+    { "name": "F(0)",  "input": "0\n",  "expectedOutput": "0\n" },
+    { "name": "F(1)",  "input": "1\n",  "expectedOutput": "1\n" },
+    { "name": "F(10)", "input": "10\n", "expectedOutput": "55\n" },
+    { "name": "F(15)", "input": "15\n", "expectedOutput": "610\n" },
+    { "name": "F(30)", "input": "30\n", "expectedOutput": "832040\n" }
+  ]
+}

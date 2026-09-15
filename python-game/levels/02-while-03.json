@@ -1,0 +1,20 @@
+{
+  "id": "02-while-03",
+  "title": "The Long Hall",
+  "topic": "while",
+  "kind": "activity",
+  "brief": "<p>A really long corridor. With a <code>while</code> loop your code doesn't care <i>how</i> long — it just walks until you arrive.</p>",
+  "width": 22,
+  "height": 3,
+  "tiles": [
+    "######################",
+    "#@..................T#",
+    "######################"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 20, "y": 1, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest", "is_at_chest"],
+  "starterCode": "",
+  "solution": "while not is_at_chest():\n    move_right()\n\nopen_chest()\n"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "ds-dll-traverse",
+  "title": "Doubly Linked List: Build and Traverse",
+  "difficulty": "Easy",
+  "points": 150,
+  "description": "# Doubly Linked List: Build and Traverse\n\nA **doubly linked list** stores, for each node, a link to both the next and the previous node. That lets you add at either end and walk the list in both directions.\n\nBuild a doubly linked list from a series of commands, then print it forwards and backwards.\n\n## Commands\n\n- `append X` - add the value `X` to the **back** of the list.\n- `prepend X` - add the value `X` to the **front** of the list.\n\n## Input\n\n- Line 1: an integer `N` - the number of commands.\n- Next `N` lines: one command each.\n\n## Output\n\n- Line 1: all values from front to back, space-separated.\n- Line 2: all values from back to front, space-separated.\n\n```\nInput:\n3\nappend 1\nappend 2\nprepend 0\n\nOutput:\n0 1 2\n2 1 0\n```\n\n## Think about\n\n- The second line is the first line traversed in the opposite direction - exactly what the `prev` links of a doubly linked list give you.\n\n## Try it more than one way\n\nTry building the list more than one way:\n\n- A real doubly linked list: a node class with `prev` and `next` links, plus `head` and `tail` pointers so both `append` and `prepend` are `O(1)`.\n- `collections.deque`, using `append()` and `appendleft()`.\n- A Python list, inserting at index 0 to prepend (handy, but `O(n)` each time).\n",
+  "starterCode": "n = int(input())\n# Build a doubly linked list from the commands, then print it forwards\n# (line 1) and backwards (line 2).\nfor _ in range(n):\n    parts = input().split()\n    # TODO: handle \"append X\" and \"prepend X\"\n\n# TODO: print the values front-to-back, then back-to-front\n",
+  "hints": [
+    "Keep the values in order; print them forward, then reversed.",
+    "Handle `append` (add to back) and `prepend` (add to front) - a `deque` does both in O(1) - then print the list forward and backward.",
+    "```\nlet list be empty\nfor each command\n    \"append x\"  : add x to the back\n    \"prepend x\" : add x to the front\nprint list from front to back\nprint list from back to front\n```"
+  ],
+  "tests": [
+    { "name": "append + prepend", "input": "3\nappend 1\nappend 2\nprepend 0\n",                   "expectedOutput": "0 1 2\n2 1 0\n" },
+    { "name": "single",           "input": "1\nappend 5\n",                                       "expectedOutput": "5\n5\n" },
+    { "name": "many prepends",    "input": "4\nprepend 1\nprepend 2\nprepend 3\nappend 9\n",       "expectedOutput": "3 2 1 9\n9 1 2 3\n" },
+    { "name": "mix",              "input": "2\nappend 7\nprepend 3\n",                             "expectedOutput": "3 7\n7 3\n" }
+  ]
+}

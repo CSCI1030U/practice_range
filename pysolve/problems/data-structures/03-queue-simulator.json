@@ -1,0 +1,19 @@
+{
+  "id": "ds-queue-simulator",
+  "title": "Queue Simulator",
+  "difficulty": "Easy",
+  "points": 120,
+  "description": "# Queue Simulator\n\nA **queue** is a first-in, first-out (FIFO) collection: items leave in the same order they arrived. Implement one and process a series of commands.\n\n## Commands\n\n- `enqueue X` - add the integer `X` to the back of the queue.\n- `dequeue` - remove the front value and print it; print `empty` if the queue is empty.\n- `front` - print the front value without removing it; print `empty` if the queue is empty.\n\n## Input\n\n- Line 1: an integer `N` - the number of commands.\n- Next `N` lines: one command each.\n\n## Output\n\nOne line for every `dequeue` and `front`.\n\n```\nInput:\n5\nenqueue 1\nenqueue 2\nfront\ndequeue\ndequeue\n\nOutput:\n1\n1\n2\n```\n\n## Think about\n\n- Removing from the front of a Python list is `O(n)`. For larger inputs, `collections.deque` offers `O(1)` `popleft()`.\n\n## Try it more than one way\n\nThere's more than one way to build the queue:\n\n- `collections.deque`, with `append()` to enqueue and `popleft()` to dequeue.\n- A plain Python list (simple, though removing from the front is `O(n)`).\n- Your own class backed by a singly linked list with separate `head` and `tail` pointers.\n- Going further: two stacks, one for incoming and one for outgoing items.\n",
+  "starterCode": "n = int(input())\nqueue = []\nfor _ in range(n):\n    parts = input().split()\n    # TODO: handle \"enqueue X\", \"dequeue\", and \"front\"\n    #   dequeue/front print the front value, or \"empty\" if the queue is empty\n",
+  "hints": [
+    "A queue is first-in, first-out - remove from the front.",
+    "Use `collections.deque`: `enqueue` appends; `dequeue` does `popleft` (or 'empty'); `front` reads `q[0]` (or 'empty').",
+    "```\nlet queue be empty\nfor each command\n    \"enqueue x\" : add x to the back\n    \"dequeue\"   : if queue is empty print \"empty\" else print and remove the front\n    \"front\"     : if queue is empty print \"empty\" else print the front\n```"
+  ],
+  "tests": [
+    { "name": "front and dequeues", "input": "5\nenqueue 1\nenqueue 2\nfront\ndequeue\ndequeue\n", "expectedOutput": "1\n1\n2\n" },
+    { "name": "dequeue when empty", "input": "3\ndequeue\nenqueue 7\nfront\n",                     "expectedOutput": "empty\n7\n" },
+    { "name": "fifo order",         "input": "4\nenqueue 10\nenqueue 20\ndequeue\ndequeue\n",      "expectedOutput": "10\n20\n" },
+    { "name": "all empty",          "input": "2\nfront\ndequeue\n",                                "expectedOutput": "empty\nempty\n" }
+  ]
+}

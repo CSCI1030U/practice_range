@@ -1,0 +1,20 @@
+{
+  "id": "02-max-subarray",
+  "title": "Maximum Subarray Sum",
+  "difficulty": "Medium",
+  "points": 250,
+  "description": "# Maximum Subarray Sum\n\nGiven a list of integers, find the **contiguous** (non-empty) subarray with the largest sum, and print that sum.\n\nA subarray is a slice of consecutive elements. The numbers may be negative, so the answer is not always the sum of the whole list.\n\n## Input\n\n- Line 1: an integer `N` - the number of values (`1 ≤ N ≤ 100000`).\n- Line 2: `N` space-separated integers.\n\n```\n9\n-2 1 -3 4 -1 2 1 -5 4\n```\n\n## Output\n\nA single integer: the maximum subarray sum.\n\n```\n6\n```\n\nHere the best subarray is `[4, -1, 2, 1]`, which sums to `6`.\n\n## Think about\n\n- A brute-force check of every subarray is `O(N^2)` - fine for small `N`, too slow for large `N`.\n- Can you scan once, keeping a running \"best sum ending here\"?\n",
+  "starterCode": "n = int(input())\nnums = list(map(int, input().split()))\n\n# TODO: print the maximum sum of any contiguous subarray of nums\n",
+  "hints": [
+    "Scan once, keeping a running 'best sum ending here'.",
+    "At each element, either extend the current run or start fresh: `cur = max(x, cur + x)`. Track the largest `cur`. (This is Kadane's algorithm.)",
+    "```\nbest = A[0]\ncur  = A[0]\nfor i = 1 to length(A)-1\n    cur  = max(A[i], cur + A[i])\n    best = max(best, cur)\nprint best\n```"
+  ],
+  "tests": [
+    { "name": "Example",          "input": "9\n-2 1 -3 4 -1 2 1 -5 4\n", "expectedOutput": "6\n" },
+    { "name": "Single negative",  "input": "1\n-5\n",                    "expectedOutput": "-5\n" },
+    { "name": "All positive",     "input": "5\n1 2 3 4 5\n",             "expectedOutput": "15\n" },
+    { "name": "All negative",     "input": "4\n-1 -2 -3 -4\n",          "expectedOutput": "-1\n" },
+    { "name": "Mixed",            "input": "8\n5 4 -1 7 8 -20 1 1\n",   "expectedOutput": "23\n" }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "rec-count-paths",
+  "title": "Count Grid Paths",
+  "difficulty": "Medium",
+  "points": 230,
+  "description": "# Count Grid Paths\n\nIn an `R × C` grid, how many distinct paths lead from the **top-left** cell to the **bottom-right** cell if you may only move **right** or **down**? Solve it with **recursion**.\n\n## Input\n\nOne line with two integers `R` and `C` (`1 ≤ R, C ≤ 15`).\n\n## Output\n\nThe number of distinct paths.\n\n```\nInput:\n3 3\n\nOutput:\n6\n```\n\n## Think about\n\n- To reach a cell you either came from above or from the left, so `paths(r, c) = paths(r-1, c) + paths(r, c-1)`.\n- Base case: any cell in the first row or first column has exactly one path (straight along the edge).\n",
+  "starterCode": "r, c = map(int, input().split())\n\n# TODO: print the number of paths from the top-left to the bottom-right of\n#       an r x c grid, moving only right or down (compute it recursively)\n",
+  "hints": [
+    "To reach a cell you came from above or from the left.",
+    "`paths(r, c) = paths(r-1, c) + paths(r, c-1)`; any cell in the first row or column has exactly one path. Memoize to keep it fast.",
+    "```\nPATHS(r, c)\n    if r = 1 or c = 1\n        return 1\n    return PATHS(r-1, c) + PATHS(r, c-1)\nprint PATHS(R, C)\n// memoize PATHS to keep it fast\n```"
+  ],
+  "tests": [
+    { "name": "3x3", "input": "3 3\n",   "expectedOutput": "6\n" },
+    { "name": "1x1", "input": "1 1\n",   "expectedOutput": "1\n" },
+    { "name": "2x2", "input": "2 2\n",   "expectedOutput": "2\n" },
+    { "name": "3x2", "input": "3 2\n",   "expectedOutput": "3\n" },
+    { "name": "1x5", "input": "1 5\n",   "expectedOutput": "1\n" },
+    { "name": "4x4", "input": "4 4\n",   "expectedOutput": "20\n" }
+  ]
+}

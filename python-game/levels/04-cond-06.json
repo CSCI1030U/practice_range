@@ -1,0 +1,24 @@
+{
+  "id": "04-cond-06",
+  "title": "Descending Spiral",
+  "topic": "conditional",
+  "kind": "homework",
+  "brief": "<p>Same kind of wall-bouncer, but the goal is in the lower-right. Walk down when you can, step right when a wall blocks you.</p>",
+  "width": 7,
+  "height": 7,
+  "tiles": [
+    "#######",
+    "#@....#",
+    "#.#####",
+    "#.....#",
+    "#####.#",
+    "#....T#",
+    "#######"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "DOWN" },
+  "chest": { "x": 5, "y": 5, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest", "is_at_chest", "is_wall_down", "is_wall_right"],
+  "starterCode": "",
+  "solution": "while not is_at_chest():\n    if is_wall_down():\n        move_right()\n    else:\n        move_down()\n\nopen_chest()\n"
+}

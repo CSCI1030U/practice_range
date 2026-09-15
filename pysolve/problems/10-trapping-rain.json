@@ -1,0 +1,21 @@
+{
+  "id": "gen-trapping-rain",
+  "title": "Trapping Rain Water",
+  "difficulty": "Hard",
+  "points": 400,
+  "description": "# Trapping Rain Water\n\nA row of bars of varying heights forms an elevation map (each bar has width 1). After it rains, water collects in the dips between taller bars. Compute how many units of water are trapped.\n\n## Input\n\nOne line of non-negative integers - the bar heights (possibly empty).\n\n## Output\n\nThe total units of water trapped.\n\n```\nInput:\n0 1 0 2 1 0 1 3 2 1 2 1\n\nOutput:\n6\n```\n\n## Think about\n\n- The water sitting above a bar is determined by the **tallest bar to its left** and the **tallest bar to its right**: it can hold `min(leftMax, rightMax) - height` (if positive).\n- Computing those maxima naively is `O(n^2)`; precomputed prefix/suffix maxima, or two pointers moving inward, bring it to `O(n)`.\n",
+  "starterCode": "heights = list(map(int, input().split()))\n\n# TODO: print the total units of rain water trapped between the bars\n",
+  "hints": [
+    "Water above a bar depends on the tallest bar to its left and to its right.",
+    "Trapped at a position = min(maxLeft, maxRight) - height (if positive). Use prefix/suffix maxima, or two pointers moving inward.",
+    "```\nleft = 0;  right = length(h)-1\nlmax = 0;  rmax = 0;  water = 0\nwhile left < right\n    if h[left] < h[right]\n        lmax  = max(lmax, h[left])\n        water = water + lmax - h[left]\n        left  = left + 1\n    else\n        rmax  = max(rmax, h[right])\n        water = water + rmax - h[right]\n        right = right - 1\nprint water\n```"
+  ],
+  "tests": [
+    { "name": "classic",     "input": "0 1 0 2 1 0 1 3 2 1 2 1\n", "expectedOutput": "6\n" },
+    { "name": "deep well",   "input": "4 2 0 3 2 5\n",             "expectedOutput": "9\n" },
+    { "name": "increasing",  "input": "1 2 3 4\n",                 "expectedOutput": "0\n" },
+    { "name": "single dip",  "input": "3 0 2\n",                   "expectedOutput": "2\n" },
+    { "name": "single bar",  "input": "5\n",                       "expectedOutput": "0\n" },
+    { "name": "empty",       "input": "\n",                        "expectedOutput": "0\n" }
+  ]
+}

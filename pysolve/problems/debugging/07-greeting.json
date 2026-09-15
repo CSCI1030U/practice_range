@@ -1,0 +1,26 @@
+{
+  "id": "fix-07-greeting",
+  "title": "Greeting",
+  "errorType": "syntax",
+  "difficulty": "Easy",
+  "points": 20,
+  "description": "# Greeting\n\nThis program is supposed to read a name and print `Hello, NAME!`.\n\nBut it has a bug. Find and fix it so the tests pass.\n\n## Input\n\nA single line containing a name.\n\n## Output\n\nA greeting of the form `Hello, NAME!`.\n\n```\nInput:\nWorld\n\nOutput:\nHello, World!\n```\n",
+  "starterCode": "name = input()\nprint(\"Hello, \" + name + \"!\"\n",
+  "tests": [
+    {
+      "name": "World",
+      "input": "World\n",
+      "expectedOutput": "Hello, World!\n"
+    },
+    {
+      "name": "Ada",
+      "input": "Ada\n",
+      "expectedOutput": "Hello, Ada!\n"
+    },
+    {
+      "name": "Two words",
+      "input": "Grace Hopper\n",
+      "expectedOutput": "Hello, Grace Hopper!\n"
+    }
+  ]
+}

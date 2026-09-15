@@ -1,0 +1,20 @@
+{
+  "id": "rec-power",
+  "title": "Power",
+  "difficulty": "Easy",
+  "points": 120,
+  "description": "# Power\n\nCompute `base` raised to the power `exp` using **recursion** (no `**` operator and no loop).\n\n## Input\n\nOne line with two integers: `base` and `exp` (`exp ≥ 0`).\n\n## Output\n\nThe value of `base ** exp`.\n\n```\nInput:\n2 10\n\nOutput:\n1024\n```\n\n## Think about\n\n- Base case: any number to the power `0` is `1`.\n- Recursive case: `base^exp = base × base^(exp-1)`.\n",
+  "starterCode": "base, exp = map(int, input().split())\n\n# TODO: print base ** exp, computed recursively\n#       (base case: anything ** 0 = 1)\n",
+  "hints": [
+    "Define base**exp in terms of base**(exp-1).",
+    "Base case: `anything ** 0 = 1`. Recursive case: `base * power(base, exp-1)`.",
+    "```\nPOWER(base, exp)\n    if exp = 0\n        return 1\n    return base * POWER(base, exp - 1)\nprint POWER(base, exp)\n```"
+  ],
+  "tests": [
+    { "name": "2^10",  "input": "2 10\n",  "expectedOutput": "1024\n" },
+    { "name": "5^0",   "input": "5 0\n",   "expectedOutput": "1\n" },
+    { "name": "3^3",   "input": "3 3\n",   "expectedOutput": "27\n" },
+    { "name": "2^0",   "input": "2 0\n",   "expectedOutput": "1\n" },
+    { "name": "10^5",  "input": "10 5\n",  "expectedOutput": "100000\n" }
+  ]
+}

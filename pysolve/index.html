@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CodeForge - Python Practice</title>
+  <!-- Apply the saved theme before first paint (avoids a flash of the default theme). -->
+  <script>
+    try {
+      document.documentElement.setAttribute(
+        "data-theme",
+        localStorage.getItem("pysolve:theme") || "carbon"
+      );
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- CodeMirror 5 (editor + Python syntax highlighting) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css" />
+  <!-- Additional CodeMirror syntax-highlighting themes (selectable in the code panel) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/eclipse.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/neat.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/idea.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/mdn-like.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/solarized.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/monokai.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/ayu-dark.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/nord.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/cobalt.min.css" />
+  <!-- Extra near-black dark themes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-ocean.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/blackboard.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/vibrant-ink.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/the-matrix.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/tomorrow-night-bright.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/night.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/moxer.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+
+  <!-- Markdown renderer for problem descriptions -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+
+  <!-- Certificate: design in HTML/CSS, rasterize with html2canvas, wrap in a PDF with jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header id="topbar">
+    <span class="brand">CodeForge</span>
+    <select id="category-select" title="Choose a category"></select>
+    <select id="problem-select" title="Choose a problem"></select>
+    <span id="status" class="status">Loading Python…</span>
+    <span class="spacer"></span>
+    <button id="btn-profile" class="btn ghost" title="Profile: nickname, certificate, achievements">👤 <span id="profile-label">Sign in</span><span id="cert-indicator" hidden title="Certificate available"> 🏅</span></button>
+    <button id="btn-reset" class="btn ghost" title="Restore the starter code">Reset code</button>
+    <button id="btn-reset-all" class="btn ghost" title="Restore every problem to its starter code">Reset all</button>
+    <button id="btn-run" class="btn" disabled>Run ▸</button>
+    <button id="btn-test" class="btn primary" disabled>Run tests ✓</button>
+    <button id="btn-stop" class="btn danger" disabled title="Stop the running program">Stop ■</button>
+  </header>
+
+  <main id="layout">
+    <!-- Problem description -->
+    <section id="pane-problem" class="pane">
+      <h2 class="pane-title">Problem</h2>
+      <div id="problem-meta" class="problem-meta"></div>
+      <div id="problem-body" class="problem-body"></div>
+    </section>
+
+    <!-- Code editor -->
+    <section id="pane-editor" class="pane">
+      <h2 class="pane-title">
+        Your code
+        <span id="edited-pill" class="edited-pill" hidden>edited</span>
+        <select id="editor-theme-select" title="Syntax highlighting theme"></select>
+      </h2>
+      <textarea id="code"></textarea>
+    </section>
+
+    <!-- Input / output -->
+    <section id="pane-io" class="pane">
+      <div class="io-tabs">
+        <button class="tab active" data-tab="run">Run</button>
+        <button class="tab" data-tab="tests">Test results</button>
+        <button class="tab" data-tab="board">🏆 Leaderboard</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="run">
+        <label class="io-label">Standard input (stdin)</label>
+        <textarea id="stdin" placeholder="Type input here; it is fed to your program's input()/sys.stdin."></textarea>
+        <label class="io-label">Output</label>
+        <pre id="output" class="output"></pre>
+      </div>
+
+      <div class="tab-panel" data-panel="tests">
+        <div id="test-summary" class="test-summary"></div>
+        <div id="test-results" class="test-results"></div>
+      </div>
+
+      <div class="tab-panel" data-panel="board">
+        <table class="board">
+          <thead><tr><th>#</th><th>Nickname</th><th>Solved</th><th>Score</th></tr></thead>
+          <tbody id="board-body"></tbody>
+        </table>
+        <p id="board-empty" class="board-empty">No scores yet - solve a problem to get on the board!</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Profile modal: nickname, certificate, achievements -->
+  <div id="profile-modal" class="modal-overlay" hidden>
+    <div class="modal profile">
+      <div class="profile-head">
+        <h3>Profile</h3>
+        <button id="profile-close" class="btn ghost" title="Close">✕</button>
+      </div>
+      <div class="profile-rows">
+        <div class="profile-row">
+          <span class="profile-key">Nickname</span>
+          <span class="profile-val"><b id="profile-nick">-</b></span>
+          <button id="profile-change-nick" class="btn ghost">Change</button>
+        </div>
+        <div class="profile-row">
+          <span class="profile-key">Score</span>
+          <span class="profile-val" id="profile-score">0 pts</span>
+        </div>
+        <div class="profile-row">
+          <span class="profile-key">Theme</span>
+          <span class="profile-val"><select id="theme-select"></select></span>
+        </div>
+        <div class="profile-row">
+          <span class="profile-key">Certificate</span>
+          <span class="profile-val">
+            <button id="profile-cert" class="btn certificate" hidden>🏅 Download</button>
+            <span id="profile-cert-note" class="profile-note">Complete the Debugging category to earn your certificate.</span>
+          </span>
+        </div>
+      </div>
+      <h4 class="profile-ach-title">Achievements <span id="ach-count" class="ach-count"></span></h4>
+      <div id="achievement-list" class="achievement-list"></div>
+    </div>
+  </div>
+
+  <!-- Nickname modal -->
+  <div id="nick-modal" class="modal-overlay" hidden>
+    <div class="modal">
+      <h3>Your details</h3>
+      <label class="modal-label" for="nick-input">Nickname <span class="modal-hint">(shown on the leaderboard - letters, <code>_</code> and <code>-</code> only)</span></label>
+      <input id="nick-input" type="text" maxlength="20" autocomplete="off" placeholder="e.g. code_ninja" />
+      <div id="nick-error" class="nick-error"></div>
+      <label class="modal-label" for="name-input">Full name <span class="modal-hint">(optional - as you'd like it to appear on your certificate)</span></label>
+      <input id="name-input" type="text" maxlength="60" autocomplete="name" placeholder="e.g. Ada Lovelace" />
+      <div class="modal-actions">
+        <button id="nick-cancel" class="btn ghost">Cancel</button>
+        <button id="nick-save" class="btn primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast (score notifications) -->
+  <div id="toast" class="toast" hidden></div>
+
+  <!-- Certificate template: rendered off-screen, rasterized to PDF on download. -->
+  <div id="certificate" aria-hidden="true">
+    <div class="cert-outer">
+      <div class="cert-inner">
+        <img class="cert-logo" src="images/logo.png" alt="Ontario Tech University" />
+        <div class="cert-brand">CodeForge &middot; Basic Code Debugging</div>
+        <h1 class="cert-title">Certificate of Completion</h1>
+        <div class="cert-rule"></div>
+        <p class="cert-intro">This certifies that</p>
+        <p id="cert-name" class="cert-name">Student Name</p>
+        <p id="cert-line" class="cert-line">has successfully fixed all the debugging challenges.</p>
+        <p id="cert-date" class="cert-date">Date</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/runner.js"></script>
+  <script src="js/sanitize.js"></script>
+  <script src="js/scores.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

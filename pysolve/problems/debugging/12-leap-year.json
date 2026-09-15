@@ -1,0 +1,36 @@
+{
+  "id": "fix-12-leap-year",
+  "title": "Leap Year",
+  "errorType": "logic",
+  "difficulty": "Hard",
+  "points": 50,
+  "description": "# Leap Year\n\nThis program should read a year and print `leap` if it is a leap year, or `not leap` otherwise.\n\nThe rules for a leap year are:\n\n- divisible by 4 → leap, **except**\n- divisible by 100 → **not** leap, **except**\n- divisible by 400 → leap.\n\nSo `2020` is leap, `1900` is **not** leap, and `2000` **is** leap.\n\nThe program handles ordinary years correctly but gets the special cases wrong. Find and fix the bug.\n\n## Input\n\nA single integer year.\n\n## Output\n\n`leap` or `not leap`.\n\n```\nInput:\n2000\n\nOutput:\nleap\n```\n",
+  "starterCode": "year = int(input())\nif year % 4 == 0:\n    print(\"leap\")\nelse:\n    print(\"not leap\")\n",
+  "tests": [
+    {
+      "name": "2020 leap",
+      "input": "2020\n",
+      "expectedOutput": "leap\n"
+    },
+    {
+      "name": "2023 not leap",
+      "input": "2023\n",
+      "expectedOutput": "not leap\n"
+    },
+    {
+      "name": "1900 not leap",
+      "input": "1900\n",
+      "expectedOutput": "not leap\n"
+    },
+    {
+      "name": "2000 leap",
+      "input": "2000\n",
+      "expectedOutput": "leap\n"
+    },
+    {
+      "name": "2100 not leap",
+      "input": "2100\n",
+      "expectedOutput": "not leap\n"
+    }
+  ]
+}

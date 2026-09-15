@@ -1,0 +1,31 @@
+{
+  "id": "fix-05-sum-to-n",
+  "title": "Sum to N",
+  "errorType": "logic",
+  "difficulty": "Easy",
+  "points": 10,
+  "description": "# Sum to N\n\nThis program should read an integer `n` and print the sum of all integers from `1` to `n`, **inclusive**.\n\nIt runs without crashing, but the answer is wrong. Find the flaw in its logic and fix it.\n\n## Input\n\nA single integer `n` (`1 ≤ n ≤ 10000`).\n\n## Output\n\nThe sum `1 + 2 + … + n`.\n\n```\nInput:\n5\n\nOutput:\n15\n```\n",
+  "starterCode": "n = int(input())\ntotal = 0\nfor i in range(1, n):\n    total += i\nprint(total)\n",
+  "tests": [
+    {
+      "name": "n = 5",
+      "input": "5\n",
+      "expectedOutput": "15\n"
+    },
+    {
+      "name": "n = 1",
+      "input": "1\n",
+      "expectedOutput": "1\n"
+    },
+    {
+      "name": "n = 10",
+      "input": "10\n",
+      "expectedOutput": "55\n"
+    },
+    {
+      "name": "n = 100",
+      "input": "100\n",
+      "expectedOutput": "5050\n"
+    }
+  ]
+}

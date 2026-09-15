@@ -1,0 +1,23 @@
+{
+  "id": "05-fn-03",
+  "title": "Tool Belt",
+  "topic": "function",
+  "kind": "activity",
+  "brief": "<p>Build a small toolkit of named helpers for the corridors in this level, then use them in sequence.</p>",
+  "width": 10,
+  "height": 6,
+  "tiles": [
+    "##########",
+    "#@.......#",
+    "########.#",
+    "########.#",
+    "##T......#",
+    "##########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 2, "y": 4, "facing": "E" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "def walk_right_seven():\n    for i in range(7):\n        move_right()\n\ndef walk_down_two():\n    for i in range(2):\n        move_down()\n\ndef walk_left_six():\n    for i in range(6):\n        move_left()\n\nwalk_right_seven()\nwalk_down_two()\nwalk_left_six()\nopen_chest()\n"
+}

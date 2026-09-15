@@ -1,0 +1,19 @@
+{
+  "id": "ds-stack-simulator",
+  "title": "Stack Simulator",
+  "difficulty": "Easy",
+  "points": 120,
+  "description": "# Stack Simulator\n\nA **stack** is a last-in, first-out (LIFO) collection: the last thing you push on is the first thing you pop off. Implement one and process a series of commands.\n\n## Commands\n\n- `push X` - push the integer `X` onto the stack.\n- `pop` - remove the top value and print it; print `empty` if the stack is empty.\n- `peek` - print the top value without removing it; print `empty` if the stack is empty.\n\n## Input\n\n- Line 1: an integer `N` - the number of commands.\n- Next `N` lines: one command each.\n\n## Output\n\nOne line for every `pop` and `peek`.\n\n```\nInput:\n5\npush 1\npush 2\npeek\npop\npop\n\nOutput:\n2\n2\n1\n```\n\n## Try it more than one way\n\nChallenge yourself to build the stack more than one way:\n\n- A Python list, using `append()` to push and `pop()` to remove from the end.\n- `collections.deque`, pushing and popping on the right end.\n- Your own class backed by a singly linked list, where each node points to the node beneath it.\n",
+  "starterCode": "n = int(input())\nstack = []\nfor _ in range(n):\n    parts = input().split()\n    # TODO: handle \"push X\", \"pop\", and \"peek\"\n    #   pop/peek print the top value, or \"empty\" if the stack is empty\n",
+  "hints": [
+    "A Python list works as a stack: append to push, pop from the end.",
+    "Per command: `push X` appends; `pop`/`peek` print the top (`stack[-1]`) or 'empty'; `pop` also removes it.",
+    "```\nlet stack be empty\nfor each command\n    \"push x\" : push x onto stack\n    \"pop\"    : if stack is empty print \"empty\" else print and remove the top\n    \"peek\"   : if stack is empty print \"empty\" else print the top\n```"
+  ],
+  "tests": [
+    { "name": "peek and pops", "input": "5\npush 1\npush 2\npeek\npop\npop\n", "expectedOutput": "2\n2\n1\n" },
+    { "name": "pop when empty", "input": "3\npop\npush 5\npeek\n",            "expectedOutput": "empty\n5\n" },
+    { "name": "lifo order",     "input": "4\npush 10\npush 20\npop\npop\n",   "expectedOutput": "20\n10\n" },
+    { "name": "all empty",      "input": "2\npeek\npop\n",                    "expectedOutput": "empty\nempty\n" }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "lst-sum-list",
+  "title": "Sum of a List",
+  "difficulty": "Easy",
+  "points": 100,
+  "description": "# Sum of a List\n\nRead a line of space-separated integers and print their sum. An empty line sums to `0`.\n\n## Input\n\nOne line of space-separated integers (possibly empty).\n\n## Output\n\nA single integer: the sum.\n\n```\nInput:\n1 2 3 4 5\n\nOutput:\n15\n```\n\n## Think about\n\n- `input().split()` gives a list of strings; `map(int, ...)` converts them to numbers.\n",
+  "starterCode": "nums = list(map(int, input().split()))\n\n# TODO: print the sum of nums\n",
+  "hints": [
+    "Convert the tokens to numbers and add them up.",
+    "`list(map(int, input().split()))` gives the numbers; `sum(...)` adds them (and is 0 for an empty list).",
+    "```\ntotal = 0\nfor each x in nums\n    total = total + x\nprint total\n```"
+  ],
+  "tests": [
+    { "name": "five values", "input": "1 2 3 4 5\n", "expectedOutput": "15\n" },
+    { "name": "single",      "input": "10\n",        "expectedOutput": "10\n" },
+    { "name": "negatives",   "input": "-1 -2 -3\n",  "expectedOutput": "-6\n" },
+    { "name": "zeros",       "input": "0 0 0\n",     "expectedOutput": "0\n" },
+    { "name": "empty",       "input": "\n",          "expectedOutput": "0\n" }
+  ]
+}

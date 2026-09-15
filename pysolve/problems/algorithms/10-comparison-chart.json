@@ -1,0 +1,20 @@
+{
+  "id": "alg-comparison-chart",
+  "title": "Comparison Growth Chart",
+  "difficulty": "Hard",
+  "points": 350,
+  "description": "# Comparison Growth Chart\n\n**Selection sort** finds the smallest remaining element on each pass. To sort `n` elements it always makes the same number of comparisons, no matter the data:\n\n```\nC(n) = n * (n - 1) / 2\n```\n\n(It scans `n-1` elements, then `n-2`, then `n-3`, … down to `1`.)\n\nFor each requested input size, draw a horizontal bar chart of this comparison count so the growth is easy to see.\n\n## Input\n\nOne line of space-separated input sizes (non-negative integers).\n\n## Output\n\nFor each size `n`, in the order given, print one line: the number `n`, then `: `, then a bar of `#` characters with **one `#` per comparison** (`C(n)` of them). A size needing `0` comparisons prints just `n:`. Trailing spaces at the end of a line don't matter.\n\n```\nInput:\n1 2 3 4 5\n\nOutput:\n1:\n2: #\n3: ###\n4: ######\n5: ##########\n```\n\nThe bar lengths `0, 1, 3, 6, 10` show the quadratic growth of selection sort's comparison count.\n\n## Think about\n\n- You can compute `C(n)` directly, or actually run an instrumented selection sort on a list of `n` items and count - both give the same value, since selection sort's comparison count depends only on the size.\n",
+  "starterCode": "sizes = list(map(int, input().split()))\n\n# TODO: for each size n, print 'n: ' followed by a bar of '#' characters,\n#       one per comparison, where selection sort uses n*(n-1)//2 comparisons\n",
+  "hints": [
+    "Selection sort always makes n*(n-1)/2 comparisons for size n - compute that per size.",
+    "For each input size n, compute `C(n) = n*(n-1)//2`, then print `n: ` followed by that many `#` characters.",
+    "```\nfor each size n in sizes\n    c = n * (n - 1) div 2\n    print n, then \": \", then a bar of c '#' characters\n```"
+  ],
+  "tests": [
+    { "name": "1..5",      "input": "1 2 3 4 5\n", "expectedOutput": "1:\n2: #\n3: ###\n4: ######\n5: ##########\n" },
+    { "name": "size 6",    "input": "6\n",         "expectedOutput": "6: ###############\n" },
+    { "name": "zeros",     "input": "0 1 2\n",     "expectedOutput": "0:\n1:\n2: #\n" },
+    { "name": "size 3",    "input": "3\n",         "expectedOutput": "3: ###\n" },
+    { "name": "two sizes", "input": "2 4\n",       "expectedOutput": "2: #\n4: ######\n" }
+  ]
+}

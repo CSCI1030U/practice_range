@@ -1,0 +1,26 @@
+{
+  "id": "fix-01-count-up",
+  "title": "Count Up",
+  "errorType": "syntax",
+  "difficulty": "Easy",
+  "points": 10,
+  "description": "# Count Up\n\nThis program is **supposed to** read an integer `n` and print the integers from `1` to `n`, one per line.\n\nBut it doesn't work. Fix it so the tests pass.\n\n## Input\n\nA single integer `n` (`1 ≤ n ≤ 1000`).\n\n## Output\n\nThe numbers `1` through `n`, each on its own line.\n\n```\nInput:\n3\n\nOutput:\n1\n2\n3\n```\n",
+  "starterCode": "n = int(input())\nfor i in range(1, n + 1)\n    print(i)\n",
+  "tests": [
+    {
+      "name": "n = 3",
+      "input": "3\n",
+      "expectedOutput": "1\n2\n3\n"
+    },
+    {
+      "name": "n = 1",
+      "input": "1\n",
+      "expectedOutput": "1\n"
+    },
+    {
+      "name": "n = 5",
+      "input": "5\n",
+      "expectedOutput": "1\n2\n3\n4\n5\n"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "fix-04-word-count",
+  "title": "Word Count",
+  "errorType": "runtime",
+  "difficulty": "Easy",
+  "points": 20,
+  "description": "# Word Count\n\nThis program reads a line of text and should print how many **words** it contains (words are separated by spaces).\n\nBut it has a bug. Find and fix it so the tests pass.\n\n## Input\n\nA single line of text (it may be empty).\n\n## Output\n\nThe number of words.\n\n```\nInput:\nhello world foo\n\nOutput:\n3\n```\n",
+  "starterCode": "line = input()\nwords = line.split()\nprint(len(word))\n",
+  "tests": [
+    {
+      "name": "Three words",
+      "input": "hello world foo\n",
+      "expectedOutput": "3\n"
+    },
+    {
+      "name": "One word",
+      "input": "single\n",
+      "expectedOutput": "1\n"
+    },
+    {
+      "name": "Five words",
+      "input": "a b c d e\n",
+      "expectedOutput": "5\n"
+    },
+    {
+      "name": "Empty line",
+      "input": "\n",
+      "expectedOutput": "0\n"
+    }
+  ]
+}

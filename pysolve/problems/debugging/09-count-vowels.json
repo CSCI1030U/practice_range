@@ -1,0 +1,31 @@
+{
+  "id": "fix-09-count-vowels",
+  "title": "Count the Vowels",
+  "errorType": "logic",
+  "difficulty": "Medium",
+  "points": 30,
+  "description": "# Count the Vowels\n\nThis program is supposed to read a line of text and print how many **vowels** (`a`, `e`, `i`, `o`, `u`, any case) it contains.\n\nBut it has a bug. Find and fix it so the tests pass.\n\n## Input\n\nA single line of text.\n\n## Output\n\nThe number of vowels.\n\n```\nInput:\nhello\n\nOutput:\n2\n```\n",
+  "starterCode": "line = input().lower()\nvowels = \"aeiou\"\ncount = 0\nfor ch in line:\n    if ch == vowels:\n        count += 1\nprint(count)\n",
+  "tests": [
+    {
+      "name": "hello",
+      "input": "hello\n",
+      "expectedOutput": "2\n"
+    },
+    {
+      "name": "all vowels",
+      "input": "AEIOU\n",
+      "expectedOutput": "5\n"
+    },
+    {
+      "name": "no vowels",
+      "input": "xyz\n",
+      "expectedOutput": "0\n"
+    },
+    {
+      "name": "mixed case",
+      "input": "Programming\n",
+      "expectedOutput": "3\n"
+    }
+  ]
+}

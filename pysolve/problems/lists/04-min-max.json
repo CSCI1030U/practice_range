@@ -1,0 +1,20 @@
+{
+  "id": "lst-min-max",
+  "title": "Minimum and Maximum",
+  "difficulty": "Easy",
+  "points": 100,
+  "description": "# Minimum and Maximum\n\nRead a line of space-separated integers and print the smallest and the largest value, separated by a single space.\n\n## Input\n\nOne line of space-separated integers (at least one).\n\n## Output\n\nTwo integers on one line: the minimum, then the maximum.\n\n```\nInput:\n3 1 4 1 5\n\nOutput:\n1 5\n```\n\n## Think about\n\n- Python has `min()` and `max()` built in. `print(a, b)` puts a space between them automatically.\n",
+  "starterCode": "nums = list(map(int, input().split()))\n\n# TODO: print the minimum and maximum, separated by a space\n",
+  "hints": [
+    "Python has built-ins for the smallest and largest value.",
+    "`min(nums)` and `max(nums)`; `print(a, b)` puts a space between them.",
+    "```\nprint min(nums), max(nums)\n```"
+  ],
+  "tests": [
+    { "name": "mixed",       "input": "3 1 4 1 5\n", "expectedOutput": "1 5\n" },
+    { "name": "single",      "input": "42\n",        "expectedOutput": "42 42\n" },
+    { "name": "negatives",   "input": "-3 -1 -7\n",  "expectedOutput": "-7 -1\n" },
+    { "name": "descending",  "input": "5 4 3 2 1\n", "expectedOutput": "1 5\n" },
+    { "name": "all equal",   "input": "0 0\n",       "expectedOutput": "0 0\n" }
+  ]
+}

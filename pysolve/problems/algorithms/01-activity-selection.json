@@ -1,0 +1,20 @@
+{
+  "id": "alg-activity-selection",
+  "title": "Activity Selection",
+  "difficulty": "Medium",
+  "points": 230,
+  "description": "# Activity Selection\n\nYou have `N` activities, each with a start and end time. You can only do one activity at a time. Choose the **largest number** of activities you can complete without any of them overlapping. An activity that ends at time `t` and another that starts at time `t` do **not** overlap, so both may be chosen.\n\nThis is a classic **greedy** problem: if you always keep the activity that finishes earliest, you leave the most room for the rest.\n\n## Input\n\n- Line 1: an integer `N` (`N ≥ 0`).\n- Next `N` lines: two integers `start` and `end` (`start < end`).\n\n## Output\n\nThe maximum number of non-overlapping activities.\n\n```\nInput:\n4\n1 3\n2 4\n3 5\n0 6\n\nOutput:\n2\n```\n\n## Think about\n\n- Sort the activities by their **end** time, then walk through them keeping each one whose start is at or after the end of the last activity you kept.\n",
+  "starterCode": "n = int(input())\nactivities = [tuple(map(int, input().split())) for _ in range(n)]\n\n# TODO: print the maximum number of non-overlapping activities\n#       (an activity may start exactly when the previous one ends)\n",
+  "hints": [
+    "This is a **greedy** problem - at each step you commit to the choice that looks best right now and never reconsider.",
+    "Sort the activities by their **end time**, then scan left to right, keeping each activity whose start is at or after the end of the last one you kept. (This is the same greedy pattern as other interval-scheduling problems you've seen.)",
+    "```\nsort activities by end time\nlast_end = -infinity\ncount = 0\nfor each (start, end) in activities\n    if start >= last_end\n        count = count + 1\n        last_end = end\nprint count\n```"
+  ],
+  "tests": [
+    { "name": "touching ok",   "input": "3\n1 2\n2 3\n3 4\n",          "expectedOutput": "3\n" },
+    { "name": "overlaps",      "input": "4\n1 3\n2 4\n3 5\n0 6\n",     "expectedOutput": "2\n" },
+    { "name": "single",        "input": "1\n5 10\n",                   "expectedOutput": "1\n" },
+    { "name": "one long blocks","input": "3\n1 10\n2 3\n4 5\n",        "expectedOutput": "2\n" },
+    { "name": "none",          "input": "0\n",                         "expectedOutput": "0\n" }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "gen-reverse-integer",
+  "title": "Reverse Integer",
+  "difficulty": "Easy",
+  "points": 130,
+  "description": "# Reverse Integer\n\nReverse the digits of an integer. The sign is preserved, and any leading zeros that appear after reversing are dropped.\n\n## Input\n\nA single integer `x` (it may be negative).\n\n## Output\n\nThe integer formed by reversing the digits of `x`.\n\n```\nInput:\n-123\n\nOutput:\n-321\n```\n\nFor example, `120` reverses to `21` (the trailing zero becomes a leading zero and disappears).\n\n## Think about\n\n- Handle the sign separately, reverse the digits of the absolute value, then reapply the sign.\n- Converting to a string and slicing, or repeatedly taking `% 10` and `// 10`, both work.\n",
+  "starterCode": "x = int(input())\n\n# TODO: print x with its digits reversed (keep the sign, drop leading zeros)\n",
+  "hints": [
+    "Handle the sign separately, then reverse the digits of the absolute value.",
+    "Convert `abs(x)` to a string, reverse it with slicing, convert back to int (which drops leading zeros), then reapply the sign.",
+    "```\nif x < 0 then sign = -1 else sign = 1\nr = the number formed by the digits of |x| in reverse   // leading zeros vanish\nprint sign * r\n```"
+  ],
+  "tests": [
+    { "name": "positive", "input": "123\n",  "expectedOutput": "321\n" },
+    { "name": "negative", "input": "-123\n", "expectedOutput": "-321\n" },
+    { "name": "trailing zero", "input": "120\n", "expectedOutput": "21\n" },
+    { "name": "zero",     "input": "0\n",    "expectedOutput": "0\n" },
+    { "name": "negative round", "input": "-50\n", "expectedOutput": "-5\n" },
+    { "name": "single",   "input": "7\n",    "expectedOutput": "7\n" }
+  ]
+}

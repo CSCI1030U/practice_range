@@ -1,0 +1,21 @@
+{
+  "id": "alg-lis",
+  "title": "Longest Increasing Subsequence",
+  "difficulty": "Hard",
+  "points": 350,
+  "description": "# Longest Increasing Subsequence\n\nGiven a list of integers, find the length of the longest **strictly increasing** subsequence. A subsequence keeps the original order but does **not** have to be contiguous - you may skip elements.\n\n## Input\n\nOne line of space-separated integers (possibly empty).\n\n## Output\n\nThe length of the longest strictly increasing subsequence.\n\n```\nInput:\n10 9 2 5 3 7 101 18\n\nOutput:\n4\n```\n\nOne such subsequence is `2 3 7 101` (length 4).\n\n## Think about\n\n- A **dynamic programming** solution: let `best[i]` be the length of the longest increasing subsequence ending at index `i`. Then `best[i] = 1 + max(best[j])` over every earlier `j` with `nums[j] < nums[i]`. The answer is the largest `best[i]`.\n",
+  "starterCode": "nums = list(map(int, input().split()))\n\n# TODO: print the length of the longest strictly increasing subsequence\n",
+  "hints": [
+    "For each element, what's the longest increasing run that ends there?",
+    "DP: `best[i] = 1 + max(best[j])` over earlier `j` with `nums[j] < nums[i]` (or 1 if none). The answer is the largest `best[i]`.",
+    "```\nfor i = 0 to length(nums)-1\n    best[i] = 1\n    for j = 0 to i-1\n        if nums[j] < nums[i]\n            best[i] = max(best[i], best[j] + 1)\nprint max of best   (or 0 if nums is empty)\n```"
+  ],
+  "tests": [
+    { "name": "example",    "input": "10 9 2 5 3 7 101 18\n", "expectedOutput": "4\n" },
+    { "name": "with dips",  "input": "0 1 0 3 2 3\n",         "expectedOutput": "4\n" },
+    { "name": "all equal",  "input": "7 7 7 7\n",             "expectedOutput": "1\n" },
+    { "name": "sorted",     "input": "1 2 3 4 5\n",           "expectedOutput": "5\n" },
+    { "name": "single",     "input": "5\n",                   "expectedOutput": "1\n" },
+    { "name": "empty",      "input": "\n",                    "expectedOutput": "0\n" }
+  ]
+}

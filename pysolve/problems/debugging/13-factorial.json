@@ -1,0 +1,36 @@
+{
+  "id": "fix-13-factorial",
+  "title": "Factorial",
+  "errorType": "multiple",
+  "difficulty": "Hard",
+  "points": 60,
+  "description": "# Factorial\n\nThis program should read a non-negative integer `n` and print `n!` (n factorial), which is the product `1 × 2 × … × n`. By definition `0! = 1`.\n\nThis program has **more than one** bug. Find and fix them all so the tests pass.\n\n## Input\n\nA single integer `n` (`0 ≤ n ≤ 12`).\n\n## Output\n\nThe value of `n!`.\n\n```\nInput:\n5\n\nOutput:\n120\n```\n",
+  "starterCode": "n = int(input())\nresult = 0\nfor i in range(1, n + 1)\n    result *= i\nprint(result)\n",
+  "tests": [
+    {
+      "name": "5! = 120",
+      "input": "5\n",
+      "expectedOutput": "120\n"
+    },
+    {
+      "name": "0! = 1",
+      "input": "0\n",
+      "expectedOutput": "1\n"
+    },
+    {
+      "name": "1! = 1",
+      "input": "1\n",
+      "expectedOutput": "1\n"
+    },
+    {
+      "name": "3! = 6",
+      "input": "3\n",
+      "expectedOutput": "6\n"
+    },
+    {
+      "name": "6! = 720",
+      "input": "6\n",
+      "expectedOutput": "720\n"
+    }
+  ]
+}

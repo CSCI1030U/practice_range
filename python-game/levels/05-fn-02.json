@@ -1,0 +1,22 @@
+{
+  "id": "05-fn-02",
+  "title": "With Parameters",
+  "topic": "function",
+  "kind": "demo",
+  "brief": "<p>Functions can take <b>arguments</b>. Instead of writing one helper per length, write one helper that takes a number:</p><p><code>def go_right(n):</code> means \"<code>go_right(8)</code> moves right 8 times, <code>go_right(3)</code> moves right 3 times.\"</p><p>Each call passes its own value for <code>n</code>, and the function uses it.</p>",
+  "width": 12,
+  "height": 5,
+  "tiles": [
+    "############",
+    "#@.........#",
+    "##########.#",
+    "#.....T....#",
+    "############"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 6, "y": 3, "facing": "E" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "def go_right(n):\n    for i in range(n):\n        move_right()\n\ndef go_down(n):\n    for i in range(n):\n        move_down()\n\ndef go_left(n):\n    for i in range(n):\n        move_left()\n\ngo_right(9)\ngo_down(2)\ngo_left(3)\nopen_chest()\n"
+}

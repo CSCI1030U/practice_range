@@ -1,0 +1,36 @@
+[
+  { "id": "01-seq-01",  "title": "First Steps",        "topic": "sequential",  "topicLabel": "1. Sequential statements",        "kind": "demo" },
+  { "id": "01-seq-03",  "title": "Around the Corner",  "topic": "sequential",  "topicLabel": "1. Sequential statements",        "kind": "demo" },
+  { "id": "01-seq-02",  "title": "A Longer Walk",      "topic": "sequential",  "topicLabel": "1. Sequential statements",        "kind": "activity" },
+  { "id": "01-seq-04",  "title": "Up and Over",        "topic": "sequential",  "topicLabel": "1. Sequential statements",        "kind": "activity" },
+  { "id": "01-seq-05",  "title": "Turn the Corner",    "topic": "sequential",  "topicLabel": "1. Sequential statements",        "kind": "homework" },
+  { "id": "01-seq-06",  "title": "Zigzag",             "topic": "sequential",  "topicLabel": "1. Sequential statements",        "kind": "homework" },
+
+  { "id": "02-while-01","title": "Keep Walking",       "topic": "while",       "topicLabel": "2. while loops",                  "kind": "demo" },
+  { "id": "02-while-02","title": "Right Then Down",    "topic": "while",       "topicLabel": "2. while loops",                  "kind": "demo" },
+  { "id": "02-while-03","title": "The Long Hall",      "topic": "while",       "topicLabel": "2. while loops",                  "kind": "activity" },
+  { "id": "02-while-04","title": "Down Then Right",    "topic": "while",       "topicLabel": "2. while loops",                  "kind": "activity" },
+  { "id": "02-while-05","title": "Right, Down, Left",  "topic": "while",       "topicLabel": "2. while loops",                  "kind": "homework" },
+  { "id": "02-while-06","title": "U-Turn",             "topic": "while",       "topicLabel": "2. while loops",                  "kind": "homework" },
+
+  { "id": "03-for-01",  "title": "Count Your Steps",   "topic": "for",         "topicLabel": "3. for loops",                    "kind": "demo" },
+  { "id": "03-for-03",  "title": "Two Sides",          "topic": "for",         "topicLabel": "3. for loops",                    "kind": "demo" },
+  { "id": "03-for-04",  "title": "The Counted Walk",   "topic": "for",         "topicLabel": "3. for loops",                    "kind": "activity" },
+  { "id": "03-for-05",  "title": "Three Corners",      "topic": "for",         "topicLabel": "3. for loops",                    "kind": "activity" },
+  { "id": "03-for-06",  "title": "Stride",             "topic": "for",         "topicLabel": "3. for loops",                    "kind": "homework" },
+  { "id": "03-for-02",  "title": "Spiral",             "topic": "for",         "topicLabel": "3. for loops",                    "kind": "homework" },
+
+  { "id": "04-cond-01", "title": "The Lost Key",       "topic": "conditional", "topicLabel": "4. Variables and conditionals",   "kind": "demo" },
+  { "id": "04-cond-02", "title": "Wall Climber",       "topic": "conditional", "topicLabel": "4. Variables and conditionals",   "kind": "demo" },
+  { "id": "04-cond-03", "title": "Hidden Key",         "topic": "conditional", "topicLabel": "4. Variables and conditionals",   "kind": "activity" },
+  { "id": "04-cond-04", "title": "Reflection",         "topic": "conditional", "topicLabel": "4. Variables and conditionals",   "kind": "activity" },
+  { "id": "04-cond-05", "title": "Maze Lock",          "topic": "conditional", "topicLabel": "4. Variables and conditionals",   "kind": "homework" },
+  { "id": "04-cond-06", "title": "Descending Spiral",  "topic": "conditional", "topicLabel": "4. Variables and conditionals",   "kind": "homework" },
+
+  { "id": "05-fn-01",   "title": "Build Your Own Tools","topic": "function",   "topicLabel": "5. Functions",                    "kind": "demo" },
+  { "id": "05-fn-02",   "title": "With Parameters",    "topic": "function",    "topicLabel": "5. Functions",                    "kind": "demo" },
+  { "id": "05-fn-03",   "title": "Tool Belt",          "topic": "function",    "topicLabel": "5. Functions",                    "kind": "activity" },
+  { "id": "05-fn-04",   "title": "Counted Strides",    "topic": "function",    "topicLabel": "5. Functions",                    "kind": "activity" },
+  { "id": "05-fn-05",   "title": "Composing",          "topic": "function",    "topicLabel": "5. Functions",                    "kind": "homework" },
+  { "id": "05-fn-06",   "title": "Spiral Builder",     "topic": "function",    "topicLabel": "5. Functions",                    "kind": "homework" }
+]

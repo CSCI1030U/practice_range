@@ -1,0 +1,20 @@
+{
+  "id": "ds-remove-nth-from-end",
+  "title": "Remove Nth Node From End",
+  "difficulty": "Hard",
+  "points": 350,
+  "description": "# Remove Nth Node From End\n\nGiven a **linked list**, remove the `n`-th node counting from the **end** of the list, and print what remains.\n\nFor example, in `1 2 3 4 5` the 2nd node from the end is `4`; removing it leaves `1 2 3 5`.\n\n## Input\n\n- Line 1: the list values, space-separated (at least one value).\n- Line 2: an integer `n` (`1 ≤ n ≤ length`).\n\n## Output\n\nThe list after removal, space-separated on one line (print an empty line if no nodes remain).\n\n```\nInput:\n1 2 3 4 5\n2\n\nOutput:\n1 2 3 5\n```\n\n## Think about\n\n- The classic linked-list trick uses two pointers spaced `n` apart, so you find the target in a single pass. (With a Python list you can convert \"n-th from the end\" into an index from the front.)\n\n## Try it more than one way\n\nTry solving it more than one way:\n\n- Two pointers spaced `n` nodes apart, advanced together until the front one reaches the end - a single pass, no length needed.\n- Count the length first, then remove the node at index `length - n`.\n- Build real linked-list nodes, or take the Python-list shortcut, and compare how each feels.\n",
+  "starterCode": "values = input().split()\nn = int(input())\n\n# TODO: remove the n-th node from the END, then print the remaining values\n#       space-separated (print an empty line if none remain)\n",
+  "hints": [
+    "The n-th node from the end sits at index `length - n` from the front.",
+    "Either convert the position and delete index `len(values) - n`, or use two pointers spaced n apart, advanced together until the front reaches the end.",
+    "```\nk = length(values) - n          // index counted from the front\nremove values[k]\nprint values joined by spaces\n```"
+  ],
+  "tests": [
+    { "name": "middle",      "input": "1 2 3 4 5\n2\n", "expectedOutput": "1 2 3 5\n" },
+    { "name": "remove last", "input": "1 2 3\n1\n",     "expectedOutput": "1 2\n" },
+    { "name": "remove first","input": "1 2 3\n3\n",     "expectedOutput": "2 3\n" },
+    { "name": "only node",   "input": "5\n1\n",         "expectedOutput": "\n" },
+    { "name": "first of four","input": "10 20 30 40\n4\n", "expectedOutput": "20 30 40\n" }
+  ]
+}

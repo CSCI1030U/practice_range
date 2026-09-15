@@ -1,0 +1,20 @@
+{
+  "id": "04-stock-profit",
+  "title": "Best Time to Buy and Sell Stock",
+  "difficulty": "Medium",
+  "points": 200,
+  "description": "# Best Time to Buy and Sell Stock\n\nYou are given the daily prices of a stock. You may buy on one day and sell on a **later** day. Print the maximum profit you can make from a single buy-then-sell.\n\nIf no profit is possible, print `0` (you simply don't trade).\n\n## Input\n\n- Line 1: an integer `N` - the number of days (`1 ≤ N ≤ 100000`).\n- Line 2: `N` space-separated prices (each `≥ 0`).\n\n```\n6\n7 1 5 3 6 4\n```\n\n## Output\n\nA single integer: the maximum profit.\n\n```\n5\n```\n\nBuy on day 2 (price `1`) and sell on day 5 (price `6`) for a profit of `5`.\n\n## Think about\n\n- You must buy before you sell. As you scan left to right, what is the cheapest price you've seen so far, and what is the best profit if you sell today?\n",
+  "starterCode": "n = int(input())\nprices = list(map(int, input().split()))\n\n# TODO: print the maximum profit from one buy followed by a later sell (0 if none)\n",
+  "hints": [
+    "Scan once, tracking the cheapest price seen so far.",
+    "As you move left to right, keep the minimum price so far; the best profit today is today's price minus that minimum. Track the largest such profit.",
+    "```\nlowest = +infinity\nbest   = 0\nfor each price p in prices\n    lowest = min(lowest, p)\n    best   = max(best, p - lowest)\nprint best\n```"
+  ],
+  "tests": [
+    { "name": "Example",        "input": "6\n7 1 5 3 6 4\n", "expectedOutput": "5\n" },
+    { "name": "Only decreases", "input": "5\n7 6 4 3 1\n",   "expectedOutput": "0\n" },
+    { "name": "Single day",     "input": "1\n5\n",           "expectedOutput": "0\n" },
+    { "name": "Increasing",     "input": "4\n1 2 3 4\n",     "expectedOutput": "3\n" },
+    { "name": "Dip then rise",  "input": "7\n3 2 6 1 4 0 9\n", "expectedOutput": "9\n" }
+  ]
+}

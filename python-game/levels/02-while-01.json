@@ -1,0 +1,20 @@
+{
+  "id": "02-while-01",
+  "title": "Keep Walking",
+  "topic": "while",
+  "kind": "demo",
+  "brief": "<p>This corridor is long — counting steps would be tedious. A <code>while</code> loop repeats its body as long as its condition is <code>True</code>.</p><p>The sensor <code>is_at_chest()</code> returns <code>True</code> when you're standing right next to the chest. Use it as the stopping condition for your loop.</p>",
+  "width": 14,
+  "height": 3,
+  "tiles": [
+    "##############",
+    "#@..........T#",
+    "##############"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 12, "y": 1, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest", "is_at_chest"],
+  "starterCode": "",
+  "solution": "while not is_at_chest():\n    move_right()\n\nopen_chest()\n"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "05-fn-06",
+  "title": "Spiral Builder",
+  "topic": "function",
+  "kind": "homework",
+  "brief": "<p>A long inward spiral. The right helpers turn this from many lines of code into just a few. Spot the pattern, write one parameterized function, and call it.</p>",
+  "width": 11,
+  "height": 9,
+  "tiles": [
+    "###########",
+    "#@........#",
+    "#########.#",
+    "#.........#",
+    "#.#########",
+    "#.........#",
+    "#########.#",
+    "#........T#",
+    "###########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 9, "y": 7, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "def go_right(n):\n    for i in range(n):\n        move_right()\n\ndef go_left(n):\n    for i in range(n):\n        move_left()\n\ndef go_down(n):\n    for i in range(n):\n        move_down()\n\ngo_right(8)\ngo_down(2)\ngo_left(8)\ngo_down(2)\ngo_right(8)\ngo_down(1)\nopen_chest()\n"
+}

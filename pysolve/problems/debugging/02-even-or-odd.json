@@ -1,0 +1,31 @@
+{
+  "id": "fix-02-even-or-odd",
+  "title": "Even or Odd",
+  "errorType": "syntax",
+  "difficulty": "Easy",
+  "points": 20,
+  "description": "# Even or Odd\n\nThis program should read an integer and print `even` if it is even, or `odd` if it is odd.\n\nFind and fix the mistake.\n\n## Input\n\nA single integer.\n\n## Output\n\nEither `even` or `odd`.\n\n```\nInput:\n4\n\nOutput:\neven\n```\n",
+  "starterCode": "n = int(input())\nif n % 2 = 0:\n    print(\"even\")\nelse:\n    print(\"odd\")\n",
+  "tests": [
+    {
+      "name": "Even",
+      "input": "4\n",
+      "expectedOutput": "even\n"
+    },
+    {
+      "name": "Odd",
+      "input": "7\n",
+      "expectedOutput": "odd\n"
+    },
+    {
+      "name": "Zero",
+      "input": "0\n",
+      "expectedOutput": "even\n"
+    },
+    {
+      "name": "Negative odd",
+      "input": "-3\n",
+      "expectedOutput": "odd\n"
+    }
+  ]
+}

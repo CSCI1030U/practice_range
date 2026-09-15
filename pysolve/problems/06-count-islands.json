@@ -1,0 +1,20 @@
+{
+  "id": "06-count-islands",
+  "title": "Count Islands",
+  "difficulty": "Hard",
+  "points": 350,
+  "description": "# Count Islands\n\nYou are given a grid of `1`s (land) and `0`s (water). An **island** is a group of `1`s connected horizontally or vertically (not diagonally). Count how many islands the grid contains.\n\n## Input\n\n- Line 1: two integers `R` and `C` - the number of rows and columns.\n- Next `R` lines: each a string of exactly `C` characters, either `0` or `1`.\n\n```\n4 5\n11000\n11000\n00100\n00011\n```\n\n## Output\n\nA single integer: the number of islands.\n\n```\n3\n```\n\nThe top-left block, the single cell in the middle, and the bottom-right pair are three separate islands.\n\n## Think about\n\n- When you find a land cell you haven't visited, you've found a new island - then \"flood\" outward to mark every connected land cell so you don't count it again.\n- A stack or queue (or recursion) can drive that flood. Watch the grid edges.\n",
+  "starterCode": "import sys\n\ndata = sys.stdin.read().split(\"\\n\")\nr, c = map(int, data[0].split())\ngrid = [data[1 + i] for i in range(r)]\n\n# TODO: print the number of islands (4-directionally connected groups of '1')\n",
+  "hints": [
+    "Each time you find unvisited land, you've found a new island - then flood outward to mark all its connected cells.",
+    "Loop over every cell. On an unvisited '1', increment the count and flood-fill (stack/queue/recursion) marking all 4-connected land as seen.",
+    "```\ncount = 0\nmark every cell unvisited\nfor each cell (i, j)\n    if grid[i][j] = '1' and (i, j) is unvisited\n        count = count + 1\n        flood fill from (i, j):\n            visit (i, j), then flood into each of the 4 neighbours\n            that are land and unvisited\nprint count\n```"
+  ],
+  "tests": [
+    { "name": "Example",      "input": "4 5\n11000\n11000\n00100\n00011\n", "expectedOutput": "3\n" },
+    { "name": "All water",    "input": "2 2\n00\n00\n",                     "expectedOutput": "0\n" },
+    { "name": "Single cell",  "input": "1 1\n1\n",                          "expectedOutput": "1\n" },
+    { "name": "One big island","input": "3 3\n111\n010\n111\n",             "expectedOutput": "1\n" },
+    { "name": "Checkerboard", "input": "3 3\n101\n010\n101\n",              "expectedOutput": "5\n" }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "02-while-05",
+  "title": "Right, Down, Left",
+  "topic": "while",
+  "kind": "homework",
+  "brief": "<p>Three corridors, three loops. Pick a stopping condition for each segment: <code>is_wall_*()</code> for the turns and <code>is_at_chest()</code> for the final approach.</p>",
+  "width": 10,
+  "height": 6,
+  "tiles": [
+    "##########",
+    "#@.......#",
+    "########.#",
+    "########.#",
+    "#T.......#",
+    "##########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 1, "y": 4, "facing": "E" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest", "is_at_chest", "is_wall_right", "is_wall_down", "is_wall_left", "is_wall_up"],
+  "starterCode": "",
+  "solution": "while not is_wall_right():\n    move_right()\n\nwhile not is_wall_down():\n    move_down()\n\nwhile not is_at_chest():\n    move_left()\n\nopen_chest()\n"
+}

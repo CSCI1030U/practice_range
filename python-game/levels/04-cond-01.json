@@ -1,0 +1,23 @@
+{
+  "id": "04-cond-01",
+  "title": "The Lost Key",
+  "topic": "conditional",
+  "kind": "demo",
+  "brief": "<p>This chest is <b>locked</b>! You need to pick up the key first.</p><p>New tools:</p><ul><li><code>is_key_right()</code> — <code>True</code> when there is a key in the tile directly to your right. There are matching sensors for <code>_left()</code>, <code>_up()</code>, and <code>_down()</code>.</li><li><code>pick_up_key()</code> — picks up a key when you're standing next to it.</li></ul><p>An <code>if</code> statement runs its block only when its condition is <code>True</code>. Combine one <code>while</code> loop with one <code>if</code>: walk forward each step, and pick the key up only when you sense it beside you.</p>",
+  "width": 11,
+  "height": 3,
+  "tiles": [
+    "###########",
+    "#@..K....T#",
+    "###########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 9, "y": 1, "facing": "W", "requiresKey": true },
+  "items": [
+    { "x": 4, "y": 1, "type": "key" }
+  ],
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "pick_up_key", "open_chest", "is_at_chest", "is_key_right"],
+  "starterCode": "",
+  "solution": "while not is_at_chest():\n    if is_key_right():\n        pick_up_key()\n    move_right()\n\nopen_chest()\n"
+}

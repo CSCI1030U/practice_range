@@ -1,0 +1,31 @@
+{
+  "id": "fix-08-reverse-word",
+  "title": "Reverse a Word",
+  "errorType": "runtime",
+  "difficulty": "Easy",
+  "points": 20,
+  "description": "# Reverse a Word\n\nThis program is supposed to read a single word and print it **reversed**.\n\nBut it has a bug. Find and fix it so the tests pass.\n\n## Input\n\nA single word.\n\n## Output\n\nThe word, with its characters in reverse order.\n\n```\nInput:\nhello\n\nOutput:\nolleh\n```\n",
+  "starterCode": "word = input()\nprint(word.reverse())\n",
+  "tests": [
+    {
+      "name": "hello",
+      "input": "hello\n",
+      "expectedOutput": "olleh\n"
+    },
+    {
+      "name": "abc",
+      "input": "abc\n",
+      "expectedOutput": "cba\n"
+    },
+    {
+      "name": "single",
+      "input": "a\n",
+      "expectedOutput": "a\n"
+    },
+    {
+      "name": "palindrome",
+      "input": "racecar\n",
+      "expectedOutput": "racecar\n"
+    }
+  ]
+}

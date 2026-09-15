@@ -1,0 +1,22 @@
+{
+  "id": "03-for-03",
+  "title": "Two Sides",
+  "topic": "for",
+  "kind": "demo",
+  "brief": "<p>The path turns once. Use two <code>for</code> loops with different counts — one per direction.</p><p>Tip: pick the right <code>range(n)</code> by counting the empty tiles you need to cross in each direction.</p>",
+  "width": 9,
+  "height": 5,
+  "tiles": [
+    "#########",
+    "#@......#",
+    "######.##",
+    "#......T#",
+    "#########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 7, "y": 3, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "for i in range(5):\n    move_right()\n\nfor i in range(2):\n    move_down()\n\nopen_chest()\n"
+}

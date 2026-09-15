@@ -1,0 +1,20 @@
+{
+  "id": "ds-evaluate-postfix",
+  "title": "Evaluate Postfix",
+  "difficulty": "Medium",
+  "points": 220,
+  "description": "# Evaluate Postfix\n\nIn **postfix** (Reverse Polish) notation, each operator comes *after* its two operands, so no parentheses are needed. For example `3 4 + 5 *` means `(3 + 4) * 5 = 35`.\n\nEvaluate a postfix expression using a **stack**: push each number; when you see an operator, pop the top two values, apply it, and push the result back.\n\n## Input\n\nOne line of space-separated tokens. Each token is either a non-negative integer or one of the operators `+`, `-`, `*`. The expression is always valid.\n\n## Output\n\nA single integer: the value of the expression.\n\n```\nInput:\n3 4 + 5 *\n\nOutput:\n35\n```\n\n## Think about\n\n- Order matters for subtraction: when you pop `b` then `a`, compute `a - b`.\n\n## Try it more than one way\n\nThe stack itself can be built more than one way:\n\n- A Python list, using `append()` and `pop()`.\n- `collections.deque`, pushing and popping on the right end.\n- Your own class backed by a singly linked list.\n",
+  "starterCode": "tokens = input().split()\n\n# TODO: evaluate the postfix expression with a stack and print the result.\n#       tokens are non-negative integers or the operators + - *\n",
+  "hints": [
+    "Push numbers; on an operator, pop two and push the result.",
+    "Scan tokens: a number is pushed; an operator pops `b` then `a` and pushes `a op b`. The final stack item is the answer. (Same stack idea as Balanced Brackets.)",
+    "```\nlet stack be empty\nfor each token t\n    if t is an operator\n        b = pop stack;  a = pop stack\n        push (a t b) onto stack\n    else\n        push the number t onto stack\nprint top of stack\n```"
+  ],
+  "tests": [
+    { "name": "add",          "input": "3 4 +\n",            "expectedOutput": "7\n" },
+    { "name": "add then mul", "input": "3 4 + 5 *\n",        "expectedOutput": "35\n" },
+    { "name": "nested",       "input": "5 1 2 + 4 * + 3 -\n","expectedOutput": "14\n" },
+    { "name": "mul then add", "input": "2 3 4 * +\n",        "expectedOutput": "14\n" },
+    { "name": "subtract",     "input": "10 2 -\n",           "expectedOutput": "8\n" }
+  ]
+}

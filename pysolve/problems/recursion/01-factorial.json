@@ -1,0 +1,20 @@
+{
+  "id": "rec-factorial",
+  "title": "Factorial",
+  "difficulty": "Easy",
+  "points": 100,
+  "description": "# Factorial\n\nCompute `n!` (n factorial), the product `1 × 2 × … × n`, using **recursion**. By definition `0! = 1`.\n\n## Input\n\nA single integer `n` (`0 ≤ n ≤ 20`).\n\n## Output\n\nThe value of `n!`.\n\n```\nInput:\n5\n\nOutput:\n120\n```\n\n## Think about\n\n- Every recursive function needs a **base case** that stops the recursion and a **recursive case** that moves toward it.\n- Base case: `0! = 1`. Recursive case: `n! = n × (n-1)!`.\n",
+  "starterCode": "n = int(input())\n\n# TODO: compute n! recursively and print it\n#       (base case: 0! = 1;  recursive case: n! = n * (n-1)!)\n",
+  "hints": [
+    "Define n! in terms of (n-1)!.",
+    "Base case: `0! = 1`. Recursive case: `n! = n * factorial(n-1)`.",
+    "```\nFACT(n)\n    if n = 0\n        return 1\n    return n * FACT(n - 1)\nprint FACT(n)\n```"
+  ],
+  "tests": [
+    { "name": "5!",  "input": "5\n",  "expectedOutput": "120\n" },
+    { "name": "0!",  "input": "0\n",  "expectedOutput": "1\n" },
+    { "name": "1!",  "input": "1\n",  "expectedOutput": "1\n" },
+    { "name": "10!", "input": "10\n", "expectedOutput": "3628800\n" },
+    { "name": "20!", "input": "20\n", "expectedOutput": "2432902008176640000\n" }
+  ]
+}

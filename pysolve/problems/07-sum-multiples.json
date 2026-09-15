@@ -1,0 +1,20 @@
+{
+  "id": "gen-sum-multiples",
+  "title": "Sum of Multiples of 3 or 5",
+  "difficulty": "Easy",
+  "points": 120,
+  "description": "# Sum of Multiples of 3 or 5\n\nFind the sum of all positive integers **below** `n` that are multiples of 3 or 5.\n\n## Input\n\nA single integer `n` (`0 ≤ n ≤ 1000000`).\n\n## Output\n\nThe sum of every multiple of 3 or 5 that is strictly less than `n`.\n\n```\nInput:\n10\n\nOutput:\n23\n```\n\nThe multiples below 10 are `3, 5, 6, 9`, which sum to `23`.\n\n## Think about\n\n- A number counts if it is divisible by 3 **or** by 5 - but be careful not to count multiples of 15 twice if you add the two groups separately.\n",
+  "starterCode": "n = int(input())\n\n# TODO: print the sum of all positive multiples of 3 or 5 below n\n",
+  "hints": [
+    "Check each number below n: does it divide evenly by 3 or by 5?",
+    "Loop `i` from 0 to n-1; if `i % 3 == 0 or i % 5 == 0`, add it to a running total.",
+    "```\ntotal = 0\nfor i = 0 to n-1\n    if i mod 3 = 0 or i mod 5 = 0\n        total = total + i\nprint total\n```"
+  ],
+  "tests": [
+    { "name": "below 10",  "input": "10\n",  "expectedOutput": "23\n" },
+    { "name": "below 1",   "input": "1\n",   "expectedOutput": "0\n" },
+    { "name": "below 20",  "input": "20\n",  "expectedOutput": "78\n" },
+    { "name": "zero",      "input": "0\n",   "expectedOutput": "0\n" },
+    { "name": "below 100", "input": "100\n", "expectedOutput": "2318\n" }
+  ]
+}

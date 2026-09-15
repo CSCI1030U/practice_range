@@ -1,0 +1,19 @@
+{
+  "id": "ds-deque-simulator",
+  "title": "Deque Simulator",
+  "difficulty": "Medium",
+  "points": 230,
+  "description": "# Deque Simulator\n\nA **deque** (double-ended queue) lets you add and remove items at *both* ends - naturally implemented with a doubly linked list. Implement one and process a series of commands.\n\n## Commands\n\n- `push_front X` - add `X` to the front.\n- `push_back X` - add `X` to the back.\n- `pop_front` - remove and print the front value; print `empty` if the deque is empty.\n- `pop_back` - remove and print the back value; print `empty` if the deque is empty.\n\n## Input\n\n- Line 1: an integer `N` - the number of commands.\n- Next `N` lines: one command each.\n\n## Output\n\nOne line for every `pop_front` and `pop_back`.\n\n```\nInput:\n5\npush_back 1\npush_back 2\npush_front 0\npop_front\npop_back\n\nOutput:\n0\n2\n```\n\n## Think about\n\n- A doubly linked list (or `collections.deque`) supports all four operations in constant time.\n\n## Try it more than one way\n\nTry building the deque more than one way:\n\n- A true doubly linked list: a node class with `prev`/`next` and both `head` and `tail`, so all four operations are `O(1)`.\n- `collections.deque`, whose methods map directly onto the four commands.\n- A Python list (works, but inserting or removing at the front is `O(n)`).\n",
+  "starterCode": "n = int(input())\nfor _ in range(n):\n    parts = input().split()\n    # TODO: handle push_front / push_back / pop_front / pop_back\n    #   pop_front/pop_back print the removed value, or \"empty\" if empty\n",
+  "hints": [
+    "A deque adds and removes at both ends.",
+    "`collections.deque` maps directly: push_front→appendleft, push_back→append, pop_front→popleft, pop_back→pop (print 'empty' when empty).",
+    "```\nlet deque be empty\nfor each command\n    \"push_front x\" : add x to the front\n    \"push_back x\"  : add x to the back\n    \"pop_front\"    : if empty print \"empty\" else print and remove the front\n    \"pop_back\"     : if empty print \"empty\" else print and remove the back\n```"
+  ],
+  "tests": [
+    { "name": "both ends",     "input": "5\npush_back 1\npush_back 2\npush_front 0\npop_front\npop_back\n", "expectedOutput": "0\n2\n" },
+    { "name": "pop when empty","input": "3\npop_front\npush_back 5\npop_back\n",                          "expectedOutput": "empty\n5\n" },
+    { "name": "front pushes",  "input": "4\npush_front 1\npush_front 2\npop_back\npop_back\n",            "expectedOutput": "1\n2\n" },
+    { "name": "all empty",     "input": "2\npop_back\npop_front\n",                                      "expectedOutput": "empty\nempty\n" }
+  ]
+}

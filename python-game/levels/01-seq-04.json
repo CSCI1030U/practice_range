@@ -1,0 +1,24 @@
+{
+  "id": "01-seq-04",
+  "title": "Up and Over",
+  "topic": "sequential",
+  "kind": "activity",
+  "brief": "<p>A longer journey. Take a moment to plan the full path before you start writing — count steps in each direction.</p>",
+  "width": 10,
+  "height": 7,
+  "tiles": [
+    "##########",
+    "#@.......#",
+    "##.#######",
+    "#........#",
+    "########.#",
+    "#.......T#",
+    "##########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 8, "y": 5, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "move_right()\nmove_down()\nmove_down()\nmove_right()\nmove_right()\nmove_right()\nmove_right()\nmove_right()\nmove_right()\nmove_down()\nopen_chest()\n"
+}

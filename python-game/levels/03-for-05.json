@@ -1,0 +1,24 @@
+{
+  "id": "03-for-05",
+  "title": "Three Corners",
+  "topic": "for",
+  "kind": "activity",
+  "brief": "<p>Three corridors. Use a <code>for</code> loop per leg — three of them, each with the right count.</p>",
+  "width": 10,
+  "height": 7,
+  "tiles": [
+    "##########",
+    "#@.......#",
+    "########.#",
+    "########.#",
+    "########.#",
+    "#T.......#",
+    "##########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 1, "y": 5, "facing": "E" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "for i in range(7):\n    move_right()\n\nfor i in range(4):\n    move_down()\n\nfor i in range(6):\n    move_left()\n\nopen_chest()\n"
+}

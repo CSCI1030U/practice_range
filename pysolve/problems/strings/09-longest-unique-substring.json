@@ -1,0 +1,21 @@
+{
+  "id": "str-longest-unique-substring",
+  "title": "Longest Substring Without Repeating Characters",
+  "difficulty": "Hard",
+  "points": 350,
+  "description": "# Longest Substring Without Repeating Characters\n\nGiven a string, find the length of the longest **contiguous** substring that contains no repeated characters.\n\n## Input\n\nA single line of text (possibly empty).\n\n## Output\n\nA single integer: the length of the longest substring with all-distinct characters.\n\n```\nInput:\nabcabcbb\n\nOutput:\n3\n```\n\nThe answer is `abc` (length 3); after that a character always repeats.\n\n## Think about\n\n- A brute-force check of every substring is `O(n^2)` or worse.\n- Consider a sliding window `[start, i]`: as you extend `i`, when you hit a character already in the window, move `start` forward past its previous position. Track the best window length.\n",
+  "starterCode": "s = input()\n\n# TODO: print the length of the longest substring of s with all distinct characters\n",
+  "hints": [
+    "Slide a window over the string, shrinking it whenever a character repeats.",
+    "Remember the last index seen for each character and the window's `start`. On a repeat inside the window, move `start` past the previous position. Track the best window length.",
+    "```\nlast[c] = -1 for every character c     // last index c was seen at\nstart = 0;  best = 0\nfor i = 0 to length(s)-1\n    c = s[i]\n    if last[c] >= start\n        start = last[c] + 1\n    last[c] = i\n    best = max(best, i - start + 1)\nprint best\n```"
+  ],
+  "tests": [
+    { "name": "abcabcbb", "input": "abcabcbb\n", "expectedOutput": "3\n" },
+    { "name": "all same", "input": "bbbbb\n",    "expectedOutput": "1\n" },
+    { "name": "pwwkew",   "input": "pwwkew\n",   "expectedOutput": "3\n" },
+    { "name": "all unique","input": "abcdef\n",  "expectedOutput": "6\n" },
+    { "name": "dvdf",     "input": "dvdf\n",     "expectedOutput": "3\n" },
+    { "name": "empty",    "input": "\n",         "expectedOutput": "0\n" }
+  ]
+}

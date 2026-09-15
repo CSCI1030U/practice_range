@@ -1,0 +1,24 @@
+{
+  "id": "04-cond-04",
+  "title": "Reflection",
+  "topic": "conditional",
+  "kind": "activity",
+  "brief": "<p>Same wall-bouncing idea, mirrored. Walk up when you can, but step <i>left</i> instead of right when a wall blocks you.</p>",
+  "width": 7,
+  "height": 7,
+  "tiles": [
+    "#######",
+    "#T....#",
+    "#.#####",
+    "#.....#",
+    "#####.#",
+    "#....@#",
+    "#######"
+  ],
+  "start": { "x": 5, "y": 5, "dir": "UP" },
+  "chest": { "x": 1, "y": 1, "facing": "S" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest", "is_at_chest", "is_wall_up", "is_wall_left"],
+  "starterCode": "",
+  "solution": "while not is_at_chest():\n    if is_wall_up():\n        move_left()\n    else:\n        move_up()\n\nopen_chest()\n"
+}

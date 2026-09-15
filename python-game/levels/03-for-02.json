@@ -1,0 +1,24 @@
+{
+  "id": "03-for-02",
+  "title": "Spiral",
+  "topic": "for",
+  "kind": "homework",
+  "brief": "<p>A snake path through three corridors. Each segment is the same length — use <code>for</code> loops to keep your code short.</p><p>Plan: figure out how many steps in each direction first, then write a loop per segment.</p>",
+  "width": 9,
+  "height": 7,
+  "tiles": [
+    "#########",
+    "#@......#",
+    "#######.#",
+    "#.......#",
+    "#.#######",
+    "#......T#",
+    "#########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 7, "y": 5, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "for i in range(6):\n    move_right()\n\nfor i in range(2):\n    move_down()\n\nfor i in range(6):\n    move_left()\n\nfor i in range(2):\n    move_down()\n\nfor i in range(5):\n    move_right()\n\nopen_chest()\n"
+}

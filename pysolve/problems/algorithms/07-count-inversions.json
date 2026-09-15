@@ -1,0 +1,21 @@
+{
+  "id": "alg-count-inversions",
+  "title": "Count Inversions",
+  "difficulty": "Hard",
+  "points": 400,
+  "description": "# Count Inversions\n\nAn **inversion** in a list is a pair of positions `i < j` where `nums[i] > nums[j]` - a pair that is out of order. Count how many inversions the list contains. (A sorted list has 0; a reverse-sorted list has the most.)\n\nA list of `n` elements can have up to about `n²/2` inversions, so checking every pair is `O(n²)`. The efficient approach piggybacks on **merge sort** (divide and conquer): while merging two sorted halves, every time you take an element from the right half before the left half is exhausted, it forms an inversion with all remaining left-half elements.\n\n## Input\n\nOne line of space-separated integers (possibly empty).\n\n## Output\n\nThe number of inversions.\n\n```\nInput:\n2 4 1 3 5\n\nOutput:\n3\n```\n\nThe inversions are `(2,1)`, `(4,1)`, and `(4,3)`.\n\n## Think about\n\n- A correct `O(n²)` double loop earns the same answer and is a fine first attempt. Then try the merge-sort version that counts inversions in `O(n log n)`.\n",
+  "starterCode": "nums = list(map(int, input().split()))\n\n# TODO: print the number of inversions (pairs i < j with nums[i] > nums[j])\n",
+  "hints": [
+    "A brute-force double loop is O(n^2); merge sort counts them in O(n log n).",
+    "During a merge sort, when you take an element from the right half before the left half is empty, it forms an inversion with every remaining left element - add that count while merging.",
+    "```\nSORT-COUNT(A)\n    if length(A) <= 1\n        return (A, 0)\n    (L, cl) = SORT-COUNT(left half of A)\n    (R, cr) = SORT-COUNT(right half of A)\n    merge L and R into sorted M; each time you take an element from R,\n        add (number of elements still left in L) to a counter\n    return (M, cl + cr + counter)\nprint the count returned by SORT-COUNT(nums)\n```"
+  ],
+  "tests": [
+    { "name": "example",       "input": "2 4 1 3 5\n", "expectedOutput": "3\n" },
+    { "name": "sorted",        "input": "1 2 3 4 5\n", "expectedOutput": "0\n" },
+    { "name": "reverse",       "input": "5 4 3 2 1\n", "expectedOutput": "10\n" },
+    { "name": "single",        "input": "1\n",         "expectedOutput": "0\n" },
+    { "name": "small",         "input": "3 1 2\n",     "expectedOutput": "2\n" },
+    { "name": "empty",         "input": "\n",          "expectedOutput": "0\n" }
+  ]
+}

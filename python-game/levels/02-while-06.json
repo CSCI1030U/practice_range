@@ -1,0 +1,24 @@
+{
+  "id": "02-while-06",
+  "title": "U-Turn",
+  "topic": "while",
+  "kind": "homework",
+  "brief": "<p>The chest is right next to where you start — but the walls force a detour all the way around. Three loops will take you down, across, and back up.</p>",
+  "width": 10,
+  "height": 7,
+  "tiles": [
+    "##########",
+    "#@##....T#",
+    "#.######.#",
+    "#.######.#",
+    "#.######.#",
+    "#........#",
+    "##########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "DOWN" },
+  "chest": { "x": 8, "y": 1, "facing": "S" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest", "is_at_chest", "is_wall_right", "is_wall_down", "is_wall_left", "is_wall_up"],
+  "starterCode": "",
+  "solution": "while not is_wall_down():\n    move_down()\n\nwhile not is_wall_right():\n    move_right()\n\nwhile not is_at_chest():\n    move_up()\n\nopen_chest()\n"
+}

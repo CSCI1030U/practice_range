@@ -1,0 +1,22 @@
+{
+  "id": "01-seq-02",
+  "title": "A Longer Walk",
+  "topic": "sequential",
+  "kind": "activity",
+  "brief": "<p>The chest is further away this time. Walk until you are <b>next to</b> the chest, then <code>open_chest()</code>.</p><p><b>Tip:</b> count the empty squares between your hero and the chest — that's how many steps you need.</p>",
+  "width": 9,
+  "height": 5,
+  "tiles": [
+    "#########",
+    "#.......#",
+    "#.......#",
+    "#.......#",
+    "#########"
+  ],
+  "start": { "x": 1, "y": 2, "dir": "RIGHT" },
+  "chest": { "x": 7, "y": 2, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "move_right()\nmove_right()\nmove_right()\nmove_right()\nmove_right()\nopen_chest()\n"
+}

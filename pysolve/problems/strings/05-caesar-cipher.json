@@ -1,0 +1,20 @@
+{
+  "id": "str-caesar-cipher",
+  "title": "Caesar Cipher",
+  "difficulty": "Medium",
+  "points": 200,
+  "description": "# Caesar Cipher\n\nA Caesar cipher shifts every letter forward through the alphabet by a fixed amount, wrapping around from `z` back to `a`. Encode the given text.\n\n- Shift **letters** only; preserve their case (`a`–`z` stay lower, `A`–`Z` stay upper).\n- Leave any non-letter characters (spaces, punctuation, digits) unchanged.\n- The shift wraps: with shift 3, `x → a`, `y → b`, `z → c`.\n\n## Input\n\n- Line 1: an integer `shift` (`0 ≤ shift ≤ 25`).\n- Line 2: the text to encode.\n\n```\nInput:\n3\nHello, World!\n\nOutput:\nKhoor, Zruog!\n```\n\n## Think about\n\n- `ord(c)` gives a character's code; `chr(n)` turns a code back into a character.\n- To wrap, work relative to `ord('a')` (or `ord('A')`) and use `% 26`.\n",
+  "starterCode": "shift = int(input())\ntext = input()\n\n# TODO: print text encoded with a Caesar cipher of the given shift\n#       (shift letters, preserve case, leave other characters unchanged)\n",
+  "hints": [
+    "Shift letters using their position in the alphabet; wrap around with modulo 26.",
+    "For each letter, take its 0–25 offset from 'a' (or 'A'), add the shift, take `% 26`, and convert back with `chr`. Leave non-letters unchanged.",
+    "```\nresult = \"\"\nfor each character c in text\n    if c is an uppercase letter\n        result = result + the letter ((c - 'A') + shift) mod 26 places after 'A'\n    else if c is a lowercase letter\n        result = result + the letter ((c - 'a') + shift) mod 26 places after 'a'\n    else\n        result = result + c\nprint result\n```"
+  ],
+  "tests": [
+    { "name": "shift 3",      "input": "3\nabc\n",           "expectedOutput": "def\n" },
+    { "name": "wrap around",  "input": "1\nxyz\n",           "expectedOutput": "yza\n" },
+    { "name": "punctuation",  "input": "3\nHello, World!\n", "expectedOutput": "Khoor, Zruog!\n" },
+    { "name": "rot13 caps",   "input": "13\nHELLO\n",        "expectedOutput": "URYYB\n" },
+    { "name": "zero shift",   "input": "0\nabc\n",           "expectedOutput": "abc\n" }
+  ]
+}

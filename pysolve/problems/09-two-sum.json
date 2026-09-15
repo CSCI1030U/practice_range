@@ -1,0 +1,20 @@
+{
+  "id": "gen-two-sum",
+  "title": "Two Sum",
+  "difficulty": "Medium",
+  "points": 220,
+  "description": "# Two Sum\n\nGiven a list of integers and a target value, find the **two** elements that add up to the target and print their positions (0-based indices). There is exactly one such pair.\n\n## Input\n\n- Line 1: the list of integers, space-separated.\n- Line 2: the target integer.\n\n## Output\n\nThe two indices, smaller first, separated by a space.\n\n```\nInput:\n2 7 11 15\n9\n\nOutput:\n0 1\n```\n\n`nums[0] + nums[1] = 2 + 7 = 9`.\n\n## Think about\n\n- Checking every pair is `O(n^2)`. Can you do it in one pass? As you scan, remember each value you've seen and its index; for the current value `x`, you only need to know whether `target - x` has already appeared.\n",
+  "starterCode": "nums = list(map(int, input().split()))\ntarget = int(input())\n\n# TODO: print the two 0-based indices (smaller first) of the values\n#       that sum to target\n",
+  "hints": [
+    "Checking every pair works but is slow. What if you remembered the numbers you've already walked past?",
+    "Keep a dictionary mapping each value to its index. For the current number `x` at index `i`, check whether `target - x` is already in the dictionary - if it is, you've found the pair.",
+    "```\nlet seen be an empty map        // value -> index\nfor i = 0 to length(nums)-1\n    if (target - nums[i]) is in seen\n        print seen[target - nums[i]], i\n        stop\n    seen[nums[i]] = i\n```"
+  ],
+  "tests": [
+    { "name": "example",   "input": "2 7 11 15\n9\n", "expectedOutput": "0 1\n" },
+    { "name": "later pair", "input": "3 2 4\n6\n",     "expectedOutput": "1 2\n" },
+    { "name": "duplicates", "input": "3 3\n6\n",       "expectedOutput": "0 1\n" },
+    { "name": "ends",       "input": "1 5 3 7\n10\n",  "expectedOutput": "2 3\n" },
+    { "name": "negatives",  "input": "-1 -2 -3 -4\n-7\n", "expectedOutput": "2 3\n" }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "rec-decimal-to-binary",
+  "title": "Decimal to Binary",
+  "difficulty": "Medium",
+  "points": 200,
+  "description": "# Decimal to Binary\n\nConvert a non-negative integer to its **binary** representation using **recursion** (don't use `bin()`).\n\n## Input\n\nA single non-negative integer `n`.\n\n## Output\n\nThe binary representation of `n`, with no leading zeros (the value `0` prints as `0`).\n\n```\nInput:\n10\n\nOutput:\n1010\n```\n\n## Think about\n\n- The last binary digit of `n` is `n % 2`; the digits before it come from `n // 2`.\n- Base case: `n` of `0` or `1` is its own binary string. Recursive case: `binary(n // 2)` followed by `n % 2`.\n",
+  "starterCode": "n = int(input())\n\n# TODO: print the binary representation of n, built recursively\n",
+  "hints": [
+    "The last binary digit is `n % 2`; the digits before it come from `n // 2`.",
+    "Base case: `n` of 0 or 1 is its own string. Recursive case: `binary(n // 2) + str(n % 2)`.",
+    "```\nBIN(n)\n    if n < 2\n        return the digit n\n    return BIN(n div 2) followed by (n mod 2)\nprint BIN(n)\n```"
+  ],
+  "tests": [
+    { "name": "0",   "input": "0\n",   "expectedOutput": "0\n" },
+    { "name": "1",   "input": "1\n",   "expectedOutput": "1\n" },
+    { "name": "10",  "input": "10\n",  "expectedOutput": "1010\n" },
+    { "name": "5",   "input": "5\n",   "expectedOutput": "101\n" },
+    { "name": "255", "input": "255\n", "expectedOutput": "11111111\n" }
+  ]
+}

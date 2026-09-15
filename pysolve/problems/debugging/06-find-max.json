@@ -1,0 +1,31 @@
+{
+  "id": "fix-06-find-max",
+  "title": "Find the Maximum",
+  "errorType": "logic",
+  "difficulty": "Medium",
+  "points": 30,
+  "description": "# Find the Maximum\n\nThis program reads a list of integers (on one line, space-separated) and should print the **largest** value.\n\nBut it has a bug. Find and fix it so the tests pass.\n\n## Input\n\nOne line of space-separated integers (at least one).\n\n## Output\n\nThe largest integer.\n\n```\nInput:\n3 1 4 1 5 9 2 6\n\nOutput:\n9\n```\n",
+  "starterCode": "nums = list(map(int, input().split()))\nbest = nums[0]\nfor x in nums:\n    if x < best:\n        best = x\nprint(best)\n",
+  "tests": [
+    {
+      "name": "Mixed",
+      "input": "3 1 4 1 5 9 2 6\n",
+      "expectedOutput": "9\n"
+    },
+    {
+      "name": "Descending",
+      "input": "5 4 3 2 1\n",
+      "expectedOutput": "5\n"
+    },
+    {
+      "name": "All negative",
+      "input": "-3 -1 -7\n",
+      "expectedOutput": "-1\n"
+    },
+    {
+      "name": "Single value",
+      "input": "42\n",
+      "expectedOutput": "42\n"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "alg-linear-search-count",
+  "title": "Counting Comparisons: Linear Search",
+  "difficulty": "Easy",
+  "points": 150,
+  "description": "# Counting Comparisons: Linear Search\n\nA **linear search** scans a list from front to back, comparing each element to the target, and stops as soon as it finds a match. A useful way to analyse an algorithm is to count its key operations - here, how many element comparisons it performs.\n\nInstrument a linear search to count comparisons:\n\n- Each time you compare an element to the target, that's one comparison.\n- Stop counting as soon as you find the target.\n- If the target is **not** in the list, you will have compared against every element.\n\n## Input\n\n- Line 1: the list - space-separated integers (possibly empty).\n- Line 2: the target integer.\n\n## Output\n\nThe number of comparisons performed.\n\n```\nInput:\n5 3 8 1 9\n8\n\nOutput:\n3\n```\n\n`8` is the 3rd element examined, so 3 comparisons.\n\n## Think about\n\n- The best case is 1 comparison (target is first); the worst case is the list length (target last or absent). This is why linear search is described as `O(n)`.\n",
+  "starterCode": "arr = list(map(int, input().split()))\ntarget = int(input())\n\n# TODO: print how many comparisons a front-to-back linear search makes\n#       to find target (or to determine it is absent)\n",
+  "hints": [
+    "Count one comparison per element you examine; stop when you find the target.",
+    "Loop through the list, incrementing a counter each step, and break when an element equals the target. If never found, the counter equals the list length.",
+    "```\ncount = 0\nfor each x in arr\n    count = count + 1\n    if x = target\n        stop\nprint count\n```"
+  ],
+  "tests": [
+    { "name": "found middle", "input": "5 3 8 1 9\n8\n", "expectedOutput": "3\n" },
+    { "name": "found first",  "input": "5 3 8 1 9\n5\n", "expectedOutput": "1\n" },
+    { "name": "found last",   "input": "5 3 8 1 9\n9\n", "expectedOutput": "5\n" },
+    { "name": "not found",    "input": "5 3 8 1 9\n7\n", "expectedOutput": "5\n" },
+    { "name": "single",       "input": "42\n42\n",       "expectedOutput": "1\n" },
+    { "name": "empty list",   "input": "\n7\n",          "expectedOutput": "0\n" }
+  ]
+}

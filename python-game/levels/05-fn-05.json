@@ -1,0 +1,24 @@
+{
+  "id": "05-fn-05",
+  "title": "Composing",
+  "topic": "function",
+  "kind": "homework",
+  "brief": "<p>Two new building blocks:</p><ul><li><code>turn(direction)</code> — face a direction. Pass one of <code>UP</code>, <code>DOWN</code>, <code>LEFT</code>, <code>RIGHT</code>.</li><li><code>move_forward()</code> — take one step in whatever direction you're facing.</li></ul><p>Write a parameterized helper <code>def go(direction, n):</code> that turns and then walks <code>n</code> steps. That one helper replaces all four of <code>walk_right_seven</code>, <code>walk_left_seven</code>, etc.</p><p>Then build a second helper that <i>uses</i> <code>go</code> — that's <b>composition</b>. The repeated <code>down</code> in this snake-path begs for it.</p>",
+  "width": 10,
+  "height": 7,
+  "tiles": [
+    "##########",
+    "#@.......#",
+    "########.#",
+    "#........#",
+    "#.########",
+    "#.......T#",
+    "##########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 8, "y": 5, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["turn", "move_forward", "open_chest", "UP", "DOWN", "LEFT", "RIGHT"],
+  "starterCode": "",
+  "solution": "def go(direction, n):\n    turn(direction)\n    for i in range(n):\n        move_forward()\n\ndef descend():\n    go(DOWN, 2)\n\ngo(RIGHT, 7)\ndescend()\ngo(LEFT, 7)\ndescend()\ngo(RIGHT, 6)\nopen_chest()\n"
+}

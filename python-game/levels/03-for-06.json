@@ -1,0 +1,22 @@
+{
+  "id": "03-for-06",
+  "title": "Stride",
+  "topic": "for",
+  "kind": "homework",
+  "brief": "<p>Three segments — one in each direction. Pick a <code>range()</code> count for each before you write the loops.</p>",
+  "width": 12,
+  "height": 5,
+  "tiles": [
+    "############",
+    "#@.........#",
+    "##########.#",
+    "#.....T....#",
+    "############"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 6, "y": 3, "facing": "E" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "for i in range(9):\n    move_right()\n\nfor i in range(2):\n    move_down()\n\nfor i in range(3):\n    move_left()\n\nopen_chest()\n"
+}

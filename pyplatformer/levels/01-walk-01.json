@@ -1,0 +1,21 @@
+{
+  "id": "01-walk-01",
+  "title": "First Steps",
+  "topic": "walking",
+  "kind": "demo",
+  "brief": "<p>Welcome to the platformer! Your character is bound by gravity. Each call moves you one tile:</p><ul><li><code>left()</code>, <code>right()</code> — walk one tile in that direction.</li><li><code>jump_up()</code>, <code>jump_left()</code>, <code>jump_right()</code> — jump (one tile up, optionally one tile sideways). Only works when you're standing on a surface or against a wall — except for a double-jump while still in the air.</li></ul><p>For now, just walk over to the flag.</p>",
+  "width": 8,
+  "height": 5,
+  "tiles": [
+    "........",
+    "........",
+    ".....F..",
+    "GGGGGGGG",
+    "DDDDDDDD"
+  ],
+  "start": { "x": 1, "y": 2 },
+  "background": "forest",
+  "api": ["left", "right", "jump_up", "jump_left", "jump_right"],
+  "starterCode": "",
+  "solution": "right()\nright()\nright()\nright()\n"
+}

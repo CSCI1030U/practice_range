@@ -1,0 +1,21 @@
+{
+  "id": "str-palindrome",
+  "title": "Palindrome Check",
+  "difficulty": "Easy",
+  "points": 120,
+  "description": "# Palindrome Check\n\nA **palindrome** reads the same forwards and backwards. Read a line and print `YES` if it is a palindrome (ignoring letter case), or `NO` otherwise.\n\n## Input\n\nA single line of text.\n\n## Output\n\n`YES` or `NO`.\n\n```\nInput:\nRacecar\n\nOutput:\nYES\n```\n\n## Think about\n\n- Compare the string to its reverse.\n- `Racecar` should count as a palindrome, so case shouldn't matter.\n",
+  "starterCode": "s = input()\n\n# TODO: print YES if s is a palindrome (ignoring case), else NO\n",
+  "hints": [
+    "Compare the string to its reverse.",
+    "Lowercase the string, then check whether it equals its reverse (`s == s[::-1]`).",
+    "```\nt = lowercase(s)\ni = 0;  j = length(t)-1\nwhile i < j\n    if t[i] != t[j]\n        print \"NO\" and stop\n    i = i + 1;  j = j - 1\nprint \"YES\"\n```"
+  ],
+  "tests": [
+    { "name": "racecar",     "input": "racecar\n", "expectedOutput": "YES\n" },
+    { "name": "mixed case",  "input": "Racecar\n", "expectedOutput": "YES\n" },
+    { "name": "not palindrome", "input": "hello\n", "expectedOutput": "NO\n" },
+    { "name": "single char", "input": "a\n",       "expectedOutput": "YES\n" },
+    { "name": "abba",        "input": "abba\n",    "expectedOutput": "YES\n" },
+    { "name": "abca",        "input": "abca\n",    "expectedOutput": "NO\n" }
+  ]
+}

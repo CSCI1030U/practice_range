@@ -1,0 +1,25 @@
+{
+  "id": "04-cond-03",
+  "title": "Hidden Key",
+  "topic": "conditional",
+  "kind": "activity",
+  "brief": "<p>Same idea as the first demo: locked chest, key elsewhere on the map. Write one <code>if</code> statement that handles both cases — fetched key already, and not yet.</p>",
+  "width": 10,
+  "height": 5,
+  "tiles": [
+    "##########",
+    "#@.......#",
+    "##.#######",
+    "#K..T....#",
+    "##########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 4, "y": 3, "facing": "W", "requiresKey": true },
+  "items": [
+    { "x": 1, "y": 3, "type": "key" }
+  ],
+  "goal": { "type": "open_chest" },
+  "api": ["go_to", "pick_up_key", "open_chest", "has_key", "CHEST", "KEY"],
+  "starterCode": "",
+  "solution": "if not has_key():\n    go_to(KEY)\n    pick_up_key()\n\ngo_to(CHEST)\nopen_chest()\n"
+}

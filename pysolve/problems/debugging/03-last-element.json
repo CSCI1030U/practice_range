@@ -1,0 +1,26 @@
+{
+  "id": "fix-03-last-element",
+  "title": "Last Element",
+  "errorType": "runtime",
+  "difficulty": "Easy",
+  "points": 10,
+  "description": "# Last Element\n\nThis program reads a list of integers (on one line, space-separated) and should print the **last** one.\n\nIt crashes instead. Fix it.\n\n## Input\n\nOne line of space-separated integers (at least one).\n\n## Output\n\nThe last integer in the list.\n\n```\nInput:\n1 2 3\n\nOutput:\n3\n```\n",
+  "starterCode": "nums = list(map(int, input().split()))\nprint(nums[len(nums)])\n",
+  "tests": [
+    {
+      "name": "Three values",
+      "input": "1 2 3\n",
+      "expectedOutput": "3\n"
+    },
+    {
+      "name": "Four values",
+      "input": "5 10 15 20\n",
+      "expectedOutput": "20\n"
+    },
+    {
+      "name": "Single value",
+      "input": "42\n",
+      "expectedOutput": "42\n"
+    }
+  ]
+}

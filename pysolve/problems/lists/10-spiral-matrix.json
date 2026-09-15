@@ -1,0 +1,20 @@
+{
+  "id": "lst-spiral-matrix",
+  "title": "Spiral Matrix",
+  "difficulty": "Hard",
+  "points": 400,
+  "description": "# Spiral Matrix\n\nRead a matrix and print all of its elements in **spiral order**: start at the top-left, go right across the top row, then down the right side, along the bottom, up the left side, and spiral inward until every element has been visited.\n\n## Input\n\n- Line 1: two integers `R` and `C` - rows and columns.\n- Next `R` lines: each contains `C` space-separated integers.\n\n## Output\n\nAll elements in spiral order, space-separated on a single line.\n\n```\nInput:\n3 3\n1 2 3\n4 5 6\n7 8 9\n\nOutput:\n1 2 3 6 9 8 7 4 5\n```\n\n## Think about\n\n- Track four boundaries - top, bottom, left, right - and peel off one layer at a time, shrinking the boundaries after each edge. Be careful not to re-visit a row or column when the remaining area is a single line.\n",
+  "starterCode": "r, c = map(int, input().split())\nmatrix = [list(map(int, input().split())) for _ in range(r)]\n\n# TODO: print all elements in clockwise spiral order, space-separated\n",
+  "hints": [
+    "Peel off one edge at a time - top row, right column, bottom row, left column - spiralling inward.",
+    "Track four boundaries (top, bottom, left, right). Walk the top row then `top += 1`, the right column then `right -= 1`, and so on, guarding against a single remaining row or column.",
+    "```\ntop = 0;  bottom = R-1;  left = 0;  right = C-1\nresult = empty list\nwhile top <= bottom and left <= right\n    for j = left to right:          append matrix[top][j]\n    top = top + 1\n    for i = top to bottom:          append matrix[i][right]\n    right = right - 1\n    if top <= bottom\n        for j = right down to left: append matrix[bottom][j]\n        bottom = bottom - 1\n    if left <= right\n        for i = bottom down to top: append matrix[i][left]\n        left = left + 1\nprint result joined by spaces\n```"
+  ],
+  "tests": [
+    { "name": "3x3",     "input": "3 3\n1 2 3\n4 5 6\n7 8 9\n",                "expectedOutput": "1 2 3 6 9 8 7 4 5\n" },
+    { "name": "1x4 row", "input": "1 4\n1 2 3 4\n",                            "expectedOutput": "1 2 3 4\n" },
+    { "name": "4x1 col", "input": "4 1\n1\n2\n3\n4\n",                         "expectedOutput": "1 2 3 4\n" },
+    { "name": "2x2",     "input": "2 2\n1 2\n3 4\n",                           "expectedOutput": "1 2 4 3\n" },
+    { "name": "3x4",     "input": "3 4\n1 2 3 4\n5 6 7 8\n9 10 11 12\n",       "expectedOutput": "1 2 3 4 8 12 11 10 9 5 6 7\n" }
+  ]
+}

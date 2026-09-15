@@ -1,0 +1,20 @@
+{
+  "id": "03-for-01",
+  "title": "Count Your Steps",
+  "topic": "for",
+  "kind": "demo",
+  "brief": "<p>You know exactly how many steps you need to take. A <code>for</code> loop with <code>range(n)</code> repeats its body <code>n</code> times.</p><p><code>range(6)</code> produces the numbers 0, 1, 2, 3, 4, 5 — that's six numbers, so the loop runs six times. Count tiles between you and the chest to pick the right number.</p>",
+  "width": 10,
+  "height": 3,
+  "tiles": [
+    "##########",
+    "#@......T#",
+    "##########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 8, "y": 1, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "for i in range(6):\n    move_right()\n\nopen_chest()\n"
+}

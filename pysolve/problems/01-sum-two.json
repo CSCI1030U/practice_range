@@ -1,0 +1,19 @@
+{
+  "id": "01-sum-two",
+  "title": "Sum of Two Numbers",
+  "difficulty": "Easy",
+  "points": 100,
+  "description": "# Sum of Two Numbers\n\nRead two integers, each on its own line, and print their sum.\n\n## Input\n\nTwo lines, each containing one integer.\n\n```\n3\n4\n```\n\n## Output\n\nA single line: the sum of the two integers.\n\n```\n7\n```\n\n## Hints\n\n- `input()` reads one line as a string.\n- `int(...)` converts a string to a number.\n- `print(...)` writes a line of output.\n",
+  "starterCode": "a = int(input())\nb = int(input())\n\n# TODO: print the sum of a and b\n",
+  "hints": [
+    "Read each line as a number, then add them.",
+    "`input()` gives you a string; wrap it in `int(...)` to get a number you can add.",
+    "```\nread a\nread b\nprint a + b\n```"
+  ],
+  "tests": [
+    { "name": "Example",        "input": "3\n4\n",      "expectedOutput": "7\n" },
+    { "name": "Both zero",      "input": "0\n0\n",      "expectedOutput": "0\n" },
+    { "name": "Negative",       "input": "-5\n2\n",     "expectedOutput": "-3\n" },
+    { "name": "Large numbers",  "input": "1000000\n999999\n", "expectedOutput": "1999999\n" }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "fix-11-fizzbuzz",
+  "title": "FizzBuzz",
+  "errorType": "logic",
+  "difficulty": "Hard",
+  "points": 50,
+  "description": "# FizzBuzz\n\nFor each integer from `1` to `n`, print one line:\n\n- `FizzBuzz` if it is divisible by **both** 3 and 5,\n- `Fizz` if it is divisible by 3 (only),\n- `Buzz` if it is divisible by 5 (only),\n- otherwise the number itself.\n\nThe program runs, but some lines come out wrong. Find and fix the bug.\n\n## Input\n\nA single integer `n` (`1 ≤ n ≤ 100`).\n\n## Output\n\n`n` lines as described above.\n\n```\nInput:\n5\n\nOutput:\n1\n2\nFizz\n4\nBuzz\n```\n",
+  "starterCode": "n = int(input())\nfor i in range(1, n + 1):\n    if i % 3 == 0:\n        print(\"Fizz\")\n    elif i % 5 == 0:\n        print(\"Buzz\")\n    elif i % 15 == 0:\n        print(\"FizzBuzz\")\n    else:\n        print(i)\n",
+  "tests": [
+    {
+      "name": "n = 3",
+      "input": "3\n",
+      "expectedOutput": "1\n2\nFizz\n"
+    },
+    {
+      "name": "n = 5",
+      "input": "5\n",
+      "expectedOutput": "1\n2\nFizz\n4\nBuzz\n"
+    },
+    {
+      "name": "n = 15",
+      "input": "15\n",
+      "expectedOutput": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz\n"
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+:root {
+  --bg: #1e1f29;
+  --bg-2: #282a36;
+  --bg-3: #313342;
+  --fg: #f8f8f2;
+  --fg-dim: #b9bbc7;
+  --accent: #50fa7b;
+  --accent-2: #8be9fd;
+  --warn: #ffb86c;
+  --err: #ff5555;
+  --border: #44475a;
+  --tile: 32px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--border);
+  flex: 0 0 auto;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+  font-size: 16px;
+}
+
+.scale-info,
+.level-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.scale-info { flex: 0 0 auto; }
+.level-info { flex: 1; justify-content: center; }
+
+.scale-info select,
+.level-info select {
+  background: var(--bg-3);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.level-info select { min-width: 240px; }
+
+#level-title {
+  color: var(--fg-dim);
+  font-size: 13px;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+button {
+  background: var(--bg-3);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.12s, opacity 0.12s;
+}
+
+button:hover:not(:disabled) { background: #3d4054; }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+button.primary {
+  background: var(--accent);
+  color: #1e1f29;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+button.primary:hover:not(:disabled) { background: #6dffa0; }
+
+.workspace {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 0;
+}
+
+.game-pane, .code-pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.game-pane { border-right: 1px solid var(--border); }
+
+.game-canvas-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f1015;
+  padding: 16px;
+  flex: 1;
+  min-height: 0;
+}
+
+#game {
+  background: #0a0b10;
+  image-rendering: pixelated;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.game-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 16, 21, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.game-overlay.hidden { display: none; }
+
+.overlay-content {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 32px;
+  text-align: center;
+  max-width: 360px;
+}
+.overlay-content h2 { margin: 0 0 8px; color: var(--accent); }
+.overlay-content p { color: var(--fg-dim); margin: 0 0 16px; }
+.overlay-actions { display: flex; gap: 8px; justify-content: center; }
+
+.brief {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  padding: 12px 16px;
+  max-height: 35%;
+  overflow-y: auto;
+  flex: 0 0 auto;
+}
+.brief h2 { margin: 0 0 6px; font-size: 15px; color: var(--accent-2); }
+.brief :is(p, ul) { margin: 6px 0; color: var(--fg-dim); line-height: 1.5; }
+.brief code {
+  background: var(--bg-3);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  color: var(--accent);
+}
+.api-ref summary { cursor: pointer; color: var(--fg-dim); margin-top: 6px; font-size: 12px; }
+.api-ref ul { list-style: none; padding: 0; }
+.api-ref li { padding: 2px 0; font-size: 12.5px; }
+.credit { font-size: 11px; color: #6b6e80; margin: 8px 0 0; }
+.credit a { color: #7a7e94; text-decoration: none; }
+.credit a:hover { text-decoration: underline; }
+
+.solution-disclosure { margin-top: 8px; }
+.solution-disclosure summary {
+  cursor: pointer;
+  color: var(--warn);
+  font-size: 12px;
+  padding: 2px 0;
+}
+.solution-disclosure summary:hover { color: #ffd29b; }
+.solution-hint {
+  font-size: 11.5px;
+  color: var(--fg-dim);
+  margin: 4px 0 6px;
+  font-style: italic;
+}
+.solution-code {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--fg);
+  white-space: pre-wrap;
+  overflow-x: auto;
+  text-indent: 0;
+  tab-size: 4;
+}
+.solution-code > code {
+  display: block;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  background: transparent;
+  text-indent: 0;
+}
+
+.code-pane { background: var(--bg-2); }
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-3);
+}
+
+.code-tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--fg-dim);
+}
+
+.status {
+  font-size: 12px;
+  color: var(--fg-dim);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.status.running { color: var(--accent); }
+.status.error   { color: var(--err); }
+.status.success { color: var(--accent); }
+
+#editor {
+  flex: 1;
+  min-height: 0;
+  font-size: 14px;
+}
+
+.console-wrap {
+  border-top: 1px solid var(--border);
+  background: #1a1b23;
+  flex: 0 0 30%;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+.console-header {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--fg-dim);
+  padding: 6px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.console {
+  flex: 1;
+  margin: 0;
+  padding: 8px 14px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12.5px;
+  color: var(--fg);
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+.console .err { color: var(--err); }
+.console .sys { color: var(--fg-dim); }
+
+@media (max-width: 900px) {
+  .workspace { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+  .game-pane { border-right: none; border-bottom: 1px solid var(--border); }
+}

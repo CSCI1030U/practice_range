@@ -1,0 +1,20 @@
+{
+  "id": "rec-sum-of-digits",
+  "title": "Sum of Digits",
+  "difficulty": "Easy",
+  "points": 120,
+  "description": "# Sum of Digits\n\nGiven a non-negative integer, compute the sum of its digits using **recursion**.\n\n## Input\n\nA single non-negative integer `n`.\n\n## Output\n\nThe sum of the digits of `n`.\n\n```\nInput:\n123\n\nOutput:\n6\n```\n\n## Think about\n\n- The last digit of `n` is `n % 10`, and the rest of the number is `n // 10`.\n- Base case: a single-digit number is its own digit sum. Recursive case: `n % 10 + sumDigits(n // 10)`.\n",
+  "starterCode": "n = int(input())\n\n# TODO: print the sum of the digits of n, computed recursively\n",
+  "hints": [
+    "The last digit is `n % 10`; the rest of the number is `n // 10`.",
+    "Base case: a single digit (`n < 10`) returns itself. Recursive case: `n % 10 + sumDigits(n // 10)`.",
+    "```\nSUM-DIGITS(n)\n    if n < 10\n        return n\n    return (n mod 10) + SUM-DIGITS(n div 10)\nprint SUM-DIGITS(n)\n```"
+  ],
+  "tests": [
+    { "name": "123",  "input": "123\n",  "expectedOutput": "6\n" },
+    { "name": "0",    "input": "0\n",    "expectedOutput": "0\n" },
+    { "name": "9999", "input": "9999\n", "expectedOutput": "36\n" },
+    { "name": "single","input": "5\n",   "expectedOutput": "5\n" },
+    { "name": "100",  "input": "100\n",  "expectedOutput": "1\n" }
+  ]
+}

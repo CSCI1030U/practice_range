@@ -1,0 +1,20 @@
+{
+  "id": "lst-remove-duplicates",
+  "title": "Remove Duplicates",
+  "difficulty": "Easy",
+  "points": 120,
+  "description": "# Remove Duplicates\n\nRead a line of space-separated integers and print them with duplicates removed, **keeping the first occurrence of each value** in its original order.\n\n## Input\n\nOne line of space-separated integers.\n\n## Output\n\nThe distinct values, in first-seen order, space-separated.\n\n```\nInput:\n3 1 3 2 1\n\nOutput:\n3 1 2\n```\n\n## Think about\n\n- A `set` tells you what you've already seen, but sets don't keep order - so track the order separately as you go.\n",
+  "starterCode": "values = input().split()\n\n# TODO: print the distinct values in first-seen order, space-separated\n",
+  "hints": [
+    "Track what you've already seen, but keep the original order.",
+    "Walk the list with a `seen` set and an output list; append a value only the first time you encounter it.",
+    "```\nlet seen be an empty set\nresult = empty list\nfor each x in items\n    if x is not in seen\n        add x to seen\n        append x to result\nprint result joined by spaces\n```"
+  ],
+  "tests": [
+    { "name": "runs",       "input": "1 2 2 3 3 3\n", "expectedOutput": "1 2 3\n" },
+    { "name": "all same",   "input": "5 5 5\n",       "expectedOutput": "5\n" },
+    { "name": "no dupes",   "input": "1 2 3\n",       "expectedOutput": "1 2 3\n" },
+    { "name": "interleaved","input": "3 1 3 2 1\n",   "expectedOutput": "3 1 2\n" },
+    { "name": "single",     "input": "7\n",           "expectedOutput": "7\n" }
+  ]
+}

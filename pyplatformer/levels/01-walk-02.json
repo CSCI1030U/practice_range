@@ -1,0 +1,22 @@
+{
+  "id": "01-walk-02",
+  "title": "Step Up",
+  "topic": "walking",
+  "kind": "demo",
+  "brief": "<p>The flag is on a raised platform. Walk to the edge of the lower platform, then <code>jump_right()</code> to climb up one tile.</p><p>A directional jump arcs one tile sideways and reaches one tile up at its peak — enough to land on a step.</p>",
+  "width": 8,
+  "height": 6,
+  "tiles": [
+    "........",
+    "........",
+    ".....F..",
+    "....GGG.",
+    "GGGG....",
+    "DDDDDDDD"
+  ],
+  "start": { "x": 1, "y": 3 },
+  "background": "forest",
+  "api": ["left", "right", "jump_up", "jump_left", "jump_right"],
+  "starterCode": "",
+  "solution": "right()\nright()\njump_right()\nright()\n"
+}

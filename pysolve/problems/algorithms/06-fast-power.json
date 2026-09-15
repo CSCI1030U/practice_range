@@ -1,0 +1,20 @@
+{
+  "id": "alg-fast-power",
+  "title": "Fast Exponentiation",
+  "difficulty": "Medium",
+  "points": 230,
+  "description": "# Fast Exponentiation\n\nCompute `(base ** exp) % m` - but do it efficiently, without multiplying `base` by itself `exp` times.\n\nThe **divide-and-conquer** idea: to raise to an even power, square the half-power (`x^n = (x^(n/2))^2`); to raise to an odd power, peel off one factor (`x^n = x · x^(n-1)`). This needs only about `log2(exp)` multiplications.\n\n## Input\n\nOne line with three integers: `base`, `exp` (`exp ≥ 0`), and `m` (`m ≥ 1`).\n\n## Output\n\nThe value of `(base ** exp) % m`.\n\n```\nInput:\n2 10 1000\n\nOutput:\n24\n```\n\n`2^10 = 1024`, and `1024 % 1000 = 24`.\n\n## Think about\n\n- Take the modulus at every multiplication to keep the numbers small. Remember that any value raised to the power `0` is `1`.\n",
+  "starterCode": "base, exp, m = map(int, input().split())\n\n# TODO: print (base ** exp) % m using fast (binary) exponentiation\n",
+  "hints": [
+    "Squaring lets you halve the exponent each step - divide and conquer.",
+    "`x**n = (x**(n//2))**2` for even n, `x * x**(n-1)` for odd. Iteratively: square the base and halve the exponent, multiplying into the result on set bits. Take `% m` at every multiply.",
+    "```\nresult = 1\nbase = base mod m\nwhile exp > 0\n    if exp is odd\n        result = (result * base) mod m\n    base = (base * base) mod m\n    exp = exp div 2\nprint result\n```"
+  ],
+  "tests": [
+    { "name": "2^10 mod 1000",    "input": "2 10 1000\n",     "expectedOutput": "24\n" },
+    { "name": "exponent zero",    "input": "3 0 7\n",         "expectedOutput": "1\n" },
+    { "name": "5^3 mod 13",       "input": "5 3 13\n",        "expectedOutput": "8\n" },
+    { "name": "2^20 mod 1000000", "input": "2 20 1000000\n",  "expectedOutput": "48576\n" },
+    { "name": "mod 1",            "input": "2 10 1\n",        "expectedOutput": "0\n" }
+  ]
+}

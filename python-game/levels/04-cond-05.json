@@ -1,0 +1,27 @@
+{
+  "id": "04-cond-05",
+  "title": "Maze Lock",
+  "topic": "conditional",
+  "kind": "homework",
+  "brief": "<p>A bigger maze with a locked chest. <code>go_to()</code> still does the navigation for you — your job is the same <code>if</code> decision.</p>",
+  "width": 12,
+  "height": 7,
+  "tiles": [
+    "############",
+    "#@.........#",
+    "##########.#",
+    "#..........#",
+    "#.##########",
+    "#K........T#",
+    "############"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 10, "y": 5, "facing": "W", "requiresKey": true },
+  "items": [
+    { "x": 1, "y": 5, "type": "key" }
+  ],
+  "goal": { "type": "open_chest" },
+  "api": ["go_to", "pick_up_key", "open_chest", "has_key", "CHEST", "KEY"],
+  "starterCode": "",
+  "solution": "if not has_key():\n    go_to(KEY)\n    pick_up_key()\n\ngo_to(CHEST)\nopen_chest()\n"
+}

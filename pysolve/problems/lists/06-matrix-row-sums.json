@@ -1,0 +1,19 @@
+{
+  "id": "lst-matrix-row-sums",
+  "title": "Matrix Row Sums",
+  "difficulty": "Medium",
+  "points": 200,
+  "description": "# Matrix Row Sums\n\nRead a matrix (a list of rows, each row a list of integers) and print the sum of each row.\n\n## Input\n\n- Line 1: two integers `R` and `C` - the number of rows and columns.\n- Next `R` lines: each contains `C` space-separated integers.\n\n```\nInput:\n2 3\n1 2 3\n4 5 6\n\nOutput:\n6\n15\n```\n\n## Output\n\n`R` lines: the sum of each row, in order.\n\n## Think about\n\n- Build each row as a list with `list(map(int, input().split()))`, then `sum()` it.\n",
+  "starterCode": "r, c = map(int, input().split())\nmatrix = [list(map(int, input().split())) for _ in range(r)]\n\n# TODO: print the sum of each row, one per line\n",
+  "hints": [
+    "Read each row as a list of ints and sum it.",
+    "Build each row with `list(map(int, input().split()))`, then `sum()` and print it, once per row.",
+    "```\nfor each row in the matrix\n    print sum of the row\n```"
+  ],
+  "tests": [
+    { "name": "2x3",        "input": "2 3\n1 2 3\n4 5 6\n",      "expectedOutput": "6\n15\n" },
+    { "name": "1x1",        "input": "1 1\n5\n",                 "expectedOutput": "5\n" },
+    { "name": "3x2",        "input": "3 2\n1 1\n2 2\n3 3\n",     "expectedOutput": "2\n4\n6\n" },
+    { "name": "negatives",  "input": "2 2\n-1 -2\n10 -5\n",      "expectedOutput": "-3\n5\n" }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "01-seq-05",
+  "title": "Turn the Corner",
+  "topic": "sequential",
+  "kind": "homework",
+  "brief": "<p>A short corridor with one corner. Walk down to the bottom, then turn right and approach the chest.</p>",
+  "width": 8,
+  "height": 6,
+  "tiles": [
+    "########",
+    "#@######",
+    "#.######",
+    "#.######",
+    "#.....T#",
+    "########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "DOWN" },
+  "chest": { "x": 6, "y": 4, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "move_down()\nmove_down()\nmove_down()\nmove_right()\nmove_right()\nmove_right()\nmove_right()\nopen_chest()\n"
+}

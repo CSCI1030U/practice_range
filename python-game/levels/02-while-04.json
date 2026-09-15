@@ -1,0 +1,24 @@
+{
+  "id": "02-while-04",
+  "title": "Down Then Right",
+  "topic": "while",
+  "kind": "activity",
+  "brief": "<p>Same idea as the demo, but the corridor goes down first, then right. Use <code>is_wall_down()</code> and <code>is_at_chest()</code> as your loop conditions.</p>",
+  "width": 10,
+  "height": 7,
+  "tiles": [
+    "##########",
+    "#@########",
+    "#.########",
+    "#.########",
+    "#.########",
+    "#.......T#",
+    "##########"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "DOWN" },
+  "chest": { "x": 8, "y": 5, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest", "is_at_chest", "is_wall_down", "is_wall_right"],
+  "starterCode": "",
+  "solution": "while not is_wall_down():\n    move_down()\n\nwhile not is_at_chest():\n    move_right()\n\nopen_chest()\n"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "str-reverse-string",
+  "title": "Reverse a String",
+  "difficulty": "Easy",
+  "points": 100,
+  "description": "# Reverse a String\n\nRead a line of text and print it reversed.\n\n## Input\n\nA single line of text.\n\n## Output\n\nThe same characters in reverse order.\n\n```\nInput:\nhello\n\nOutput:\nolleh\n```\n\n## Think about\n\n- Python strings can be sliced. What does `s[::-1]` do?\n",
+  "starterCode": "s = input()\n\n# TODO: print s reversed\n",
+  "hints": [
+    "Python strings support slicing - what does `s[::-1]` do?",
+    "Reverse with a slice (`s[::-1]`), or build a new string back-to-front.",
+    "```\nresult = \"\"\nfor i = length(s)-1 down to 0\n    result = result + s[i]\nprint result\n```"
+  ],
+  "tests": [
+    { "name": "hello",        "input": "hello\n",         "expectedOutput": "olleh\n" },
+    { "name": "abc",          "input": "abc\n",           "expectedOutput": "cba\n" },
+    { "name": "palindrome",   "input": "racecar\n",       "expectedOutput": "racecar\n" },
+    { "name": "single char",  "input": "a\n",             "expectedOutput": "a\n" },
+    { "name": "with symbols", "input": "Hello, World!\n", "expectedOutput": "!dlroW ,olleH\n" }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "03-for-04",
+  "title": "The Counted Walk",
+  "topic": "for",
+  "kind": "activity",
+  "brief": "<p>A long straight corridor. Count the tiles between you and the chest, then put that number in <code>range()</code>.</p>",
+  "width": 14,
+  "height": 3,
+  "tiles": [
+    "##############",
+    "#@..........T#",
+    "##############"
+  ],
+  "start": { "x": 1, "y": 1, "dir": "RIGHT" },
+  "chest": { "x": 12, "y": 1, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "for i in range(10):\n    move_right()\n\nopen_chest()\n"
+}

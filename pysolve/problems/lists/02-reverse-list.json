@@ -1,0 +1,20 @@
+{
+  "id": "lst-reverse-list",
+  "title": "Reverse a List",
+  "difficulty": "Easy",
+  "points": 100,
+  "description": "# Reverse a List\n\nRead a line of space-separated integers and print them in reverse order, space-separated on one line.\n\n## Input\n\nOne line of space-separated integers.\n\n## Output\n\nThe same values in reverse order, separated by single spaces.\n\n```\nInput:\n1 2 3\n\nOutput:\n3 2 1\n```\n\n## Think about\n\n- A list can be reversed with slicing (`xs[::-1]`) or `reversed(xs)`.\n- Join the parts back together with `\" \".join(...)`.\n",
+  "starterCode": "nums = input().split()\n\n# TODO: print the values in reverse order, space-separated\n",
+  "hints": [
+    "Reverse the order of the tokens, then join with spaces.",
+    "Slice the list with `[::-1]` (or use `reversed`), then `' '.join(...)` the parts.",
+    "```\nresult = empty list\nfor i = length(items)-1 down to 0\n    append items[i] to result\nprint result joined by spaces\n```"
+  ],
+  "tests": [
+    { "name": "three",     "input": "1 2 3\n",       "expectedOutput": "3 2 1\n" },
+    { "name": "five",      "input": "5 4 3 2 1\n",   "expectedOutput": "1 2 3 4 5\n" },
+    { "name": "single",    "input": "42\n",          "expectedOutput": "42\n" },
+    { "name": "pair",      "input": "1 2\n",         "expectedOutput": "2 1\n" },
+    { "name": "negatives", "input": "-1 0 1\n",      "expectedOutput": "1 0 -1\n" }
+  ]
+}

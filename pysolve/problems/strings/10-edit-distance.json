@@ -1,0 +1,21 @@
+{
+  "id": "str-edit-distance",
+  "title": "Edit Distance",
+  "difficulty": "Hard",
+  "points": 400,
+  "description": "# Edit Distance\n\nThe **edit distance** between two strings is the minimum number of single-character edits needed to turn the first into the second. The allowed edits are:\n\n- **insert** a character,\n- **delete** a character,\n- **substitute** one character for another.\n\n## Input\n\n- Line 1: the first string `a` (possibly empty).\n- Line 2: the second string `b` (possibly empty).\n\n## Output\n\nA single integer: the edit distance between `a` and `b`.\n\n```\nInput:\nkitten\nsitting\n\nOutput:\n3\n```\n\n`kitten → sitten` (substitute k→s), `→ sittin` (substitute e→i), `→ sitting` (insert g): 3 edits.\n\n## Think about\n\n- This is a classic dynamic-programming problem. Let `dp[i][j]` be the edit distance between the first `i` characters of `a` and the first `j` characters of `b`.\n- If the current characters match, no new edit is needed; otherwise take 1 + the cheapest of insert, delete, or substitute.\n",
+  "starterCode": "a = input()\nb = input()\n\n# TODO: print the minimum edit distance (insert/delete/substitute) from a to b\n",
+  "hints": [
+    "This is dynamic programming - compare prefixes of the two strings.",
+    "Let `dp[i][j]` be the distance between the first i chars of a and first j of b. If the current chars match, carry `dp[i-1][j-1]`; else 1 + min(insert, delete, substitute).",
+    "```\ndp[i][0] = i  for every i\ndp[0][j] = j  for every j\nfor i = 1 to length(a)\n    for j = 1 to length(b)\n        if a[i-1] = b[j-1]\n            dp[i][j] = dp[i-1][j-1]\n        else\n            dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])\nprint dp[length(a)][length(b)]\n```"
+  ],
+  "tests": [
+    { "name": "kitten/sitting", "input": "kitten\nsitting\n", "expectedOutput": "3\n" },
+    { "name": "identical",      "input": "abc\nabc\n",       "expectedOutput": "0\n" },
+    { "name": "both empty",     "input": "\n\n",             "expectedOutput": "0\n" },
+    { "name": "delete all",     "input": "abc\n\n",          "expectedOutput": "3\n" },
+    { "name": "horse/ros",      "input": "horse\nros\n",     "expectedOutput": "3\n" },
+    { "name": "intention/execution", "input": "intention\nexecution\n", "expectedOutput": "5\n" }
+  ]
+}

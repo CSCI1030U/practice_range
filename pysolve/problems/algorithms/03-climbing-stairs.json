@@ -1,0 +1,20 @@
+{
+  "id": "alg-climbing-stairs",
+  "title": "Climbing Stairs",
+  "difficulty": "Easy",
+  "points": 150,
+  "description": "# Climbing Stairs\n\nYou are climbing a staircase of `n` steps. Each move you may climb either `1` step or `2` steps. How many **distinct ways** can you reach the top?\n\n## Input\n\nA single integer `n` (`0 ≤ n ≤ 40`).\n\n## Output\n\nThe number of distinct ways to climb to the top.\n\n```\nInput:\n3\n\nOutput:\n3\n```\n\nThe ways are `1+1+1`, `1+2`, and `2+1`.\n\n## Think about\n\n- This is a first taste of **dynamic programming**. The number of ways to reach step `n` is the ways to reach `n-1` (then a 1-step) plus the ways to reach `n-2` (then a 2-step) - the Fibonacci pattern. There is `1` way to climb `0` steps (do nothing).\n",
+  "starterCode": "n = int(input())\n\n# TODO: print the number of distinct ways to climb n stairs\n#       taking 1 or 2 steps at a time\n",
+  "hints": [
+    "Ways to reach step n = ways to reach n-1 plus ways to reach n-2.",
+    "It's the Fibonacci pattern, with `ways(0)=1` and `ways(1)=1`. Build it up iteratively, or recurse with memoization.",
+    "```\na = 1;  b = 1\nrepeat n times\n    (a, b) = (b, a + b)\nprint a\n```"
+  ],
+  "tests": [
+    { "name": "n = 2",  "input": "2\n",  "expectedOutput": "2\n" },
+    { "name": "n = 3",  "input": "3\n",  "expectedOutput": "3\n" },
+    { "name": "n = 5",  "input": "5\n",  "expectedOutput": "8\n" },
+    { "name": "n = 0",  "input": "0\n",  "expectedOutput": "1\n" },
+    { "name": "n = 10", "input": "10\n", "expectedOutput": "89\n" }
+  ]
+}

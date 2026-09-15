@@ -1,0 +1,22 @@
+{
+  "id": "01-seq-01",
+  "title": "First Steps",
+  "topic": "sequential",
+  "kind": "demo",
+  "brief": "<p>Welcome! Your goal is to walk up next to the treasure chest and open it. (Stop one tile away — you can't stand on the chest.)</p><p>Write each step on its own line, then press <b>Run</b> (or <kbd>Ctrl</kbd>+<kbd>Enter</kbd>) to execute.</p>",
+  "width": 5,
+  "height": 5,
+  "tiles": [
+    "#####",
+    "#...#",
+    "#...#",
+    "#...#",
+    "#####"
+  ],
+  "start": { "x": 1, "y": 2, "dir": "RIGHT" },
+  "chest": { "x": 3, "y": 2, "facing": "W" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest"],
+  "starterCode": "",
+  "solution": "move_right()\nopen_chest()\n"
+}

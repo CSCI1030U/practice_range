@@ -1,0 +1,20 @@
+{
+  "id": "ds-bst-inorder",
+  "title": "BST Inorder Traversal",
+  "difficulty": "Medium",
+  "points": 250,
+  "description": "# BST Inorder Traversal\n\nInsert a sequence of integers into a **binary search tree** (BST), then print its **inorder** traversal.\n\nIn a BST, every node's left subtree holds smaller values and its right subtree holds larger values. Insert each value by starting at the root and going left or right until you reach an empty spot. An inorder traversal - left subtree, then node, then right subtree - visits the values in **sorted** order.\n\n## Input\n\nOne line of space-separated **distinct** integers, in the order they are inserted.\n\n## Output\n\nThe inorder traversal, space-separated on one line.\n\n```\nInput:\n5 3 8 1 4\n\nOutput:\n1 3 4 5 8\n```\n\n## Think about\n\n- Build the tree with nodes that have `left` and `right` children (a recursive `insert` is natural). Then traverse inorder. The goal is to practise the tree - not just to sort the input.\n\n## Try it more than one way\n\nTry implementing the tree more than one way:\n\n- A `Node` class with `left`/`right` children, a recursive `insert`, and a recursive inorder traversal.\n- The same tree, but with an iterative `insert` (walk down with a loop) and an inorder traversal driven by an explicit stack.\n",
+  "starterCode": "values = list(map(int, input().split()))\n\n# TODO: insert the values into a binary search tree, then print its\n#       inorder traversal (space-separated)\n",
+  "hints": [
+    "Insert each value into a binary search tree, then traverse left–node–right.",
+    "A node has value/left/right. Insert recursively (go left if smaller, right if larger). An inorder traversal visits values in sorted order.",
+    "```\nINSERT(node, v): go left if v < node.value else right,\n                 until an empty spot, and put v there\nINORDER(node)\n    if node != null\n        INORDER(node.left)\n        output node.value\n        INORDER(node.right)\ninsert every value to build the tree, then INORDER(root)\nprint the collected values joined by spaces\n```"
+  ],
+  "tests": [
+    { "name": "balanced-ish", "input": "5 3 8 1 4\n",            "expectedOutput": "1 3 4 5 8\n" },
+    { "name": "already sorted","input": "1 2 3\n",               "expectedOutput": "1 2 3\n" },
+    { "name": "reverse",       "input": "3 2 1\n",               "expectedOutput": "1 2 3\n" },
+    { "name": "single",        "input": "10\n",                  "expectedOutput": "10\n" },
+    { "name": "seven nodes",   "input": "50 30 70 20 40 60 80\n","expectedOutput": "20 30 40 50 60 70 80\n" }
+  ]
+}

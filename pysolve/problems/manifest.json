@@ -1,0 +1,113 @@
+{
+  "categories": [
+    {
+      "name": "General Challenges",
+      "problems": [
+        { "file": "01-sum-two.json",          "title": "Sum of Two Numbers" },
+        { "file": "07-sum-multiples.json",    "title": "Sum of Multiples of 3 or 5" },
+        { "file": "08-reverse-integer.json",  "title": "Reverse Integer" },
+        { "file": "03-balanced-brackets.json","title": "Balanced Brackets" },
+        { "file": "04-stock-profit.json",     "title": "Best Time to Buy and Sell Stock" },
+        { "file": "09-two-sum.json",          "title": "Two Sum" },
+        { "file": "02-max-subarray.json",     "title": "Maximum Subarray Sum" },
+        { "file": "05-coin-change.json",      "title": "Coin Change (Fewest Coins)" },
+        { "file": "06-count-islands.json",    "title": "Count Islands" },
+        { "file": "10-trapping-rain.json",    "title": "Trapping Rain Water" }
+      ]
+    },
+    {
+      "name": "Strings",
+      "problems": [
+        { "file": "strings/01-reverse-string.json",            "title": "Reverse a String" },
+        { "file": "strings/02-count-vowels.json",              "title": "Count Vowels" },
+        { "file": "strings/03-palindrome.json",                "title": "Palindrome Check" },
+        { "file": "strings/04-count-words.json",               "title": "Count Words" },
+        { "file": "strings/05-caesar-cipher.json",             "title": "Caesar Cipher" },
+        { "file": "strings/06-run-length.json",                "title": "Run-Length Encoding" },
+        { "file": "strings/07-anagram.json",                   "title": "Anagram Check" },
+        { "file": "strings/08-most-frequent-char.json",        "title": "Most Frequent Character" },
+        { "file": "strings/09-longest-unique-substring.json",  "title": "Longest Substring Without Repeating Characters" },
+        { "file": "strings/10-edit-distance.json",             "title": "Edit Distance" }
+      ]
+    },
+    {
+      "name": "Lists",
+      "problems": [
+        { "file": "lists/01-sum-list.json",            "title": "Sum of a List" },
+        { "file": "lists/02-reverse-list.json",        "title": "Reverse a List" },
+        { "file": "lists/03-remove-duplicates.json",   "title": "Remove Duplicates" },
+        { "file": "lists/04-min-max.json",             "title": "Minimum and Maximum" },
+        { "file": "lists/05-running-totals.json",      "title": "Running Totals" },
+        { "file": "lists/06-matrix-row-sums.json",     "title": "Matrix Row Sums" },
+        { "file": "lists/07-matrix-transpose.json",    "title": "Matrix Transpose" },
+        { "file": "lists/08-student-leaderboard.json", "title": "Student Leaderboard" },
+        { "file": "lists/09-merge-intervals.json",     "title": "Merge Intervals" },
+        { "file": "lists/10-spiral-matrix.json",       "title": "Spiral Matrix" }
+      ]
+    },
+    {
+      "name": "Recursion",
+      "problems": [
+        { "file": "recursion/01-factorial.json",          "title": "Factorial" },
+        { "file": "recursion/02-sum-of-digits.json",      "title": "Sum of Digits" },
+        { "file": "recursion/03-gcd.json",                "title": "Greatest Common Divisor" },
+        { "file": "recursion/04-power.json",              "title": "Power" },
+        { "file": "recursion/05-fibonacci.json",          "title": "Fibonacci Number" },
+        { "file": "recursion/06-decimal-to-binary.json",  "title": "Decimal to Binary" },
+        { "file": "recursion/07-count-paths.json",        "title": "Count Grid Paths" },
+        { "file": "recursion/08-tower-of-hanoi.json",     "title": "Tower of Hanoi" },
+        { "file": "recursion/09-permutations.json",       "title": "Generate Permutations" },
+        { "file": "recursion/10-n-queens.json",           "title": "N-Queens Count" }
+      ]
+    },
+    {
+      "name": "Data Structures",
+      "problems": [
+        { "file": "data-structures/01-stack-simulator.json",    "title": "Stack Simulator" },
+        { "file": "data-structures/02-evaluate-postfix.json",   "title": "Evaluate Postfix" },
+        { "file": "data-structures/03-queue-simulator.json",    "title": "Queue Simulator" },
+        { "file": "data-structures/04-hot-potato.json",         "title": "Hot Potato" },
+        { "file": "data-structures/05-merge-sorted-lists.json", "title": "Merge Two Sorted Linked Lists" },
+        { "file": "data-structures/06-remove-nth-from-end.json","title": "Remove Nth Node From End" },
+        { "file": "data-structures/07-dll-traverse.json",       "title": "Doubly Linked List: Build and Traverse" },
+        { "file": "data-structures/08-deque-simulator.json",    "title": "Deque Simulator" },
+        { "file": "data-structures/09-bst-inorder.json",        "title": "BST Inorder Traversal" },
+        { "file": "data-structures/10-bst-height.json",         "title": "BST Height" }
+      ]
+    },
+    {
+      "name": "Algorithm Design & Analysis",
+      "problems": [
+        { "file": "algorithms/01-activity-selection.json",              "title": "Activity Selection" },
+        { "file": "algorithms/02-jump-game.json",                       "title": "Minimum Jumps" },
+        { "file": "algorithms/03-climbing-stairs.json",                 "title": "Climbing Stairs" },
+        { "file": "algorithms/04-min-path-sum.json",                    "title": "Minimum Path Sum" },
+        { "file": "algorithms/05-longest-increasing-subsequence.json",  "title": "Longest Increasing Subsequence" },
+        { "file": "algorithms/06-fast-power.json",                      "title": "Fast Exponentiation" },
+        { "file": "algorithms/07-count-inversions.json",                "title": "Count Inversions" },
+        { "file": "algorithms/08-linear-search-count.json",             "title": "Counting Comparisons: Linear Search" },
+        { "file": "algorithms/09-bubble-sort-comparisons.json",         "title": "Counting Comparisons: Bubble Sort" },
+        { "file": "algorithms/10-comparison-chart.json",                "title": "Comparison Growth Chart" }
+      ]
+    },
+    {
+      "name": "Debugging",
+      "problems": [
+        { "file": "debugging/01-count-up.json",     "title": "Warm-up: Count Up (syntax)" },
+        { "file": "debugging/03-last-element.json", "title": "Warm-up: Last Element (runtime)" },
+        { "file": "debugging/05-sum-to-n.json",     "title": "Warm-up: Sum to N (logic)" },
+        { "file": "debugging/06-find-max.json",     "title": "Find the Maximum" },
+        { "file": "debugging/02-even-or-odd.json",  "title": "Even or Odd" },
+        { "file": "debugging/09-count-vowels.json", "title": "Count the Vowels" },
+        { "file": "debugging/08-reverse-word.json", "title": "Reverse a Word" },
+        { "file": "debugging/10-prime-check.json",  "title": "Prime Check" },
+        { "file": "debugging/13-factorial.json",    "title": "Factorial" },
+        { "file": "debugging/11-fizzbuzz.json",     "title": "FizzBuzz" },
+        { "file": "debugging/07-greeting.json",     "title": "Greeting" },
+        { "file": "debugging/12-leap-year.json",    "title": "Leap Year" },
+        { "file": "debugging/04-word-count.json",   "title": "Word Count" },
+        { "file": "debugging/14-count-evens.json",  "title": "Count the Even Numbers" }
+      ]
+    }
+  ]
+}

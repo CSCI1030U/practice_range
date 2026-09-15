@@ -1,0 +1,19 @@
+{
+  "id": "rec-permutations",
+  "title": "Generate Permutations",
+  "difficulty": "Hard",
+  "points": 350,
+  "description": "# Generate Permutations\n\nGiven a set of distinct values, print **all** of their permutations (orderings), in lexicographic (ascending) order, using **recursion / backtracking**.\n\n## Input\n\nOne line of space-separated distinct values (single tokens - treat them as text and order them lexicographically).\n\n## Output\n\nEach permutation on its own line, values space-separated, in lexicographic order. With `k` values there are `k!` lines.\n\n```\nInput:\n1 2 3\n\nOutput:\n1 2 3\n1 3 2\n2 1 3\n2 3 1\n3 1 2\n3 2 1\n```\n\n## Think about\n\n- Sort the values first so the output comes out in order.\n- Recursive idea: choose each remaining value as the next element, then recurse on the rest. The base case is when nothing is left to place - emit the permutation you've built.\n",
+  "starterCode": "values = input().split()\n\n# TODO: print every permutation of the values in lexicographic order,\n#       one per line, values space-separated (use recursion / backtracking)\n",
+  "hints": [
+    "Choose each value as the next element, then permute the rest.",
+    "Sort the values first (for lexicographic order). Recurse: fix each remaining value next and recurse on the rest; emit when nothing is left. (Or use `itertools.permutations` on the sorted list.)",
+    "```\nPERM(chosen, rest)\n    if rest is empty\n        print chosen joined by spaces\n        return\n    for each index i in rest\n        PERM(chosen + rest[i], rest with index i removed)\nPERM(empty, values sorted ascending)\n```"
+  ],
+  "tests": [
+    { "name": "three", "input": "1 2 3\n", "expectedOutput": "1 2 3\n1 3 2\n2 1 3\n2 3 1\n3 1 2\n3 2 1\n" },
+    { "name": "one",   "input": "1\n",     "expectedOutput": "1\n" },
+    { "name": "two",   "input": "1 2\n",   "expectedOutput": "1 2\n2 1\n" },
+    { "name": "letters","input": "a b c\n","expectedOutput": "a b c\na c b\nb a c\nb c a\nc a b\nc b a\n" }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "str-count-words",
+  "title": "Count Words",
+  "difficulty": "Easy",
+  "points": 100,
+  "description": "# Count Words\n\nRead a line of text and print how many **words** it contains. Words are separated by one or more spaces. Leading and trailing spaces should be ignored, and an empty line has 0 words.\n\n## Input\n\nA single line of text (possibly empty).\n\n## Output\n\nThe number of words.\n\n```\nInput:\nthe quick brown fox\n\nOutput:\n4\n```\n\n## Think about\n\n- `str.split()` with no arguments splits on runs of whitespace and ignores leading/trailing spaces.\n",
+  "starterCode": "line = input()\n\n# TODO: print the number of words in line\n",
+  "hints": [
+    "Splitting on whitespace gives you the words.",
+    "`str.split()` with no arguments splits on runs of whitespace and ignores leading/trailing spaces; the answer is the length of that list.",
+    "```\nsplit s on runs of whitespace into words\nprint length(words)\n```"
+  ],
+  "tests": [
+    { "name": "two words",   "input": "hello world\n",          "expectedOutput": "2\n" },
+    { "name": "one word",    "input": "one\n",                  "expectedOutput": "1\n" },
+    { "name": "four words",  "input": "the quick brown fox\n",  "expectedOutput": "4\n" },
+    { "name": "extra spaces","input": "  spaced   out  words \n", "expectedOutput": "3\n" },
+    { "name": "empty line",  "input": "\n",                     "expectedOutput": "0\n" }
+  ]
+}

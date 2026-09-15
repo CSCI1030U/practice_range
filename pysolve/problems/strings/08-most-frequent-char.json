@@ -1,0 +1,20 @@
+{
+  "id": "str-most-frequent-char",
+  "title": "Most Frequent Character",
+  "difficulty": "Medium",
+  "points": 230,
+  "description": "# Most Frequent Character\n\nRead a line of text and print the character that appears most often. Ignore spaces. If two or more characters tie for the highest count, print the **smallest** of them (the one that comes first in normal character order).\n\n## Input\n\nA single line of text.\n\n## Output\n\nA single character: the most frequent one.\n\n```\nInput:\nmississippi\n\nOutput:\ni\n```\n\nHere `i` and `s` both appear 4 times; `i` comes before `s`, so it wins the tie.\n\n## Think about\n\n- Count how many times each character occurs (a dictionary, or `collections.Counter`).\n- For the tie-break, you want the largest count but the smallest character.\n",
+  "starterCode": "s = input()\n\n# TODO: print the most frequent character in s (ignore spaces;\n# if there's a tie, print the smallest character)\n",
+  "hints": [
+    "Count how many times each character occurs, then pick the best.",
+    "Build a frequency count (ignoring spaces). The winner has the largest count, breaking ties by the smallest character: `min(counts, key=lambda c: (-counts[c], c))`.",
+    "```\ncount[c] = number of times character c appears in s   // ignore spaces\nbest = the character with the largest count,\n       breaking ties by the smaller character\nprint best\n```"
+  ],
+  "tests": [
+    { "name": "hello",       "input": "hello\n",       "expectedOutput": "l\n" },
+    { "name": "clear winner","input": "aabbbcc\n",     "expectedOutput": "b\n" },
+    { "name": "tie -> a",    "input": "abcabc\n",      "expectedOutput": "a\n" },
+    { "name": "mississippi", "input": "mississippi\n", "expectedOutput": "i\n" },
+    { "name": "ignore spaces","input": "a a a b b\n",  "expectedOutput": "a\n" }
+  ]
+}

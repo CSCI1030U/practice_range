@@ -1,0 +1,20 @@
+{
+  "id": "alg-jump-game",
+  "title": "Minimum Jumps",
+  "difficulty": "Hard",
+  "points": 350,
+  "description": "# Minimum Jumps\n\nYou are given a list of non-negative integers. You start at index `0`, and the value at each index is the **maximum** number of positions you can jump forward from there. Find the **minimum** number of jumps needed to reach the last index. The last index is always reachable.\n\n## Input\n\nOne line of space-separated non-negative integers (the jump lengths).\n\n## Output\n\nThe minimum number of jumps to reach the last index. (If you start already on the last index, the answer is `0`.)\n\n```\nInput:\n2 3 1 1 4\n\nOutput:\n2\n```\n\nJump from index 0 to index 1, then from index 1 to the end.\n\n## Think about\n\n- A **greedy** sweep works: scan left to right tracking the farthest index reachable so far. Each time you reach the end of the current jump's range, you must take another jump - extend the range to the farthest seen.\n",
+  "starterCode": "nums = list(map(int, input().split()))\n\n# TODO: print the minimum number of jumps to reach the last index\n#       (nums[i] is the maximum forward jump from index i; the end is reachable)\n",
+  "hints": [
+    "Greedily track the farthest index reachable so far.",
+    "Scan left to right keeping `farthest` reachable. When you reach the end of the current jump's range, you must jump again - extend the range to `farthest` and count a jump.",
+    "```\njumps = 0;  cur_end = 0;  farthest = 0\nfor i = 0 to length(nums)-2\n    farthest = max(farthest, i + nums[i])\n    if i = cur_end\n        jumps = jumps + 1\n        cur_end = farthest\nprint jumps\n```"
+  ],
+  "tests": [
+    { "name": "example",      "input": "2 3 1 1 4\n",   "expectedOutput": "2\n" },
+    { "name": "with a zero",  "input": "2 3 0 1 4\n",   "expectedOutput": "2\n" },
+    { "name": "single index", "input": "0\n",           "expectedOutput": "0\n" },
+    { "name": "all ones",     "input": "1 1 1 1\n",     "expectedOutput": "3\n" },
+    { "name": "one big jump", "input": "5 1 1 1 1\n",   "expectedOutput": "1\n" }
+  ]
+}

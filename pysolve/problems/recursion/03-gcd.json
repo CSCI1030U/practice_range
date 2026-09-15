@@ -1,0 +1,20 @@
+{
+  "id": "rec-gcd",
+  "title": "Greatest Common Divisor",
+  "difficulty": "Easy",
+  "points": 130,
+  "description": "# Greatest Common Divisor\n\nCompute the greatest common divisor (GCD) of two non-negative integers using **Euclid's algorithm**, which is naturally recursive.\n\n## Input\n\nOne line with two non-negative integers `a` and `b` (not both zero).\n\n## Output\n\nThe greatest common divisor of `a` and `b`.\n\n```\nInput:\n48 18\n\nOutput:\n6\n```\n\n## Think about\n\n- Euclid's rule: `gcd(a, 0) = a`, and otherwise `gcd(a, b) = gcd(b, a % b)`.\n- The second argument shrinks each call until it reaches `0` - that's your base case.\n",
+  "starterCode": "a, b = map(int, input().split())\n\n# TODO: print gcd(a, b) using Euclid's recursive rule\n#       gcd(a, 0) = a;  gcd(a, b) = gcd(b, a % b)\n",
+  "hints": [
+    "Euclid's rule repeats with the remainder.",
+    "Base case: `gcd(a, 0) = a`. Recursive case: `gcd(a, b) = gcd(b, a % b)`.",
+    "```\nGCD(a, b)\n    if b = 0\n        return a\n    return GCD(b, a mod b)\nprint GCD(a, b)\n```"
+  ],
+  "tests": [
+    { "name": "48 and 18", "input": "48 18\n", "expectedOutput": "6\n" },
+    { "name": "coprime",   "input": "17 5\n",  "expectedOutput": "1\n" },
+    { "name": "multiple",  "input": "100 25\n","expectedOutput": "25\n" },
+    { "name": "zero first","input": "0 5\n",   "expectedOutput": "5\n" },
+    { "name": "zero second","input": "7 0\n",  "expectedOutput": "7\n" }
+  ]
+}

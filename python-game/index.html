@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CSCI 1030U — Python Quest</title>
+<link rel="stylesheet" href="styles.css" />
+<script src="https://cdn.jsdelivr.net/npm/ace-builds@1.32.7/src-min-noconflict/ace.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">Python Quest</div>
+  <div class="scale-info">
+    <select id="scale-select" aria-label="Display scale" title="Display scale">
+      <option value="1">Scale 1×</option>
+      <option value="2" selected>Scale 2×</option>
+      <option value="3">Scale 3×</option>
+      <option value="4">Scale 4×</option>
+      <option value="5">Scale 5×</option>
+      <option value="6">Scale 6×</option>
+    </select>
+  </div>
+  <div class="level-info">
+    <select id="level-select" aria-label="Choose level"></select>
+    <span id="level-title"></span>
+  </div>
+  <div class="controls">
+    <button id="run-btn" class="primary" disabled>Loading Python…</button>
+    <button id="stop-btn" disabled>Stop</button>
+    <button id="reset-btn">Reset Level</button>
+    <button id="speed-btn" title="Animation speed">Speed: 1×</button>
+  </div>
+</header>
+
+<main class="workspace">
+  <section class="game-pane">
+    <div class="game-canvas-wrap">
+      <canvas id="game" width="640" height="480"></canvas>
+      <div id="game-overlay" class="game-overlay hidden">
+        <div class="overlay-content">
+          <h2 id="overlay-title">Level Complete!</h2>
+          <p id="overlay-body"></p>
+          <div class="overlay-actions">
+            <button id="overlay-next">Next Level</button>
+            <button id="overlay-retry">Try Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <aside class="brief">
+      <h2 id="brief-title">Welcome</h2>
+      <div id="brief-body"></div>
+      <details class="api-ref">
+        <summary>Available commands</summary>
+        <div id="api-ref-body"></div>
+      </details>
+      <details class="solution-disclosure" id="solution-disclosure" hidden>
+        <summary>Show one possible solution</summary>
+        <p class="solution-hint">For when you're stuck. Try writing it yourself first — it's not graded.</p>
+        <pre class="solution-code"><code id="solution-body"></code></pre>
+      </details>
+      <p class="credit">Art: <a href="https://cupnooble.itch.io/sprout-lands-asset-pack" target="_blank" rel="noopener">Sprout Lands</a> by Cup Nooble; <a href="https://opengameart.org/content/keys-0" target="_blank" rel="noopener">key sprite</a> by SCaydi.</p>
+    </aside>
+  </section>
+
+  <section class="code-pane">
+    <div class="code-header">
+      <span class="code-tag">main.py</span>
+      <span id="status" class="status">Ready</span>
+    </div>
+    <div id="editor" class="editor"></div>
+    <div class="console-wrap">
+      <div class="console-header">Output</div>
+      <pre id="console" class="console" aria-live="polite"></pre>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

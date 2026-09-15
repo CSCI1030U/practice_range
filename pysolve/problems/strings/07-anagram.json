@@ -1,0 +1,20 @@
+{
+  "id": "str-anagram",
+  "title": "Anagram Check",
+  "difficulty": "Medium",
+  "points": 200,
+  "description": "# Anagram Check\n\nTwo strings are **anagrams** if one can be rearranged into the other using all the original letters. Read two lines and print `YES` if they are anagrams of each other, or `NO` otherwise.\n\nIgnore letter case and spaces, so `dormitory` and `dirty room` are anagrams.\n\n## Input\n\n- Line 1: the first string.\n- Line 2: the second string.\n\n## Output\n\n`YES` or `NO`.\n\n```\nInput:\nlisten\nsilent\n\nOutput:\nYES\n```\n\n## Think about\n\n- Two strings are anagrams exactly when they have the same characters with the same frequencies. Sorting both, or counting characters, makes this easy to compare.\n",
+  "starterCode": "a = input()\nb = input()\n\n# TODO: print YES if a and b are anagrams (ignore case and spaces), else NO\n",
+  "hints": [
+    "Two strings are anagrams when they contain the same letters with the same counts.",
+    "Normalise both (lowercase, drop spaces), then compare their sorted characters - or compare counts with `collections.Counter`.",
+    "```\na = lowercase(s1) with spaces removed\nb = lowercase(s2) with spaces removed\nif sorted(a) = sorted(b) then print \"YES\" else print \"NO\"\n```"
+  ],
+  "tests": [
+    { "name": "listen/silent", "input": "listen\nsilent\n",      "expectedOutput": "YES\n" },
+    { "name": "case-insensitive", "input": "Hello\nOlleh\n",     "expectedOutput": "YES\n" },
+    { "name": "not anagram",   "input": "abc\nabd\n",            "expectedOutput": "NO\n" },
+    { "name": "ignore spaces", "input": "dormitory\ndirty room\n", "expectedOutput": "YES\n" },
+    { "name": "different",     "input": "rat\ncar\n",            "expectedOutput": "NO\n" }
+  ]
+}

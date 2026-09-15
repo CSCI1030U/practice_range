@@ -1,0 +1,21 @@
+{
+  "id": "03-balanced-brackets",
+  "title": "Balanced Brackets",
+  "difficulty": "Medium",
+  "points": 200,
+  "description": "# Balanced Brackets\n\nA string of brackets is **balanced** when every opening bracket has a matching closing bracket of the same type, and pairs are properly nested.\n\nThe bracket types are `()`, `[]`, and `{}`.\n\n## Input\n\nA single line containing only bracket characters (the line may be empty).\n\n```\n([{}])\n```\n\n## Output\n\nPrint `YES` if the brackets are balanced, otherwise `NO`.\n\n```\nYES\n```\n\n## Examples\n\n| Input      | Output | Why |\n|------------|--------|-----|\n| `()[]{}`   | `YES`  | each pair closes immediately |\n| `([{}])`   | `YES`  | properly nested |\n| `(]`       | `NO`   | mismatched types |\n| `([)]`     | `NO`   | wrong nesting order |\n| `(((`      | `NO`   | never closed |\n\n## Think about\n\n- The last bracket you opened must be the first one you close. What data structure has that \"last in, first out\" behaviour?\n",
+  "starterCode": "s = input()\n\n# TODO: print \"YES\" if the brackets in s are balanced, otherwise \"NO\"\n",
+  "hints": [
+    "The last bracket you open must be the first one you close - that's a stack.",
+    "Push every opening bracket. For each closing bracket, the top of the stack must be its matching opener; pop it. At the end the stack must be empty. (Same stack idea as Evaluate Postfix.)",
+    "```\nlet stack be empty\nfor each character c in s\n    if c is an opening bracket\n        push c onto stack\n    else\n        if stack is empty or top of stack does not match c\n            print \"NO\" and stop\n        pop stack\nif stack is empty then print \"YES\" else print \"NO\"\n```"
+  ],
+  "tests": [
+    { "name": "Simple pairs",    "input": "()[]{}\n", "expectedOutput": "YES\n" },
+    { "name": "Nested",          "input": "([{}])\n", "expectedOutput": "YES\n" },
+    { "name": "Mismatched type", "input": "(]\n",     "expectedOutput": "NO\n" },
+    { "name": "Wrong order",     "input": "([)]\n",   "expectedOutput": "NO\n" },
+    { "name": "Unclosed",        "input": "(((\n",    "expectedOutput": "NO\n" },
+    { "name": "Empty string",    "input": "\n",       "expectedOutput": "YES\n" }
+  ]
+}

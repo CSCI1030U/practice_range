@@ -1,0 +1,20 @@
+{
+  "id": "ds-hot-potato",
+  "title": "Hot Potato",
+  "difficulty": "Medium",
+  "points": 250,
+  "description": "# Hot Potato\n\n`N` children stand in a circle, numbered `1` to `N`. They pass a \"hot potato\" around. After it is passed `k` times, the child holding it is out. The circle closes up and play continues until one child remains - the winner.\n\nThis is a natural fit for a **queue**: the child at the front holds the potato.\n\n## How a round works\n\n- Pass the potato `k` times: move the child at the **front** of the queue to the **back**, `k` times.\n- The child now at the front is eliminated (removed).\n- Repeat until only one child is left.\n\n## Input\n\nOne line with two integers: `N` (number of children, `N ≥ 1`) and `k` (passes per round, `k ≥ 1`).\n\n## Output\n\nThe number of the winning child.\n\n```\nInput:\n5 2\n\nOutput:\n4\n```\n\n## Think about\n\n- `collections.deque` makes \"move front to back\" (`append(popleft())`) and \"eliminate the front\" (`popleft()`) easy.\n\n## Try it more than one way\n\nThe circle is just a queue - and there's more than one way to build it:\n\n- `collections.deque`, using `append()`/`popleft()` to rotate and eliminate.\n- A plain Python list (simple, though removing from the front is `O(n)`).\n- Your own class backed by a singly linked list with `head` and `tail` pointers.\n",
+  "starterCode": "n, k = map(int, input().split())\n\n# TODO: simulate Hot Potato with a queue and print the winner's number.\n#   Each round: move the front child to the back k times, then eliminate\n#   the child now at the front. Repeat until one remains.\n",
+  "hints": [
+    "Model the circle as a queue; passing the potato = moving the front to the back.",
+    "Put 1..N in a deque. Each round: move the front to the back k times, then remove the new front. Repeat until one remains. (Uses the queue from Queue Simulator.)",
+    "```\nqueue = [1, 2, ..., n]\nwhile queue has more than one element\n    repeat k times: move the front element to the back\n    remove the front element\nprint the one remaining element\n```"
+  ],
+  "tests": [
+    { "name": "5 children, k=2", "input": "5 2\n", "expectedOutput": "4\n" },
+    { "name": "single child",    "input": "1 3\n", "expectedOutput": "1\n" },
+    { "name": "7 children, k=3", "input": "7 3\n", "expectedOutput": "2\n" },
+    { "name": "6 children, k=2", "input": "6 2\n", "expectedOutput": "1\n" },
+    { "name": "2 children, k=1", "input": "2 1\n", "expectedOutput": "1\n" }
+  ]
+}

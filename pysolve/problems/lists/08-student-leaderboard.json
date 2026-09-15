@@ -1,0 +1,19 @@
+{
+  "id": "lst-student-leaderboard",
+  "title": "Student Leaderboard",
+  "difficulty": "Medium",
+  "points": 250,
+  "description": "# Student Leaderboard\n\nYou are given a list of students, each with a name and a score. Print them ranked from highest score to lowest. If two students have the same score, list them in **alphabetical** order by name.\n\nA natural way to model this is a list of dictionaries, e.g. `{\"name\": \"alice\", \"score\": 90}`.\n\n## Input\n\n- Line 1: an integer `N` - the number of students.\n- Next `N` lines: a name (one word, no spaces) and an integer score, separated by a space.\n\n## Output\n\n`N` lines, each `name score`, sorted by score descending, then name ascending.\n\n```\nInput:\n3\nalice 90\nbob 85\ncara 95\n\nOutput:\ncara 95\nalice 90\nbob 85\n```\n\n## Think about\n\n- Sort by a key that is a tuple. Sorting by `(-score, name)` gives highest score first, breaking ties alphabetically.\n",
+  "starterCode": "n = int(input())\nstudents = []\nfor _ in range(n):\n    name, score = input().split()\n    students.append({\"name\": name, \"score\": int(score)})\n\n# TODO: print 'name score' per line, sorted by score (desc) then name (asc)\n",
+  "hints": [
+    "Sort by a key that means 'highest score first, then name'.",
+    "Build a list of records (dicts), then sort with `key=lambda r: (-r['score'], r['name'])` so score descends and ties break alphabetically.",
+    "```\nsort students by key (-score, name)   // score descending, then name ascending\nfor each student in sorted order\n    print student.name, student.score\n```"
+  ],
+  "tests": [
+    { "name": "basic",       "input": "3\nalice 90\nbob 85\ncara 95\n",        "expectedOutput": "cara 95\nalice 90\nbob 85\n" },
+    { "name": "tie by name", "input": "2\nzoe 70\nann 70\n",                    "expectedOutput": "ann 70\nzoe 70\n" },
+    { "name": "single",      "input": "1\nsolo 50\n",                           "expectedOutput": "solo 50\n" },
+    { "name": "ties mixed",  "input": "4\na 10\nb 30\nc 20\nd 30\n",            "expectedOutput": "b 30\nd 30\nc 20\na 10\n" }
+  ]
+}

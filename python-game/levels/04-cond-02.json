@@ -1,0 +1,24 @@
+{
+  "id": "04-cond-02",
+  "title": "Wall Climber",
+  "topic": "conditional",
+  "kind": "demo",
+  "brief": "<p>Sometimes the path twists. You can use <code>if</code> <i>inside</i> a <code>while</code> loop to decide direction at each step.</p><p>The pattern: walk in your preferred direction unless a wall blocks you — then take a detour.</p><p>Sensors you'll need: <code>is_at_chest()</code>, <code>is_wall_up()</code>.</p>",
+  "width": 7,
+  "height": 7,
+  "tiles": [
+    "#######",
+    "#....T#",
+    "#####.#",
+    "#.....#",
+    "#.#####",
+    "#@....#",
+    "#######"
+  ],
+  "start": { "x": 1, "y": 5, "dir": "UP" },
+  "chest": { "x": 5, "y": 1, "facing": "S" },
+  "goal": { "type": "open_chest" },
+  "api": ["move_right", "move_left", "move_up", "move_down", "open_chest", "is_at_chest", "is_wall_up", "is_wall_right"],
+  "starterCode": "",
+  "solution": "while not is_at_chest():\n    if is_wall_up():\n        move_right()\n    else:\n        move_up()\n\nopen_chest()\n"
+}
