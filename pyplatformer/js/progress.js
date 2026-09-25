@@ -1,7 +1,6 @@
-// localStorage-backed progress tracking. Linear unlock with free practice
-// within completed topics: a level is unlocked if it's the first level, or
-// if any prior level (by manifest order) in the same topic or any prior
-// topic has been completed.
+// localStorage-backed progress tracking. Unlocking is per topic: the first
+// demo level of every topic is open from the start, and completing it opens
+// the rest of that topic (the other demo, activities and homework).
 
 const KEY = "pyplatformer.progress.v1";
 
@@ -35,14 +34,15 @@ export class Progress {
   }
 
   /**
-   * A level is unlocked if it's the first level, or if the immediately preceding
-   * level (by manifest order) has been completed. This is "linear unlock".
-   * Practice levels within a completed topic stay unlocked.
+   * The first demo level of each topic is always unlocked. Every other level
+   * in a topic unlocks once that topic's first demo has been completed.
+   * Topics are independent of each other.
    */
   isUnlocked(levelId, manifest) {
-    const idx = manifest.findIndex(l => l.id === levelId);
-    if (idx <= 0) return true;
-    const prev = manifest[idx - 1];
-    return this.isComplete(prev.id);
+    const entry = manifest.find(l => l.id === levelId);
+    if (!entry) return true;
+    const topicLevels = manifest.filter(l => l.topic === entry.topic);
+    const gate = topicLevels.find(l => l.kind === "demo") || topicLevels[0];
+    return entry.id === gate.id || this.isComplete(gate.id);
   }
 }

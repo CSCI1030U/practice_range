@@ -188,7 +188,7 @@ async function onRun() {
 }
 
 function onStop()  { runner.stop(); setStatus("Stopping…"); }
-function onReset() { if (currentLevel) { game.loadLevel(currentLevel); hideOverlay(); setStatus("Reset"); } }
+function onReset() { if (currentLevel) { game.resetLevel(); hideOverlay(); setStatus("Reset"); } }
 function onSpeedToggle() {
   speedIdx = (speedIdx + 1) % SPEEDS.length;
   const s = SPEEDS[speedIdx];
@@ -215,7 +215,7 @@ overlayNext.addEventListener("click", () => {
 });
 overlayRetry.addEventListener("click", () => {
   hideOverlay();
-  game.loadLevel(currentLevel);
+  game.resetLevel();
 });
 // Re-fit the canvas when the window changes size, so the level keeps being
 // drawn at a whole-number scale rather than being squeezed by CSS.

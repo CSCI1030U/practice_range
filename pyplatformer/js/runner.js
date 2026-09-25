@@ -63,7 +63,7 @@ export class Runner {
     if (this._currentRun) throw new Error("Already running. Stop first.");
     const pyodide = this.pyodide;
 
-    this.game.loadLevel(this.game.level);
+    this.game.resetLevel();
     this.game.clearAbort();
 
     const consoleLogger = { log: (msg) => this._stdout(msg) };

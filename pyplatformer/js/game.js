@@ -106,12 +106,15 @@ export class Game {
   // ---- level loading ----
 
   loadLevel(level) {
-    this.level = level;
-    // Clone the items so collected/flag state resets on reset.
+    this._sourceLevel = level;
+    // Collecting a flag clears its tile, so never draw on the caller's own
+    // grid: replaying a level has to start from the original tiles, not the
+    // ones the previous attempt emptied.
+    this.level = { ...level, tiles: level.tiles.map(row => row.slice()) };
     this.state = {
       hero: {
-        x: level.start.x + 0.5,   // tile-center
-        y: level.start.y + 1,     // feet at bottom of tile
+        x: this.level.start.x + 0.5,   // tile-center
+        y: this.level.start.y + 1,     // feet at bottom of tile
         vx: 0, vy: 0,
         facing: "right",
         onGround: false,
@@ -119,7 +122,7 @@ export class Game {
         anim: "idle",
         walkPhase: 0,
       },
-      flagsRemaining: this._countFlags(level),
+      flagsRemaining: this._countFlags(this.level),
       won: false,
       message: null,
     };
@@ -130,6 +133,15 @@ export class Game {
     this._initialSettle();
     this._updateSurfaceState(this.state.hero);
     this.state.hero.anim = this.state.hero.onGround ? "idle" : "fall";
+  }
+
+  /**
+   * Put the level back to how it started — flags restored, hero at the
+   * start. This is what Reset, Try Again, and the start of every run need;
+   * re-passing the current level would hand back the emptied grid.
+   */
+  resetLevel() {
+    if (this._sourceLevel) this.loadLevel(this._sourceLevel);
   }
 
   _initialSettle() {

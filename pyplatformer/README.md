@@ -162,8 +162,9 @@ in the level list.
 
 **`solution`** is shown behind the "Show one possible solution" disclosure.
 
-Levels unlock linearly: a level opens once the previous one in the manifest
-has been completed.
+Levels unlock per topic: the first `demo` level of every topic is open from
+the start, and completing it unlocks the rest of that topic (the second demo,
+the activities and the homework).
 
 ## Project layout
 
